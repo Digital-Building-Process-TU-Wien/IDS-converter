@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ids xmlns="http://standards.buildingsmart.org/IDS" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://standards.buildingsmart.org/IDS http://standards.buildingsmart.org/IDS/1.0/ids.xsd">
+    <!-- Created with the IDS4ALL Converter developed by Simon Fischer, Harald Urban, Konstantin Höbart, and Christian Schranz of TU Wien Research Unit Digital Building Process (https://www.tuwien.at/en/cee/ibb/zdb). -->
+	<info>
+        <title>Example IDS of IDS4ALL</title>
+        <copyright>TU Wien Digital Building Process</copyright>
+        <author>simon.fischer@tuwien.ac.at</author>
+        <date>2025-03-28</date>
+        <purpose>Role: Role 1, Role 2, Architektur; Usecase: Usecase 1, openBIM Building Permit Process</purpose>
+        <milestone>Phase 2, Phase 1</milestone>
+    </info>
+    <specifications>
+        <specification name="Specification 1: IFCWALL" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1, Phase 2; Role: Role 1; Usecase: Usecase 1, openBIM Building Permit Process">
+            <applicability minOccurs="0" maxOccurs="unbounded">
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <entity instructions="The wall is a vertical construction that delimits or divides rooms. Walls are usually vertical or or almost vertical elements that are often designed to bear structural loads. However, a wall does not need to be load-bearing. If, for example, a wall forms the side end of a swimming pool, then in the ‘Object type’ the selection “Swimming pool” must be specified. According to ÖNORM A 6241-2 Annex A, a wall is a primary building element or a building element of element class I.">
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                </entity>
+                <property dataType="IFCLABEL" cardinality="required" instructions="FireRating: Fire resistance class according to national or regional fire protection regulations.">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>FireRating</simpleValue>
+                    </baseName>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="ND" />
+                            <xs:enumeration value="NE" />
+                            <xs:enumeration value="R 30" />
+                            <xs:enumeration value="R 60" />
+                            <xs:enumeration value="R 90" />
+                            <xs:enumeration value="R 120" />
+                            <xs:enumeration value="R 180" />
+                            <xs:enumeration value="REI 30" />
+                            <xs:enumeration value="REI 60" />
+                            <xs:enumeration value="REI 90" />
+                            <xs:enumeration value="REI 120" />
+                            <xs:enumeration value="REI 180" />
+                            <xs:enumeration value="EI 30" />
+                            <xs:enumeration value="EI 60" />
+                            <xs:enumeration value="EI 90" />
+                            <xs:enumeration value="EI 120" />
+                            <xs:enumeration value="EI 180" />
+                            <xs:enumeration value="E 30" />
+                            <xs:enumeration value="E 60" />
+                            <xs:enumeration value="E 90" />
+                            <xs:enumeration value="E 120" />
+                            <xs:enumeration value="E 180" />
+                        </xs:restriction>
+                    </value>
+                </property>
+                <property dataType="IFCLABEL" cardinality="required">
+                    <propertySet>
+                        <simpleValue>WienBV_BauwerberObjektdaten</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>Fassadengestaltung</simpleValue>
+                    </baseName>
+                </property>
+                <property dataType="IFCLABEL" cardinality="required">
+                    <propertySet>
+                        <simpleValue>WienBV_BauwerberObjektdaten</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>ObjektArt</simpleValue>
+                    </baseName>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="Specification 2: IFCSLAB" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Architektur, Role 1; Usecase: Usecase 1">
+            <applicability minOccurs="0" maxOccurs="unbounded">
+                <entity>
+                    <name>
+                        <simpleValue>IFCSLAB</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <entity instructions="A slab is a structural component that normally closes off a room horizontally. Slabs also include the landing for stairs and ramps (this is a separate defined type of the slab element class and can be found on the IFC website under ‘IfcSlabTypeEnum’). According to ÖNORM A 6241-2 Annex A, a slab is a primary building element.">
+                    <name>
+                        <simpleValue>IFCSLAB</simpleValue>
+                    </name>
+                </entity>
+                <property dataType="IFCBOOLEAN" cardinality="required">
+                    <propertySet>
+                        <simpleValue>Pset_SlabCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>LoadBearing</simpleValue>
+                    </baseName>
+                </property>
+                <property dataType="IFCBOOLEAN" cardinality="required">
+                    <propertySet>
+                        <simpleValue>Pset_SlabCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>Compartmentation</simpleValue>
+                    </baseName>
+                </property>
+                <property dataType="IFCLABEL" cardinality="required">
+                    <propertySet>
+                        <simpleValue>Pset_SlabCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>SurfaceSpreadOfFlame</simpleValue>
+                    </baseName>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="2" fixed="false" />
+                        </xs:restriction>
+                    </value>
+                </property>
+                <property dataType="IFCTHERMALTRANSMITTANCEMEASURE" cardinality="required">
+                    <propertySet>
+                        <simpleValue>Pset_SlabCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>ThermalTransmittance</simpleValue>
+                    </baseName>
+                    <value>
+                        <xs:restriction base="xs:double">
+                            <xs:maxInclusive value="0.3" fixed="false" />
+                        </xs:restriction>
+                    </value>
+                </property>
+                <property dataType="IFCBOOLEAN" cardinality="required">
+                    <propertySet>
+                        <simpleValue>Pset_SlabCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>IsExternal</simpleValue>
+                    </baseName>
+                </property>
+                <property dataType="IFCLABEL" cardinality="required">
+                    <propertySet>
+                        <simpleValue>Pset_SlabCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>AcousticRating</simpleValue>
+                    </baseName>
+                </property>
+                <property dataType="IFCBOOLEAN" cardinality="required">
+                    <propertySet>
+                        <simpleValue>Pset_SlabCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>Combustible</simpleValue>
+                    </baseName>
+                </property>
+                <material cardinality="required">
+                    <value>
+                        <simpleValue>CONCRETE</simpleValue>
+                    </value>
+                </material>
+            </requirements>
+        </specification>
+        <specification name="Specification 3: IFCWALL" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1, Phase 2; Role: Role 1, Role 2; Usecase: Usecase 1">
+            <applicability minOccurs="1" maxOccurs="unbounded">
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/LoadBearing" cardinality="required">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>LoadBearing</simpleValue>
+                    </baseName>
+                </property>
+                <property dataType="IFCBOOLEAN" cardinality="required">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>Compartmentation</simpleValue>
+                    </baseName>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="Specification 4: IFCWALL" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+            <applicability minOccurs="0" maxOccurs="unbounded">
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                </entity>
+                <property>
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>LoadBearing</simpleValue>
+                    </baseName>
+                    <value>
+                        <simpleValue>true</simpleValue>
+                    </value>
+                </property>
+            </applicability>
+            <requirements>
+                <property dataType="IFCLABEL" cardinality="required" instructions="FireRating: Fire resistance class according to national or regional fire protection regulations.">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>FireRating</simpleValue>
+                    </baseName>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="ND" />
+                            <xs:enumeration value="NE" />
+                            <xs:enumeration value="R 30" />
+                            <xs:enumeration value="R 60" />
+                            <xs:enumeration value="R 90" />
+                            <xs:enumeration value="R 120" />
+                            <xs:enumeration value="R 180" />
+                            <xs:enumeration value="REI 30" />
+                            <xs:enumeration value="REI 60" />
+                            <xs:enumeration value="REI 90" />
+                            <xs:enumeration value="REI 120" />
+                            <xs:enumeration value="REI 180" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="Specification 5: IFCWALL" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+            <applicability minOccurs="0" maxOccurs="unbounded">
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                </entity>
+                <property>
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>LoadBearing</simpleValue>
+                    </baseName>
+                    <value>
+                        <simpleValue>false</simpleValue>
+                    </value>
+                </property>
+            </applicability>
+            <requirements>
+                <property dataType="IFCLABEL" cardinality="required" instructions="FireRating: Fire resistance class according to national or regional fire protection regulations.">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>FireRating</simpleValue>
+                    </baseName>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="ND" />
+                            <xs:enumeration value="NE" />
+                            <xs:enumeration value="EI 30" />
+                            <xs:enumeration value="EI 60" />
+                            <xs:enumeration value="EI 90" />
+                            <xs:enumeration value="EI 120" />
+                            <xs:enumeration value="EI 180" />
+                            <xs:enumeration value="E 30" />
+                            <xs:enumeration value="E 60" />
+                            <xs:enumeration value="E 90" />
+                            <xs:enumeration value="E 120" />
+                            <xs:enumeration value="E 180" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="Specification 6: IFCWALL" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+            <applicability minOccurs="0" maxOccurs="unbounded">
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                </entity>
+                <material>
+                    <value>
+                        <simpleValue>Concrete</simpleValue>
+                    </value>
+                </material>
+            </applicability>
+            <requirements>
+                <property dataType="IFCLABEL" cardinality="required">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>SurfaceSpreadOfFlame</simpleValue>
+                    </baseName>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="Specification 7: IFCWALL.MOVEABLE" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+            <applicability minOccurs="0" maxOccurs="unbounded">
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                    <predefinedType>
+                        <simpleValue>MOVEABLE</simpleValue>
+                    </predefinedType>
+                </entity>
+            </applicability>
+            <requirements>
+                <property dataType="IFCTHERMALTRANSMITTANCEMEASURE" cardinality="required">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>ThermalTransmittance</simpleValue>
+                    </baseName>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="Specification 8: IFCWALL.USERDEFINED" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+            <applicability minOccurs="0" maxOccurs="unbounded">
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                    <predefinedType>
+                        <simpleValue>USERDEFINED</simpleValue>
+                    </predefinedType>
+                </entity>
+                <attribute>
+                    <name>
+                        <simpleValue>ObjectType</simpleValue>
+                    </name>
+                    <value>
+                        <simpleValue>ATTIKA</simpleValue>
+                    </value>
+                </attribute>
+            </applicability>
+            <requirements>
+                <property dataType="IFCBOOLEAN" cardinality="required">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>IsExternal</simpleValue>
+                    </baseName>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="Specification 9: IFCWALL" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+            <applicability minOccurs="0" maxOccurs="unbounded">
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                </entity>
+                <classification>
+                    <value>
+                        <simpleValue>Wall construction</simpleValue>
+                    </value>
+                    <system>
+                        <simpleValue>CCI Construction</simpleValue>
+                    </system>
+                </classification>
+            </applicability>
+            <requirements>
+                <property dataType="IFCLABEL" cardinality="required">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>AcousticRating</simpleValue>
+                    </baseName>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="Specification 10: IFCWALL" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+            <applicability minOccurs="0" maxOccurs="unbounded">
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                </entity>
+                <partOf relation="IFCRELCONTAINEDINSPATIALSTRUCTURE">
+                    <entity>
+                        <name>
+                            <simpleValue>IFCBUILDINGSTOREY</simpleValue>
+                        </name>
+                    </entity>
+                </partOf>
+            </applicability>
+            <requirements>
+                <property dataType="IFCBOOLEAN" cardinality="required">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>Combustible</simpleValue>
+                    </baseName>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="Specification 11: IFCDUCTSEGMENT" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+            <applicability minOccurs="0" maxOccurs="unbounded">
+                <entity>
+                    <name>
+                        <simpleValue>IFCDUCTSEGMENT</simpleValue>
+                    </name>
+                </entity>
+                <partOf relation="IFCRELASSIGNSTOGROUP">
+                    <entity>
+                        <name>
+                            <simpleValue>IFCDISTRIBUTIONSYSTEM</simpleValue>
+                        </name>
+                    </entity>
+                </partOf>
+            </applicability>
+            <requirements>
+                <property dataType="IFCPOSITIVELENGTHMEASURE" cardinality="required">
+                    <propertySet>
+                        <simpleValue>Pset_DuctSegmentTypeCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>NominalHeight</simpleValue>
+                    </baseName>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="Specification 12: IFCWALL" ifcVersion="IFC4X3_ADD2">
+            <applicability minOccurs="0" maxOccurs="0">
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                </entity>
+                <property>
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>Status</simpleValue>
+                    </baseName>
+                    <value>
+                        <simpleValue>UNSET</simpleValue>
+                    </value>
+                </property>
+            </applicability>
+            <requirements />
+        </specification>
+        <specification name="Specification 13: IFCSLAB" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+            <applicability minOccurs="0" maxOccurs="unbounded">
+                <entity>
+                    <name>
+                        <simpleValue>IFCSLAB</simpleValue>
+                    </name>
+                </entity>
+                <property>
+                    <propertySet>
+                        <simpleValue>Pset_SlabCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>LoadBearing</simpleValue>
+                    </baseName>
+                    <value>
+                        <simpleValue>true</simpleValue>
+                    </value>
+                </property>
+            </applicability>
+            <requirements>
+                <property dataType="IFCLABEL" cardinality="required" instructions="FireRating: Fire resistance class according to national or regional fire protection regulations.">
+                    <propertySet>
+                        <simpleValue>Pset_SlabCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>FireRating</simpleValue>
+                    </baseName>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="ND" />
+                            <xs:enumeration value="NE" />
+                            <xs:enumeration value="R 30" />
+                            <xs:enumeration value="R 60" />
+                            <xs:enumeration value="R 90" />
+                            <xs:enumeration value="R 120" />
+                            <xs:enumeration value="R 180" />
+                            <xs:enumeration value="REI 30" />
+                            <xs:enumeration value="REI 60" />
+                            <xs:enumeration value="REI 90" />
+                            <xs:enumeration value="REI 120" />
+                            <xs:enumeration value="REI 180" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="Specification 14: IFCSLAB" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+            <applicability minOccurs="0" maxOccurs="unbounded">
+                <entity>
+                    <name>
+                        <simpleValue>IFCSLAB</simpleValue>
+                    </name>
+                </entity>
+                <property>
+                    <propertySet>
+                        <simpleValue>Pset_SlabCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>LoadBearing</simpleValue>
+                    </baseName>
+                    <value>
+                        <simpleValue>false</simpleValue>
+                    </value>
+                </property>
+            </applicability>
+            <requirements>
+                <property dataType="IFCLABEL" cardinality="required" instructions="FireRating: Fire resistance class according to national or regional fire protection regulations.">
+                    <propertySet>
+                        <simpleValue>Pset_SlabCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>FireRating</simpleValue>
+                    </baseName>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="ND" />
+                            <xs:enumeration value="NE" />
+                            <xs:enumeration value="EI 30" />
+                            <xs:enumeration value="EI 60" />
+                            <xs:enumeration value="EI 90" />
+                            <xs:enumeration value="EI 120" />
+                            <xs:enumeration value="EI 180" />
+                            <xs:enumeration value="E 30" />
+                            <xs:enumeration value="E 60" />
+                            <xs:enumeration value="E 90" />
+                            <xs:enumeration value="E 120" />
+                            <xs:enumeration value="E 180" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="Specification 15: IFCSLAB" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+            <applicability minOccurs="0" maxOccurs="unbounded">
+                <entity>
+                    <name>
+                        <simpleValue>IFCSLAB</simpleValue>
+                    </name>
+                </entity>
+                <property>
+                    <propertySet>
+                        <simpleValue>Pset_SlabCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>LoadBearing</simpleValue>
+                    </baseName>
+                    <value>
+                        <simpleValue>true</simpleValue>
+                    </value>
+                </property>
+                <property>
+                    <propertySet>
+                        <simpleValue>Pset_SlabCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>Compartmentation</simpleValue>
+                    </baseName>
+                    <value>
+                        <simpleValue>true</simpleValue>
+                    </value>
+                </property>
+            </applicability>
+            <requirements>
+                <property dataType="IFCLABEL" cardinality="required" instructions="FireRating: Fire resistance class according to national or regional fire protection regulations.">
+                    <propertySet>
+                        <simpleValue>Pset_SlabCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>FireRating</simpleValue>
+                    </baseName>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="REI\s[0-9]{2,3}" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="Specification 16: IFCWALL" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+            <applicability minOccurs="0" maxOccurs="unbounded">
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                </entity>
+                <classification>
+                    <value>
+                        <simpleValue>awmhhi01a-03</simpleValue>
+                    </value>
+                    <system>
+                        <simpleValue>dataholz Dictionary</simpleValue>
+                    </system>
+                </classification>
+            </applicability>
+            <requirements>
+                <property dataType="IFCBOOLEAN" cardinality="required">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>Combustible</simpleValue>
+                    </baseName>
+                    <value>
+                        <simpleValue>true</simpleValue>
+                    </value>
+                </property>
+                <property dataType="IFCLABEL" cardinality="required" instructions="FireRating: Fire resistance class according to national or regional fire protection regulations.">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>FireRating</simpleValue>
+                    </baseName>
+                    <value>
+                        <simpleValue>REI 90</simpleValue>
+                    </value>
+                </property>
+                <property dataType="IFCBOOLEAN" cardinality="required">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>IsExternal</simpleValue>
+                    </baseName>
+                    <value>
+                        <simpleValue>true</simpleValue>
+                    </value>
+                </property>
+                <property dataType="IFCBOOLEAN" cardinality="required">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>LoadBearing</simpleValue>
+                    </baseName>
+                    <value>
+                        <simpleValue>true</simpleValue>
+                    </value>
+                </property>
+                <property dataType="IFCTHERMALTRANSMITTANCEMEASURE" cardinality="required">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>ThermalTransmittance</simpleValue>
+                    </baseName>
+                    <value>
+                        <simpleValue>0.12</simpleValue>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="Specification 17: IFCWALL" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+            <applicability minOccurs="0" maxOccurs="unbounded">
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                </entity>
+                <classification>
+                    <value>
+                        <simpleValue>Wall-REI120</simpleValue>
+                    </value>
+                    <system>
+                        <simpleValue>TU Wien Test System</simpleValue>
+                    </system>
+                </classification>
+            </applicability>
+            <requirements>
+                <property dataType="IFCLABEL" cardinality="required" instructions="FireRating: Fire resistance class according to national or regional fire protection regulations.">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>FireRating</simpleValue>
+                    </baseName>
+                    <value>
+                        <simpleValue>REI 120</simpleValue>
+                    </value>
+                </property>
+                <property dataType="IFCBOOLEAN" cardinality="required">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>LoadBearing</simpleValue>
+                    </baseName>
+                    <value>
+                        <simpleValue>true</simpleValue>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+    </specifications>
+</ids>
