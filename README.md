@@ -15,6 +15,18 @@ This IDS converter generates IDS files from information defined in tabular form.
 
 All data files are licensed under CC BY 4.0, all software files are licensed under MIT License.
 
+## Donation
+
+Our principle: sharing and distributing research is crucial to learning from each other and moving forward together. If you would like to support our open source research, we greatly appreciate donations.
+
+Technische Universität Wien/Spendenkonto
+
+IBAN: AT19 3200 0200 0061 1228
+
+BIC/SWFT: RLNWATWW
+
+Purpose of transfer: GEV011020ZFT S235030-000 - Digital Building Process
+
 ## Installation
 
 1. Clone or download this repository
@@ -67,14 +79,3 @@ options:
   --output_path OUTPUT_PATH
                         Path to the output directory for IDS files.
 ```
-
-## Donation
-
-Our principle: sharing and distributing research is crucial to learning from each other and moving forward together. If you would like to support our open source research, we greatly appreciate donations.
-
-Technische Universität Wien/Spendenkonto
-IBAN: AT19 3200 0200 0061 1228
-BIC/SWFT: RLNWATWW
-Purpose of transfer: GEV011020ZFT S235030-000 - Digital Building Process
-
-
