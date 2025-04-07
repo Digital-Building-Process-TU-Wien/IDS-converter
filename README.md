@@ -17,9 +17,9 @@ All data files are licensed under CC BY 4.0, all software files are licensed und
 
 ## Installation
 
-1. Clone this repository or download 
+1. Clone or download this repository
 2. Install Python (compatible versions: 3.10, 3.11, 3.12)
-3. open Terminal in the project folder
+3. Open Terminal in the project folder
 4. Create a venv ``` python3 -m venv venv ``` or ``` python -m venv venv ```
 5. Activate venv, Linux: ```source venv/bin/activate``` Windows: ``` venv\Scripts\activate ```
 6. Install all dependencies: ```pip install -r requirements.txt```
@@ -67,3 +67,14 @@ options:
   --output_path OUTPUT_PATH
                         Path to the output directory for IDS files.
 ```
+
+## Donation
+
+Our principle: sharing and distributing research is crucial to learning from each other and moving forward together. If you would like to support our open source research, we greatly appreciate donations.
+
+Technische Universität Wien/Spendenkonto
+IBAN: AT19 3200 0200 0061 1228
+BIC/SWFT: RLNWATWW
+Purpose of transfer: GEV011020ZFT S235030-000 - Digital Building Process
+
+
