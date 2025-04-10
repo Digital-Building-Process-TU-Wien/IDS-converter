@@ -5,7 +5,7 @@
         <title>IDS for openBIM building permit of the City of Vienna – extended</title>
         <copyright>TU Wien Digital Building Process</copyright>
         <author>simon.fischer@tuwien.ac.at</author>
-        <date>2025-03-31</date>
+        <date>2025-04-10</date>
     </info>
     <specifications>
         <specification name="Specification 1: IFCBEAM" ifcVersion="IFC4X3_ADD2">
@@ -47,10 +47,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -150,10 +153,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -206,10 +212,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -341,10 +350,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -476,10 +488,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -665,10 +680,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -854,10 +872,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -923,10 +944,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -1021,10 +1045,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -1077,10 +1104,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -1198,10 +1228,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -1325,10 +1358,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -1476,10 +1512,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -1630,10 +1669,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -1801,10 +1843,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -1931,10 +1976,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -1979,10 +2027,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -2042,10 +2093,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -2074,10 +2128,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -2106,10 +2163,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -2155,10 +2215,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -2195,10 +2258,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -2227,10 +2293,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -2435,10 +2504,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -2976,6 +3048,17 @@
                     <baseName>
                         <simpleValue>Status</simpleValue>
                     </baseName>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
+                        </xs:restriction>
+                    </value>
                 </property>
             </requirements>
         </specification>
@@ -3024,10 +3107,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -3064,10 +3150,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -4708,10 +4797,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -7028,10 +7120,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -7400,10 +7495,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -7772,10 +7870,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -8144,10 +8245,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -8516,10 +8620,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -8888,10 +8995,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -9260,10 +9370,13 @@
                     </baseName>
                     <value>
                         <xs:restriction base="xs:string">
-                            <xs:enumeration value="Abbruch" />
-                            <xs:enumeration value="Bestand" />
-                            <xs:enumeration value="Neu" />
-                            <xs:enumeration value="Temporär" />
+                            <xs:enumeration value="DEMOLISH" />
+                            <xs:enumeration value="EXISTING" />
+                            <xs:enumeration value="NEW" />
+                            <xs:enumeration value="TEMPORARY" />
+                            <xs:enumeration value="OTHER" />
+                            <xs:enumeration value="NOTKNOWN" />
+                            <xs:enumeration value="UNSET" />
                         </xs:restriction>
                     </value>
                 </property>
