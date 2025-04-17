@@ -1,5 +1,7 @@
 import argparse
 import os
+import zipfile
+import uuid
 from datetime import date
 import pandas as pd
 from ifctester import ids
@@ -77,6 +79,7 @@ def process_excel_data(excel_path, excel_name, excel_format, sheet_name, separat
     return separated_excel_data
 
 def create_ids_files(separated_excel_data, ifc_version, data_dict, output_path, excel_name, sheet_name):
+    created_files = []
     for key in separated_excel_data.keys():
         sep_data = separated_excel_data[key]
         
@@ -107,7 +110,7 @@ def create_ids_files(separated_excel_data, ifc_version, data_dict, output_path, 
             # Prepare output path and filename
             key = key.replace('/','-')
             os.makedirs(output_path, exist_ok=True)
-            filename = excel_name + '_' + sheet_name + key + '.ids'
+            filename = excel_name + '_' + sheet_name + key + '_' + uuid.uuid4().hex[:6] + '.ids'
             output_path_full = os.path.join(output_path, filename)
             
             # Save IDS file
@@ -117,8 +120,19 @@ def create_ids_files(separated_excel_data, ifc_version, data_dict, output_path, 
             add_comment_to_xml(output_path_full, ' Created with the IDS4ALL Converter developed by Simon Fischer, Harald Urban, Konstantin Höbart, and Christian Schranz of TU Wien Research Unit Digital Building Process (https://www.tuwien.at/en/cee/ibb/zdb). ')
             print('XML created')
             print(f'Output file: {output_path_full}')
+            created_files.append(output_path_full)
         except Exception as error:
             print('Error: ', error)
+    
+    if len(created_files) > 1:
+        zip_name = 'ids_files_' + uuid.uuid4().hex[:6] + '.zip'
+        zip_path = os.path.join(output_path, zip_name)
+        with zipfile.ZipFile(zip_path, "w") as zipf:
+            for file_path in created_files:
+                arcname = os.path.basename(file_path)
+                zipf.write(file_path, arcname=arcname)
+        print('ZIP created')
+        print(f'Output file: {zip_path}')
 
 def main():
     args = parse_arguments()
