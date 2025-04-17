@@ -5,7 +5,7 @@
         <title>IDS for openBIM building permit of the City of Vienna – extended</title>
         <copyright>TU Wien Digital Building Process</copyright>
         <author>simon.fischer@tuwien.ac.at</author>
-        <date>2025-04-10</date>
+        <date>2025-04-14</date>
     </info>
     <specifications>
         <specification name="Specification 1: IFCBEAM" ifcVersion="IFC4X3_ADD2">
@@ -22,7 +22,7 @@
                         <simpleValue>IFCBEAM</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/IsExternal" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
                     <propertySet>
                         <simpleValue>Pset_BeamCommon</simpleValue>
                     </propertySet>
@@ -30,7 +30,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil tragend ist (JA) oder nichttragend (NEIN)">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/LoadBearing" cardinality="required" instructions="Angabe, ob dieses Bauteil tragend ist (JA) oder nichttragend (NEIN)">
                     <propertySet>
                         <simpleValue>Pset_BeamCommon</simpleValue>
                     </propertySet>
@@ -38,7 +38,7 @@
                         <simpleValue>LoadBearing</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_BeamCommon</simpleValue>
                     </propertySet>
@@ -144,7 +144,7 @@
                         <simpleValue>IFCCHIMNEY</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_ChimneyCommon</simpleValue>
                     </propertySet>
@@ -187,7 +187,7 @@
                         <simpleValue>IFCCOLUMN</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/IsExternal" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
                     <propertySet>
                         <simpleValue>Pset_ColumnCommon</simpleValue>
                     </propertySet>
@@ -195,7 +195,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil tragend ist (JA) oder nichttragend (NEIN)">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/LoadBearing" cardinality="required" instructions="Angabe, ob dieses Bauteil tragend ist (JA) oder nichttragend (NEIN)">
                     <propertySet>
                         <simpleValue>Pset_ColumnCommon</simpleValue>
                     </propertySet>
@@ -203,7 +203,7 @@
                         <simpleValue>LoadBearing</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_ColumnCommon</simpleValue>
                     </propertySet>
@@ -309,7 +309,7 @@
                         <simpleValue>IFCCOVERING</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRating" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
                     <propertySet>
                         <simpleValue>Pset_CoveringCommon</simpleValue>
                     </propertySet>
@@ -333,7 +333,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/IsExternal" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
                     <propertySet>
                         <simpleValue>Pset_CoveringCommon</simpleValue>
                     </propertySet>
@@ -341,7 +341,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_CoveringCommon</simpleValue>
                     </propertySet>
@@ -360,7 +360,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Angabe, wie sich die Flammen auf der Oberfläche ausbreiten. Sie wird gemäß den nationalen Bauvorschriften angegeben, die das Brandverhalten von Materialien regeln.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/SurfaceSpreadOfFlame" cardinality="required" instructions="Angabe, wie sich die Flammen auf der Oberfläche ausbreiten. Sie wird gemäß den nationalen Bauvorschriften angegeben, die das Brandverhalten von Materialien regeln.">
                     <propertySet>
                         <simpleValue>Pset_CoveringCommon</simpleValue>
                     </propertySet>
@@ -447,7 +447,7 @@
                         <simpleValue>IFCCURTAINWALL</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRating" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
                     <propertySet>
                         <simpleValue>Pset_CurtainWallCommon</simpleValue>
                     </propertySet>
@@ -471,7 +471,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/IsExternal" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
                     <propertySet>
                         <simpleValue>Pset_CurtainWallCommon</simpleValue>
                     </propertySet>
@@ -479,7 +479,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_CurtainWallCommon</simpleValue>
                     </propertySet>
@@ -498,7 +498,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Angabe, wie sich die Flammen auf der Oberfläche ausbreiten. Sie wird gemäß den nationalen Bauvorschriften angegeben, die das Brandverhalten von Materialien regeln.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/SurfaceSpreadOfFlame" cardinality="required" instructions="Angabe, wie sich die Flammen auf der Oberfläche ausbreiten. Sie wird gemäß den nationalen Bauvorschriften angegeben, die das Brandverhalten von Materialien regeln.">
                     <propertySet>
                         <simpleValue>Pset_CurtainWallCommon</simpleValue>
                     </propertySet>
@@ -619,7 +619,7 @@
                         <simpleValue>IFCDOOR</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRating" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
                     <propertySet>
                         <simpleValue>Pset_DoorCommon</simpleValue>
                     </propertySet>
@@ -655,7 +655,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Hinweis, dass dieses Objekt behindertengerecht gestaltet ist. Auf (TRUE/WAHR) setzen, wenn dieses Element gemäß den örtlichen Bauvorschriften als behindertengerecht eingestuft ist, andernfalls (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/HandicapAccessible" cardinality="required" instructions="Hinweis, dass dieses Objekt behindertengerecht gestaltet ist. Auf (TRUE/WAHR) setzen, wenn dieses Element gemäß den örtlichen Bauvorschriften als behindertengerecht eingestuft ist, andernfalls (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_DoorCommon</simpleValue>
                     </propertySet>
@@ -663,7 +663,7 @@
                         <simpleValue>HandicapAccessible</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/IsExternal" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
                     <propertySet>
                         <simpleValue>Pset_DoorCommon</simpleValue>
                     </propertySet>
@@ -671,7 +671,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_DoorCommon</simpleValue>
                     </propertySet>
@@ -847,7 +847,7 @@
                         <simpleValue>IFCMEMBER</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/IsExternal" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
                     <propertySet>
                         <simpleValue>Pset_MemberCommon</simpleValue>
                     </propertySet>
@@ -855,7 +855,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil tragend ist (JA) oder nichttragend (NEIN)">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/LoadBearing" cardinality="required" instructions="Angabe, ob dieses Bauteil tragend ist (JA) oder nichttragend (NEIN)">
                     <propertySet>
                         <simpleValue>Pset_MemberCommon</simpleValue>
                     </propertySet>
@@ -863,7 +863,7 @@
                         <simpleValue>LoadBearing</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_MemberCommon</simpleValue>
                     </propertySet>
@@ -919,7 +919,7 @@
                         <simpleValue>IFCPLATE</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/IsExternal" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
                     <propertySet>
                         <simpleValue>Pset_PlateCommon</simpleValue>
                     </propertySet>
@@ -927,7 +927,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil tragend ist (JA) oder nichttragend (NEIN)">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/LoadBearing" cardinality="required" instructions="Angabe, ob dieses Bauteil tragend ist (JA) oder nichttragend (NEIN)">
                     <propertySet>
                         <simpleValue>Pset_PlateCommon</simpleValue>
                     </propertySet>
@@ -935,7 +935,7 @@
                         <simpleValue>LoadBearing</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_PlateCommon</simpleValue>
                     </propertySet>
@@ -1020,7 +1020,7 @@
                         <simpleValue>IFCRAILING</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCPOSITIVELENGTHMEASURE" cardinality="required" instructions="Haupthandlauf Höhe (ü. FBOK): Obere Höhe des Geländers über dem dazugehörigen Element (Bodenaufbau oder der Treppe).">
+                <property dataType="IFCPOSITIVELENGTHMEASURE" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Height" cardinality="required" instructions="Haupthandlauf Höhe (ü. FBOK): Obere Höhe des Geländers über dem dazugehörigen Element (Bodenaufbau oder der Treppe).">
                     <propertySet>
                         <simpleValue>Pset_RailingCommon</simpleValue>
                     </propertySet>
@@ -1028,7 +1028,7 @@
                         <simpleValue>Height</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/IsExternal" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
                     <propertySet>
                         <simpleValue>Pset_RailingCommon</simpleValue>
                     </propertySet>
@@ -1036,7 +1036,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_RailingCommon</simpleValue>
                     </propertySet>
@@ -1071,7 +1071,7 @@
                         <simpleValue>IFCRAMP</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/IsExternal" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
                     <propertySet>
                         <simpleValue>Pset_RampCommon</simpleValue>
                     </propertySet>
@@ -1079,7 +1079,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil tragend ist (JA) oder nichttragend (NEIN)">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/LoadBearing" cardinality="required" instructions="Angabe, ob dieses Bauteil tragend ist (JA) oder nichttragend (NEIN)">
                     <propertySet>
                         <simpleValue>Pset_RampCommon</simpleValue>
                     </propertySet>
@@ -1087,7 +1087,7 @@
                         <simpleValue>LoadBearing</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCPLANEANGLEMEASURE" cardinality="required" instructions="Erforderlicher Neigungswinkel der Rampe - relativ zur Horizontalen (0,0 Grad). Erforderliche maximale Neigung des Durchgangs gemäß der geltenden Bauordnung oder zusätzlichen Anforderungen.">
+                <property dataType="IFCPLANEANGLEMEASURE" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/RequiredSlope" cardinality="required" instructions="Erforderlicher Neigungswinkel der Rampe - relativ zur Horizontalen (0,0 Grad). Erforderliche maximale Neigung des Durchgangs gemäß der geltenden Bauordnung oder zusätzlichen Anforderungen.">
                     <propertySet>
                         <simpleValue>Pset_RampCommon</simpleValue>
                     </propertySet>
@@ -1095,7 +1095,7 @@
                         <simpleValue>RequiredSlope</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_RampCommon</simpleValue>
                     </propertySet>
@@ -1203,7 +1203,7 @@
                         <simpleValue>IFCROOF</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/IsExternal" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
                     <propertySet>
                         <simpleValue>Pset_RoofCommon</simpleValue>
                     </propertySet>
@@ -1211,7 +1211,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil tragend ist (JA) oder nichttragend (NEIN)">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/LoadBearing" cardinality="required" instructions="Angabe, ob dieses Bauteil tragend ist (JA) oder nichttragend (NEIN)">
                     <propertySet>
                         <simpleValue>Pset_RoofCommon</simpleValue>
                     </propertySet>
@@ -1219,7 +1219,7 @@
                         <simpleValue>LoadBearing</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_RoofCommon</simpleValue>
                     </propertySet>
@@ -1325,7 +1325,7 @@
                         <simpleValue>IFCSLAB</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil einen Brandabschnitt begrenzt (WAHR), oder nicht (FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Compartmentation" cardinality="required" instructions="Angabe, ob dieses Bauteil einen Brandabschnitt begrenzt (WAHR), oder nicht (FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SlabCommon</simpleValue>
                     </propertySet>
@@ -1333,7 +1333,7 @@
                         <simpleValue>Compartmentation</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/IsExternal" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
                     <propertySet>
                         <simpleValue>Pset_SlabCommon</simpleValue>
                     </propertySet>
@@ -1341,7 +1341,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil tragend ist (JA) oder nichttragend (NEIN)">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/LoadBearing" cardinality="required" instructions="Angabe, ob dieses Bauteil tragend ist (JA) oder nichttragend (NEIN)">
                     <propertySet>
                         <simpleValue>Pset_SlabCommon</simpleValue>
                     </propertySet>
@@ -1349,7 +1349,7 @@
                         <simpleValue>LoadBearing</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_SlabCommon</simpleValue>
                     </propertySet>
@@ -1368,7 +1368,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Angabe, wie sich die Flammen auf der Oberfläche ausbreiten. Sie wird gemäß den nationalen Bauvorschriften angegeben, die das Brandverhalten von Materialien regeln.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/SurfaceSpreadOfFlame" cardinality="required" instructions="Angabe, wie sich die Flammen auf der Oberfläche ausbreiten. Sie wird gemäß den nationalen Bauvorschriften angegeben, die das Brandverhalten von Materialien regeln.">
                     <propertySet>
                         <simpleValue>Pset_SlabCommon</simpleValue>
                     </propertySet>
@@ -1455,7 +1455,7 @@
                         <simpleValue>IFCSTAIR</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob das Element Teil des Notausgangs/Fluchtwegs ist. Im Fall der Verwendung bei Türen/Fenstern/Fenstertüren: nur das letztendliche Element (Ausgang ins Freie) ist TRUE/WAHR.">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireExit" cardinality="required" instructions="Angabe, ob das Element Teil des Notausgangs/Fluchtwegs ist. Im Fall der Verwendung bei Türen/Fenstern/Fenstertüren: nur das letztendliche Element (Ausgang ins Freie) ist TRUE/WAHR.">
                     <propertySet>
                         <simpleValue>Pset_StairCommon</simpleValue>
                     </propertySet>
@@ -1463,7 +1463,7 @@
                         <simpleValue>FireExit</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Hinweis, dass dieses Objekt behindertengerecht gestaltet ist. Auf (TRUE/WAHR) setzen, wenn dieses Element gemäß den örtlichen Bauvorschriften als behindertengerecht eingestuft ist, andernfalls (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/HandicapAccessible" cardinality="required" instructions="Hinweis, dass dieses Objekt behindertengerecht gestaltet ist. Auf (TRUE/WAHR) setzen, wenn dieses Element gemäß den örtlichen Bauvorschriften als behindertengerecht eingestuft ist, andernfalls (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_StairCommon</simpleValue>
                     </propertySet>
@@ -1471,7 +1471,7 @@
                         <simpleValue>HandicapAccessible</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/IsExternal" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
                     <propertySet>
                         <simpleValue>Pset_StairCommon</simpleValue>
                     </propertySet>
@@ -1479,7 +1479,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil tragend ist (JA) oder nichttragend (NEIN)">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/LoadBearing" cardinality="required" instructions="Angabe, ob dieses Bauteil tragend ist (JA) oder nichttragend (NEIN)">
                     <propertySet>
                         <simpleValue>Pset_StairCommon</simpleValue>
                     </propertySet>
@@ -1487,7 +1487,7 @@
                         <simpleValue>LoadBearing</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCCOUNTMEASURE" cardinality="required" instructions="Gesamtzahl der Steigungen, die in der Treppe enthalten sind.">
+                <property dataType="IFCCOUNTMEASURE" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/NumberOfRiser" cardinality="required" instructions="Gesamtzahl der Steigungen, die in der Treppe enthalten sind.">
                     <propertySet>
                         <simpleValue>Pset_StairCommon</simpleValue>
                     </propertySet>
@@ -1495,7 +1495,7 @@
                         <simpleValue>NumberOfRiser</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCCOUNTMEASURE" cardinality="required" instructions="Gesamtzahl der Auftritte, die in der Treppe enthalten sind.">
+                <property dataType="IFCCOUNTMEASURE" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/NumberOfTreads" cardinality="required" instructions="Gesamtzahl der Auftritte, die in der Treppe enthalten sind.">
                     <propertySet>
                         <simpleValue>Pset_StairCommon</simpleValue>
                     </propertySet>
@@ -1503,7 +1503,7 @@
                         <simpleValue>NumberOfTreads</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_StairCommon</simpleValue>
                     </propertySet>
@@ -1628,7 +1628,7 @@
                         <simpleValue>IFCWALL</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil einen Brandabschnitt begrenzt (WAHR), oder nicht (FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Compartmentation" cardinality="required" instructions="Angabe, ob dieses Bauteil einen Brandabschnitt begrenzt (WAHR), oder nicht (FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_WallCommon</simpleValue>
                     </propertySet>
@@ -1636,7 +1636,7 @@
                         <simpleValue>Compartmentation</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob diese Wand raumhoch ist (WAHR), oder nicht (FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/ExtendToStructure" cardinality="required" instructions="Angabe, ob diese Wand raumhoch ist (WAHR), oder nicht (FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_WallCommon</simpleValue>
                     </propertySet>
@@ -1644,7 +1644,7 @@
                         <simpleValue>ExtendToStructure</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/IsExternal" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
                     <propertySet>
                         <simpleValue>Pset_WallCommon</simpleValue>
                     </propertySet>
@@ -1652,7 +1652,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil tragend ist (JA) oder nichttragend (NEIN)">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/LoadBearing" cardinality="required" instructions="Angabe, ob dieses Bauteil tragend ist (JA) oder nichttragend (NEIN)">
                     <propertySet>
                         <simpleValue>Pset_WallCommon</simpleValue>
                     </propertySet>
@@ -1660,7 +1660,7 @@
                         <simpleValue>LoadBearing</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_WallCommon</simpleValue>
                     </propertySet>
@@ -1679,7 +1679,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Angabe, wie sich die Flammen auf der Oberfläche ausbreiten. Sie wird gemäß den nationalen Bauvorschriften angegeben, die das Brandverhalten von Materialien regeln.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/SurfaceSpreadOfFlame" cardinality="required" instructions="Angabe, wie sich die Flammen auf der Oberfläche ausbreiten. Sie wird gemäß den nationalen Bauvorschriften angegeben, die das Brandverhalten von Materialien regeln.">
                     <propertySet>
                         <simpleValue>Pset_WallCommon</simpleValue>
                     </propertySet>
@@ -1782,7 +1782,7 @@
                         <simpleValue>IFCWINDOW</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRating" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
                     <propertySet>
                         <simpleValue>Pset_WindowCommon</simpleValue>
                     </propertySet>
@@ -1818,7 +1818,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/IsExternal" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
                     <propertySet>
                         <simpleValue>Pset_WindowCommon</simpleValue>
                     </propertySet>
@@ -1826,7 +1826,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob eine Tür/ein Fenster einen Rauchschutz gemäß der nationalen oder regionalen Brandschutzverordnung gewährleistet (TRUE/WAHR) oder nicht (FALSE/FALSCH). Rauchschutztüren müssen selbstschließend sein.">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/SmokeStop" cardinality="required" instructions="Angabe, ob eine Tür/ein Fenster einen Rauchschutz gemäß der nationalen oder regionalen Brandschutzverordnung gewährleistet (TRUE/WAHR) oder nicht (FALSE/FALSCH). Rauchschutztüren müssen selbstschließend sein.">
                     <propertySet>
                         <simpleValue>Pset_WindowCommon</simpleValue>
                     </propertySet>
@@ -1834,7 +1834,7 @@
                         <simpleValue>SmokeStop</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_WindowCommon</simpleValue>
                     </propertySet>
@@ -1959,7 +1959,7 @@
                         <simpleValue>IFCPILE</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil tragend ist (JA) oder nichttragend (NEIN)">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/LoadBearing" cardinality="required" instructions="Angabe, ob dieses Bauteil tragend ist (JA) oder nichttragend (NEIN)">
                     <propertySet>
                         <simpleValue>Pset_PileCommon</simpleValue>
                     </propertySet>
@@ -1967,7 +1967,7 @@
                         <simpleValue>LoadBearing</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_PileCommon</simpleValue>
                     </propertySet>
@@ -2010,7 +2010,7 @@
                         <simpleValue>IFCFOOTING</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil tragend ist (JA) oder nichttragend (NEIN)">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/LoadBearing" cardinality="required" instructions="Angabe, ob dieses Bauteil tragend ist (JA) oder nichttragend (NEIN)">
                     <propertySet>
                         <simpleValue>Pset_FootingCommon</simpleValue>
                     </propertySet>
@@ -2018,7 +2018,7 @@
                         <simpleValue>LoadBearing</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_FootingCommon</simpleValue>
                     </propertySet>
@@ -2084,7 +2084,7 @@
                         <simpleValue>IFCSOLARDEVICE</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_SolarDeviceTypeCommon</simpleValue>
                     </propertySet>
@@ -2119,7 +2119,7 @@
                         <simpleValue>IFCPIPESEGMENT</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_PipeSegmentTypeCommon</simpleValue>
                     </propertySet>
@@ -2154,7 +2154,7 @@
                         <simpleValue>IFCTANK</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_TankTypeCommon</simpleValue>
                     </propertySet>
@@ -2206,7 +2206,7 @@
                         <simpleValue>IFCFIRESUPPRESSIONTERMINAL</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_FireSuppressionTerminalTypeCommon</simpleValue>
                     </propertySet>
@@ -2249,7 +2249,7 @@
                         <simpleValue>IFCSANITARYTERMINAL</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_SanitaryTerminalTypeCommon</simpleValue>
                     </propertySet>
@@ -2284,7 +2284,7 @@
                         <simpleValue>IFCFURNITURE</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_FurnitureTypeCommon</simpleValue>
                     </propertySet>
@@ -2367,7 +2367,7 @@
                         <simpleValue>PARKING</simpleValue>
                     </predefinedType>
                 </entity>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Hinweis, dass dieses Objekt behindertengerecht gestaltet ist. Auf (TRUE/WAHR) setzen, wenn dieses Element gemäß den örtlichen Bauvorschriften als behindertengerecht eingestuft ist, andernfalls (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/HandicapAccessible" cardinality="required" instructions="Hinweis, dass dieses Objekt behindertengerecht gestaltet ist. Auf (TRUE/WAHR) setzen, wenn dieses Element gemäß den örtlichen Bauvorschriften als behindertengerecht eingestuft ist, andernfalls (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -2375,7 +2375,7 @@
                         <simpleValue>HandicapAccessible</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/IsExternal" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -2383,7 +2383,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieser Raum (wie z.B. eine Toilette) öffentlich zugänglich sein soll (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/PubliclyAccessible" cardinality="required" instructions="Angabe, ob dieser Raum (wie z.B. eine Toilette) öffentlich zugänglich sein soll (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -2391,7 +2391,7 @@
                         <simpleValue>PubliclyAccessible</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLENGTHMEASURE" cardinality="required" instructions="Minimal geforderte lichte Höhe für diesen Raum.">
+                <property dataType="IFCLENGTHMEASURE" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/MinimumHeadroom" cardinality="required" instructions="Minimal geforderte lichte Höhe für diesen Raum.">
                     <propertySet>
                         <simpleValue>Pset_SpaceOccupancyRequirements</simpleValue>
                     </propertySet>
@@ -3098,7 +3098,7 @@
                         <simpleValue>Wasser</simpleValue>
                     </value>
                 </attribute>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_BuildingElementProxyCommon</simpleValue>
                     </propertySet>
@@ -3141,7 +3141,7 @@
                         <simpleValue>IFCENGINE</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_EngineTypeCommon</simpleValue>
                     </propertySet>
@@ -4788,7 +4788,7 @@
                         <simpleValue>Baum</simpleValue>
                     </value>
                 </attribute>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" cardinality="required" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)">
                     <propertySet>
                         <simpleValue>Pset_BuildingElementProxyCommon</simpleValue>
                     </propertySet>
@@ -4869,7 +4869,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRating" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
                     <propertySet>
                         <simpleValue>Pset_BeamCommon</simpleValue>
                     </propertySet>
@@ -4915,7 +4915,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRating" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
                     <propertySet>
                         <simpleValue>Pset_BeamCommon</simpleValue>
                     </propertySet>
@@ -5486,7 +5486,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRating" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
                     <propertySet>
                         <simpleValue>Pset_RoofCommon</simpleValue>
                     </propertySet>
@@ -5532,7 +5532,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRating" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
                     <propertySet>
                         <simpleValue>Pset_RoofCommon</simpleValue>
                     </propertySet>
@@ -5682,7 +5682,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRating" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
                     <propertySet>
                         <simpleValue>Pset_SlabCommon</simpleValue>
                     </propertySet>
@@ -5728,7 +5728,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRating" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
                     <propertySet>
                         <simpleValue>Pset_SlabCommon</simpleValue>
                     </propertySet>
@@ -6195,7 +6195,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob das Element Teil des Notausgangs/Fluchtwegs ist. Im Fall der Verwendung bei Türen/Fenstern/Fenstertüren: nur das letztendliche Element (Ausgang ins Freie) ist TRUE/WAHR.">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireExit" cardinality="required" instructions="Angabe, ob das Element Teil des Notausgangs/Fluchtwegs ist. Im Fall der Verwendung bei Türen/Fenstern/Fenstertüren: nur das letztendliche Element (Ausgang ins Freie) ist TRUE/WAHR.">
                     <propertySet>
                         <simpleValue>Pset_WindowCommon</simpleValue>
                     </propertySet>
@@ -6233,7 +6233,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRating" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
                     <propertySet>
                         <simpleValue>Pset_WindowCommon</simpleValue>
                     </propertySet>
@@ -6555,7 +6555,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRating" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
                     <propertySet>
                         <simpleValue>Pset_PlateCommon</simpleValue>
                     </propertySet>
@@ -6601,7 +6601,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRating" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
                     <propertySet>
                         <simpleValue>Pset_PlateCommon</simpleValue>
                     </propertySet>
@@ -6751,7 +6751,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob das Element Teil des Notausgangs/Fluchtwegs ist. Im Fall der Verwendung bei Türen/Fenstern/Fenstertüren: nur das letztendliche Element (Ausgang ins Freie) ist TRUE/WAHR.">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireExit" cardinality="required" instructions="Angabe, ob das Element Teil des Notausgangs/Fluchtwegs ist. Im Fall der Verwendung bei Türen/Fenstern/Fenstertüren: nur das letztendliche Element (Ausgang ins Freie) ist TRUE/WAHR.">
                     <propertySet>
                         <simpleValue>Pset_RampCommon</simpleValue>
                     </propertySet>
@@ -6781,7 +6781,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRating" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
                     <propertySet>
                         <simpleValue>Pset_RampCommon</simpleValue>
                     </propertySet>
@@ -6827,7 +6827,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRating" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
                     <propertySet>
                         <simpleValue>Pset_RampCommon</simpleValue>
                     </propertySet>
@@ -6875,7 +6875,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Hinweis, dass dieses Objekt behindertengerecht gestaltet ist. Auf (TRUE/WAHR) setzen, wenn dieses Element gemäß den örtlichen Bauvorschriften als behindertengerecht eingestuft ist, andernfalls (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/HandicapAccessible" cardinality="required" instructions="Hinweis, dass dieses Objekt behindertengerecht gestaltet ist. Auf (TRUE/WAHR) setzen, wenn dieses Element gemäß den örtlichen Bauvorschriften als behindertengerecht eingestuft ist, andernfalls (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_RampCommon</simpleValue>
                     </propertySet>
@@ -6897,7 +6897,7 @@
                 </entity>
             </applicability>
             <requirements>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Hinweis, dass dieses Objekt behindertengerecht gestaltet ist. Auf (TRUE/WAHR) setzen, wenn dieses Element gemäß den örtlichen Bauvorschriften als behindertengerecht eingestuft ist, andernfalls (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/HandicapAccessible" cardinality="required" instructions="Hinweis, dass dieses Objekt behindertengerecht gestaltet ist. Auf (TRUE/WAHR) setzen, wenn dieses Element gemäß den örtlichen Bauvorschriften als behindertengerecht eingestuft ist, andernfalls (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -6905,7 +6905,7 @@
                         <simpleValue>HandicapAccessible</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/IsExternal" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -6913,7 +6913,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieser Raum (wie z.B. eine Toilette) öffentlich zugänglich sein soll (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/PubliclyAccessible" cardinality="required" instructions="Angabe, ob dieser Raum (wie z.B. eine Toilette) öffentlich zugänglich sein soll (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -6921,7 +6921,7 @@
                         <simpleValue>PubliclyAccessible</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob der Raum einen Luftdruckausgleich erfordert (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/AirPressurization" cardinality="required" instructions="Angabe, ob der Raum einen Luftdruckausgleich erfordert (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -6929,7 +6929,7 @@
                         <simpleValue>AirPressurization</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Angabe, ob der Raum einen Notausgang für den Brandfall hat und als ein Notausgangs(sammel)raum im Sinne der Brandschutzverordnung gilt (TRUE/WAHR), oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRiskFactor" cardinality="required" instructions="Angabe, ob der Raum einen Notausgang für den Brandfall hat und als ein Notausgangs(sammel)raum im Sinne der Brandschutzverordnung gilt (TRUE/WAHR), oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -6948,7 +6948,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob der Raum zur Lagerung der Produktion von brennbaren Stoffen genutzt wird (WHAHR) oder nicht (FALSCH). Die Angabe erfolgt nach der nationalen oder regionalen Brandschutzverordnung: OIB RL 2 Punkt 9.1; die Kennzeichnungsverordnung; die TRVB.">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FlammableStorage" cardinality="required" instructions="Angabe, ob der Raum zur Lagerung der Produktion von brennbaren Stoffen genutzt wird (WHAHR) oder nicht (FALSCH). Die Angabe erfolgt nach der nationalen oder regionalen Brandschutzverordnung: OIB RL 2 Punkt 9.1; die Kennzeichnungsverordnung; die TRVB.">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -6956,7 +6956,7 @@
                         <simpleValue>FlammableStorage</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob der Raum durch eine Sprinkleranlage geschützt wird (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/SprinklerProtection" cardinality="required" instructions="Angabe, ob der Raum durch eine Sprinkleranlage geschützt wird (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -6964,7 +6964,7 @@
                         <simpleValue>SprinklerProtection</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLENGTHMEASURE" cardinality="required" instructions="Minimal geforderte lichte Höhe für diesen Raum.">
+                <property dataType="IFCLENGTHMEASURE" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/MinimumHeadroom" cardinality="required" instructions="Minimal geforderte lichte Höhe für diesen Raum.">
                     <propertySet>
                         <simpleValue>Pset_SpaceOccupancyRequirements</simpleValue>
                     </propertySet>
@@ -6972,7 +6972,7 @@
                         <simpleValue>MinimumHeadroom</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCCOUNTMEASURE" cardinality="required" instructions="Maximale Anzahl der Personen für deren Aktivitäten der Raum vorgesehen ist.">
+                <property dataType="IFCCOUNTMEASURE" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/OccupancyNumberPeak" cardinality="required" instructions="Maximale Anzahl der Personen für deren Aktivitäten der Raum vorgesehen ist.">
                     <propertySet>
                         <simpleValue>Pset_SpaceOccupancyRequirements</simpleValue>
                     </propertySet>
@@ -7250,7 +7250,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Anforderung, ob der Raum eine natürliche Lüftung haben soll (TRUE/WAHR), oder eine künstliche Lüftung (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/NaturalVentilation" cardinality="required" instructions="Anforderung, ob der Raum eine natürliche Lüftung haben soll (TRUE/WAHR), oder eine künstliche Lüftung (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceHVACDesign</simpleValue>
                     </propertySet>
@@ -7272,7 +7272,7 @@
                 </entity>
             </applicability>
             <requirements>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Hinweis, dass dieses Objekt behindertengerecht gestaltet ist. Auf (TRUE/WAHR) setzen, wenn dieses Element gemäß den örtlichen Bauvorschriften als behindertengerecht eingestuft ist, andernfalls (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/HandicapAccessible" cardinality="required" instructions="Hinweis, dass dieses Objekt behindertengerecht gestaltet ist. Auf (TRUE/WAHR) setzen, wenn dieses Element gemäß den örtlichen Bauvorschriften als behindertengerecht eingestuft ist, andernfalls (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -7280,7 +7280,7 @@
                         <simpleValue>HandicapAccessible</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/IsExternal" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -7288,7 +7288,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieser Raum (wie z.B. eine Toilette) öffentlich zugänglich sein soll (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/PubliclyAccessible" cardinality="required" instructions="Angabe, ob dieser Raum (wie z.B. eine Toilette) öffentlich zugänglich sein soll (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -7296,7 +7296,7 @@
                         <simpleValue>PubliclyAccessible</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob der Raum einen Luftdruckausgleich erfordert (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/AirPressurization" cardinality="required" instructions="Angabe, ob der Raum einen Luftdruckausgleich erfordert (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -7304,7 +7304,7 @@
                         <simpleValue>AirPressurization</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Angabe, ob der Raum einen Notausgang für den Brandfall hat und als ein Notausgangs(sammel)raum im Sinne der Brandschutzverordnung gilt (TRUE/WAHR), oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRiskFactor" cardinality="required" instructions="Angabe, ob der Raum einen Notausgang für den Brandfall hat und als ein Notausgangs(sammel)raum im Sinne der Brandschutzverordnung gilt (TRUE/WAHR), oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -7323,7 +7323,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob der Raum zur Lagerung der Produktion von brennbaren Stoffen genutzt wird (WHAHR) oder nicht (FALSCH). Die Angabe erfolgt nach der nationalen oder regionalen Brandschutzverordnung: OIB RL 2 Punkt 9.1; die Kennzeichnungsverordnung; die TRVB.">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FlammableStorage" cardinality="required" instructions="Angabe, ob der Raum zur Lagerung der Produktion von brennbaren Stoffen genutzt wird (WHAHR) oder nicht (FALSCH). Die Angabe erfolgt nach der nationalen oder regionalen Brandschutzverordnung: OIB RL 2 Punkt 9.1; die Kennzeichnungsverordnung; die TRVB.">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -7331,7 +7331,7 @@
                         <simpleValue>FlammableStorage</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob der Raum durch eine Sprinkleranlage geschützt wird (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/SprinklerProtection" cardinality="required" instructions="Angabe, ob der Raum durch eine Sprinkleranlage geschützt wird (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -7339,7 +7339,7 @@
                         <simpleValue>SprinklerProtection</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLENGTHMEASURE" cardinality="required" instructions="Minimal geforderte lichte Höhe für diesen Raum.">
+                <property dataType="IFCLENGTHMEASURE" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/MinimumHeadroom" cardinality="required" instructions="Minimal geforderte lichte Höhe für diesen Raum.">
                     <propertySet>
                         <simpleValue>Pset_SpaceOccupancyRequirements</simpleValue>
                     </propertySet>
@@ -7347,7 +7347,7 @@
                         <simpleValue>MinimumHeadroom</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCCOUNTMEASURE" cardinality="required" instructions="Maximale Anzahl der Personen für deren Aktivitäten der Raum vorgesehen ist.">
+                <property dataType="IFCCOUNTMEASURE" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/OccupancyNumberPeak" cardinality="required" instructions="Maximale Anzahl der Personen für deren Aktivitäten der Raum vorgesehen ist.">
                     <propertySet>
                         <simpleValue>Pset_SpaceOccupancyRequirements</simpleValue>
                     </propertySet>
@@ -7625,7 +7625,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Anforderung, ob der Raum eine natürliche Lüftung haben soll (TRUE/WAHR), oder eine künstliche Lüftung (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/NaturalVentilation" cardinality="required" instructions="Anforderung, ob der Raum eine natürliche Lüftung haben soll (TRUE/WAHR), oder eine künstliche Lüftung (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceHVACDesign</simpleValue>
                     </propertySet>
@@ -7647,7 +7647,7 @@
                 </entity>
             </applicability>
             <requirements>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Hinweis, dass dieses Objekt behindertengerecht gestaltet ist. Auf (TRUE/WAHR) setzen, wenn dieses Element gemäß den örtlichen Bauvorschriften als behindertengerecht eingestuft ist, andernfalls (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/HandicapAccessible" cardinality="required" instructions="Hinweis, dass dieses Objekt behindertengerecht gestaltet ist. Auf (TRUE/WAHR) setzen, wenn dieses Element gemäß den örtlichen Bauvorschriften als behindertengerecht eingestuft ist, andernfalls (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -7655,7 +7655,7 @@
                         <simpleValue>HandicapAccessible</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/IsExternal" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -7663,7 +7663,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieser Raum (wie z.B. eine Toilette) öffentlich zugänglich sein soll (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/PubliclyAccessible" cardinality="required" instructions="Angabe, ob dieser Raum (wie z.B. eine Toilette) öffentlich zugänglich sein soll (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -7671,7 +7671,7 @@
                         <simpleValue>PubliclyAccessible</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob der Raum einen Luftdruckausgleich erfordert (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/AirPressurization" cardinality="required" instructions="Angabe, ob der Raum einen Luftdruckausgleich erfordert (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -7679,7 +7679,7 @@
                         <simpleValue>AirPressurization</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Angabe, ob der Raum einen Notausgang für den Brandfall hat und als ein Notausgangs(sammel)raum im Sinne der Brandschutzverordnung gilt (TRUE/WAHR), oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRiskFactor" cardinality="required" instructions="Angabe, ob der Raum einen Notausgang für den Brandfall hat und als ein Notausgangs(sammel)raum im Sinne der Brandschutzverordnung gilt (TRUE/WAHR), oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -7698,7 +7698,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob der Raum zur Lagerung der Produktion von brennbaren Stoffen genutzt wird (WHAHR) oder nicht (FALSCH). Die Angabe erfolgt nach der nationalen oder regionalen Brandschutzverordnung: OIB RL 2 Punkt 9.1; die Kennzeichnungsverordnung; die TRVB.">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FlammableStorage" cardinality="required" instructions="Angabe, ob der Raum zur Lagerung der Produktion von brennbaren Stoffen genutzt wird (WHAHR) oder nicht (FALSCH). Die Angabe erfolgt nach der nationalen oder regionalen Brandschutzverordnung: OIB RL 2 Punkt 9.1; die Kennzeichnungsverordnung; die TRVB.">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -7706,7 +7706,7 @@
                         <simpleValue>FlammableStorage</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob der Raum durch eine Sprinkleranlage geschützt wird (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/SprinklerProtection" cardinality="required" instructions="Angabe, ob der Raum durch eine Sprinkleranlage geschützt wird (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -7714,7 +7714,7 @@
                         <simpleValue>SprinklerProtection</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLENGTHMEASURE" cardinality="required" instructions="Minimal geforderte lichte Höhe für diesen Raum.">
+                <property dataType="IFCLENGTHMEASURE" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/MinimumHeadroom" cardinality="required" instructions="Minimal geforderte lichte Höhe für diesen Raum.">
                     <propertySet>
                         <simpleValue>Pset_SpaceOccupancyRequirements</simpleValue>
                     </propertySet>
@@ -7722,7 +7722,7 @@
                         <simpleValue>MinimumHeadroom</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCCOUNTMEASURE" cardinality="required" instructions="Maximale Anzahl der Personen für deren Aktivitäten der Raum vorgesehen ist.">
+                <property dataType="IFCCOUNTMEASURE" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/OccupancyNumberPeak" cardinality="required" instructions="Maximale Anzahl der Personen für deren Aktivitäten der Raum vorgesehen ist.">
                     <propertySet>
                         <simpleValue>Pset_SpaceOccupancyRequirements</simpleValue>
                     </propertySet>
@@ -8000,7 +8000,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Anforderung, ob der Raum eine natürliche Lüftung haben soll (TRUE/WAHR), oder eine künstliche Lüftung (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/NaturalVentilation" cardinality="required" instructions="Anforderung, ob der Raum eine natürliche Lüftung haben soll (TRUE/WAHR), oder eine künstliche Lüftung (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceHVACDesign</simpleValue>
                     </propertySet>
@@ -8022,7 +8022,7 @@
                 </entity>
             </applicability>
             <requirements>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Hinweis, dass dieses Objekt behindertengerecht gestaltet ist. Auf (TRUE/WAHR) setzen, wenn dieses Element gemäß den örtlichen Bauvorschriften als behindertengerecht eingestuft ist, andernfalls (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/HandicapAccessible" cardinality="required" instructions="Hinweis, dass dieses Objekt behindertengerecht gestaltet ist. Auf (TRUE/WAHR) setzen, wenn dieses Element gemäß den örtlichen Bauvorschriften als behindertengerecht eingestuft ist, andernfalls (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -8030,7 +8030,7 @@
                         <simpleValue>HandicapAccessible</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/IsExternal" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -8038,7 +8038,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieser Raum (wie z.B. eine Toilette) öffentlich zugänglich sein soll (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/PubliclyAccessible" cardinality="required" instructions="Angabe, ob dieser Raum (wie z.B. eine Toilette) öffentlich zugänglich sein soll (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -8046,7 +8046,7 @@
                         <simpleValue>PubliclyAccessible</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob der Raum einen Luftdruckausgleich erfordert (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/AirPressurization" cardinality="required" instructions="Angabe, ob der Raum einen Luftdruckausgleich erfordert (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -8054,7 +8054,7 @@
                         <simpleValue>AirPressurization</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Angabe, ob der Raum einen Notausgang für den Brandfall hat und als ein Notausgangs(sammel)raum im Sinne der Brandschutzverordnung gilt (TRUE/WAHR), oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRiskFactor" cardinality="required" instructions="Angabe, ob der Raum einen Notausgang für den Brandfall hat und als ein Notausgangs(sammel)raum im Sinne der Brandschutzverordnung gilt (TRUE/WAHR), oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -8073,7 +8073,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob der Raum zur Lagerung der Produktion von brennbaren Stoffen genutzt wird (WHAHR) oder nicht (FALSCH). Die Angabe erfolgt nach der nationalen oder regionalen Brandschutzverordnung: OIB RL 2 Punkt 9.1; die Kennzeichnungsverordnung; die TRVB.">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FlammableStorage" cardinality="required" instructions="Angabe, ob der Raum zur Lagerung der Produktion von brennbaren Stoffen genutzt wird (WHAHR) oder nicht (FALSCH). Die Angabe erfolgt nach der nationalen oder regionalen Brandschutzverordnung: OIB RL 2 Punkt 9.1; die Kennzeichnungsverordnung; die TRVB.">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -8081,7 +8081,7 @@
                         <simpleValue>FlammableStorage</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob der Raum durch eine Sprinkleranlage geschützt wird (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/SprinklerProtection" cardinality="required" instructions="Angabe, ob der Raum durch eine Sprinkleranlage geschützt wird (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -8089,7 +8089,7 @@
                         <simpleValue>SprinklerProtection</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLENGTHMEASURE" cardinality="required" instructions="Minimal geforderte lichte Höhe für diesen Raum.">
+                <property dataType="IFCLENGTHMEASURE" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/MinimumHeadroom" cardinality="required" instructions="Minimal geforderte lichte Höhe für diesen Raum.">
                     <propertySet>
                         <simpleValue>Pset_SpaceOccupancyRequirements</simpleValue>
                     </propertySet>
@@ -8097,7 +8097,7 @@
                         <simpleValue>MinimumHeadroom</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCCOUNTMEASURE" cardinality="required" instructions="Maximale Anzahl der Personen für deren Aktivitäten der Raum vorgesehen ist.">
+                <property dataType="IFCCOUNTMEASURE" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/OccupancyNumberPeak" cardinality="required" instructions="Maximale Anzahl der Personen für deren Aktivitäten der Raum vorgesehen ist.">
                     <propertySet>
                         <simpleValue>Pset_SpaceOccupancyRequirements</simpleValue>
                     </propertySet>
@@ -8375,7 +8375,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Anforderung, ob der Raum eine natürliche Lüftung haben soll (TRUE/WAHR), oder eine künstliche Lüftung (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/NaturalVentilation" cardinality="required" instructions="Anforderung, ob der Raum eine natürliche Lüftung haben soll (TRUE/WAHR), oder eine künstliche Lüftung (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceHVACDesign</simpleValue>
                     </propertySet>
@@ -8397,7 +8397,7 @@
                 </entity>
             </applicability>
             <requirements>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Hinweis, dass dieses Objekt behindertengerecht gestaltet ist. Auf (TRUE/WAHR) setzen, wenn dieses Element gemäß den örtlichen Bauvorschriften als behindertengerecht eingestuft ist, andernfalls (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/HandicapAccessible" cardinality="required" instructions="Hinweis, dass dieses Objekt behindertengerecht gestaltet ist. Auf (TRUE/WAHR) setzen, wenn dieses Element gemäß den örtlichen Bauvorschriften als behindertengerecht eingestuft ist, andernfalls (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -8405,7 +8405,7 @@
                         <simpleValue>HandicapAccessible</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/IsExternal" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -8413,7 +8413,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieser Raum (wie z.B. eine Toilette) öffentlich zugänglich sein soll (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/PubliclyAccessible" cardinality="required" instructions="Angabe, ob dieser Raum (wie z.B. eine Toilette) öffentlich zugänglich sein soll (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -8421,7 +8421,7 @@
                         <simpleValue>PubliclyAccessible</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob der Raum einen Luftdruckausgleich erfordert (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/AirPressurization" cardinality="required" instructions="Angabe, ob der Raum einen Luftdruckausgleich erfordert (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -8429,7 +8429,7 @@
                         <simpleValue>AirPressurization</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Angabe, ob der Raum einen Notausgang für den Brandfall hat und als ein Notausgangs(sammel)raum im Sinne der Brandschutzverordnung gilt (TRUE/WAHR), oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRiskFactor" cardinality="required" instructions="Angabe, ob der Raum einen Notausgang für den Brandfall hat und als ein Notausgangs(sammel)raum im Sinne der Brandschutzverordnung gilt (TRUE/WAHR), oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -8448,7 +8448,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob der Raum zur Lagerung der Produktion von brennbaren Stoffen genutzt wird (WHAHR) oder nicht (FALSCH). Die Angabe erfolgt nach der nationalen oder regionalen Brandschutzverordnung: OIB RL 2 Punkt 9.1; die Kennzeichnungsverordnung; die TRVB.">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FlammableStorage" cardinality="required" instructions="Angabe, ob der Raum zur Lagerung der Produktion von brennbaren Stoffen genutzt wird (WHAHR) oder nicht (FALSCH). Die Angabe erfolgt nach der nationalen oder regionalen Brandschutzverordnung: OIB RL 2 Punkt 9.1; die Kennzeichnungsverordnung; die TRVB.">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -8456,7 +8456,7 @@
                         <simpleValue>FlammableStorage</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob der Raum durch eine Sprinkleranlage geschützt wird (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/SprinklerProtection" cardinality="required" instructions="Angabe, ob der Raum durch eine Sprinkleranlage geschützt wird (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -8464,7 +8464,7 @@
                         <simpleValue>SprinklerProtection</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLENGTHMEASURE" cardinality="required" instructions="Minimal geforderte lichte Höhe für diesen Raum.">
+                <property dataType="IFCLENGTHMEASURE" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/MinimumHeadroom" cardinality="required" instructions="Minimal geforderte lichte Höhe für diesen Raum.">
                     <propertySet>
                         <simpleValue>Pset_SpaceOccupancyRequirements</simpleValue>
                     </propertySet>
@@ -8472,7 +8472,7 @@
                         <simpleValue>MinimumHeadroom</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCCOUNTMEASURE" cardinality="required" instructions="Maximale Anzahl der Personen für deren Aktivitäten der Raum vorgesehen ist.">
+                <property dataType="IFCCOUNTMEASURE" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/OccupancyNumberPeak" cardinality="required" instructions="Maximale Anzahl der Personen für deren Aktivitäten der Raum vorgesehen ist.">
                     <propertySet>
                         <simpleValue>Pset_SpaceOccupancyRequirements</simpleValue>
                     </propertySet>
@@ -8750,7 +8750,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Anforderung, ob der Raum eine natürliche Lüftung haben soll (TRUE/WAHR), oder eine künstliche Lüftung (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/NaturalVentilation" cardinality="required" instructions="Anforderung, ob der Raum eine natürliche Lüftung haben soll (TRUE/WAHR), oder eine künstliche Lüftung (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceHVACDesign</simpleValue>
                     </propertySet>
@@ -8772,7 +8772,7 @@
                 </entity>
             </applicability>
             <requirements>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Hinweis, dass dieses Objekt behindertengerecht gestaltet ist. Auf (TRUE/WAHR) setzen, wenn dieses Element gemäß den örtlichen Bauvorschriften als behindertengerecht eingestuft ist, andernfalls (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/HandicapAccessible" cardinality="required" instructions="Hinweis, dass dieses Objekt behindertengerecht gestaltet ist. Auf (TRUE/WAHR) setzen, wenn dieses Element gemäß den örtlichen Bauvorschriften als behindertengerecht eingestuft ist, andernfalls (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -8780,7 +8780,7 @@
                         <simpleValue>HandicapAccessible</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/IsExternal" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -8788,7 +8788,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieser Raum (wie z.B. eine Toilette) öffentlich zugänglich sein soll (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/PubliclyAccessible" cardinality="required" instructions="Angabe, ob dieser Raum (wie z.B. eine Toilette) öffentlich zugänglich sein soll (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -8796,7 +8796,7 @@
                         <simpleValue>PubliclyAccessible</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob der Raum einen Luftdruckausgleich erfordert (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/AirPressurization" cardinality="required" instructions="Angabe, ob der Raum einen Luftdruckausgleich erfordert (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -8804,7 +8804,7 @@
                         <simpleValue>AirPressurization</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Angabe, ob der Raum einen Notausgang für den Brandfall hat und als ein Notausgangs(sammel)raum im Sinne der Brandschutzverordnung gilt (TRUE/WAHR), oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRiskFactor" cardinality="required" instructions="Angabe, ob der Raum einen Notausgang für den Brandfall hat und als ein Notausgangs(sammel)raum im Sinne der Brandschutzverordnung gilt (TRUE/WAHR), oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -8823,7 +8823,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob der Raum zur Lagerung der Produktion von brennbaren Stoffen genutzt wird (WHAHR) oder nicht (FALSCH). Die Angabe erfolgt nach der nationalen oder regionalen Brandschutzverordnung: OIB RL 2 Punkt 9.1; die Kennzeichnungsverordnung; die TRVB.">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FlammableStorage" cardinality="required" instructions="Angabe, ob der Raum zur Lagerung der Produktion von brennbaren Stoffen genutzt wird (WHAHR) oder nicht (FALSCH). Die Angabe erfolgt nach der nationalen oder regionalen Brandschutzverordnung: OIB RL 2 Punkt 9.1; die Kennzeichnungsverordnung; die TRVB.">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -8831,7 +8831,7 @@
                         <simpleValue>FlammableStorage</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob der Raum durch eine Sprinkleranlage geschützt wird (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/SprinklerProtection" cardinality="required" instructions="Angabe, ob der Raum durch eine Sprinkleranlage geschützt wird (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -8839,7 +8839,7 @@
                         <simpleValue>SprinklerProtection</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLENGTHMEASURE" cardinality="required" instructions="Minimal geforderte lichte Höhe für diesen Raum.">
+                <property dataType="IFCLENGTHMEASURE" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/MinimumHeadroom" cardinality="required" instructions="Minimal geforderte lichte Höhe für diesen Raum.">
                     <propertySet>
                         <simpleValue>Pset_SpaceOccupancyRequirements</simpleValue>
                     </propertySet>
@@ -8847,7 +8847,7 @@
                         <simpleValue>MinimumHeadroom</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCCOUNTMEASURE" cardinality="required" instructions="Maximale Anzahl der Personen für deren Aktivitäten der Raum vorgesehen ist.">
+                <property dataType="IFCCOUNTMEASURE" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/OccupancyNumberPeak" cardinality="required" instructions="Maximale Anzahl der Personen für deren Aktivitäten der Raum vorgesehen ist.">
                     <propertySet>
                         <simpleValue>Pset_SpaceOccupancyRequirements</simpleValue>
                     </propertySet>
@@ -9125,7 +9125,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Anforderung, ob der Raum eine natürliche Lüftung haben soll (TRUE/WAHR), oder eine künstliche Lüftung (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/NaturalVentilation" cardinality="required" instructions="Anforderung, ob der Raum eine natürliche Lüftung haben soll (TRUE/WAHR), oder eine künstliche Lüftung (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceHVACDesign</simpleValue>
                     </propertySet>
@@ -9147,7 +9147,7 @@
                 </entity>
             </applicability>
             <requirements>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Hinweis, dass dieses Objekt behindertengerecht gestaltet ist. Auf (TRUE/WAHR) setzen, wenn dieses Element gemäß den örtlichen Bauvorschriften als behindertengerecht eingestuft ist, andernfalls (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/HandicapAccessible" cardinality="required" instructions="Hinweis, dass dieses Objekt behindertengerecht gestaltet ist. Auf (TRUE/WAHR) setzen, wenn dieses Element gemäß den örtlichen Bauvorschriften als behindertengerecht eingestuft ist, andernfalls (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -9155,7 +9155,7 @@
                         <simpleValue>HandicapAccessible</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/IsExternal" cardinality="required" instructions="Angabe, ob dieses Bauteil ein Aussenbauteil ist (JA) oder ein Innenbauteil (NEIN). Als Aussenbauteil grenzt es an den Aussenraum (oder Erdreich, oder Wasser).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -9163,7 +9163,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob dieser Raum (wie z.B. eine Toilette) öffentlich zugänglich sein soll (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/PubliclyAccessible" cardinality="required" instructions="Angabe, ob dieser Raum (wie z.B. eine Toilette) öffentlich zugänglich sein soll (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceCommon</simpleValue>
                     </propertySet>
@@ -9171,7 +9171,7 @@
                         <simpleValue>PubliclyAccessible</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob der Raum einen Luftdruckausgleich erfordert (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/AirPressurization" cardinality="required" instructions="Angabe, ob der Raum einen Luftdruckausgleich erfordert (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -9179,7 +9179,7 @@
                         <simpleValue>AirPressurization</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Angabe, ob der Raum einen Notausgang für den Brandfall hat und als ein Notausgangs(sammel)raum im Sinne der Brandschutzverordnung gilt (TRUE/WAHR), oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRiskFactor" cardinality="required" instructions="Angabe, ob der Raum einen Notausgang für den Brandfall hat und als ein Notausgangs(sammel)raum im Sinne der Brandschutzverordnung gilt (TRUE/WAHR), oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -9198,7 +9198,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob der Raum zur Lagerung der Produktion von brennbaren Stoffen genutzt wird (WHAHR) oder nicht (FALSCH). Die Angabe erfolgt nach der nationalen oder regionalen Brandschutzverordnung: OIB RL 2 Punkt 9.1; die Kennzeichnungsverordnung; die TRVB.">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FlammableStorage" cardinality="required" instructions="Angabe, ob der Raum zur Lagerung der Produktion von brennbaren Stoffen genutzt wird (WHAHR) oder nicht (FALSCH). Die Angabe erfolgt nach der nationalen oder regionalen Brandschutzverordnung: OIB RL 2 Punkt 9.1; die Kennzeichnungsverordnung; die TRVB.">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -9206,7 +9206,7 @@
                         <simpleValue>FlammableStorage</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob der Raum durch eine Sprinkleranlage geschützt wird (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/SprinklerProtection" cardinality="required" instructions="Angabe, ob der Raum durch eine Sprinkleranlage geschützt wird (TRUE/WAHR) oder nicht (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -9214,7 +9214,7 @@
                         <simpleValue>SprinklerProtection</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLENGTHMEASURE" cardinality="required" instructions="Minimal geforderte lichte Höhe für diesen Raum.">
+                <property dataType="IFCLENGTHMEASURE" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/MinimumHeadroom" cardinality="required" instructions="Minimal geforderte lichte Höhe für diesen Raum.">
                     <propertySet>
                         <simpleValue>Pset_SpaceOccupancyRequirements</simpleValue>
                     </propertySet>
@@ -9222,7 +9222,7 @@
                         <simpleValue>MinimumHeadroom</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCCOUNTMEASURE" cardinality="required" instructions="Maximale Anzahl der Personen für deren Aktivitäten der Raum vorgesehen ist.">
+                <property dataType="IFCCOUNTMEASURE" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/OccupancyNumberPeak" cardinality="required" instructions="Maximale Anzahl der Personen für deren Aktivitäten der Raum vorgesehen ist.">
                     <propertySet>
                         <simpleValue>Pset_SpaceOccupancyRequirements</simpleValue>
                     </propertySet>
@@ -9500,7 +9500,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Anforderung, ob der Raum eine natürliche Lüftung haben soll (TRUE/WAHR), oder eine künstliche Lüftung (FALSE/FALSCH).">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/NaturalVentilation" cardinality="required" instructions="Anforderung, ob der Raum eine natürliche Lüftung haben soll (TRUE/WAHR), oder eine künstliche Lüftung (FALSE/FALSCH).">
                     <propertySet>
                         <simpleValue>Pset_SpaceHVACDesign</simpleValue>
                     </propertySet>
@@ -9533,7 +9533,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob das Element Teil des Notausgangs/Fluchtwegs ist. Im Fall der Verwendung bei Türen/Fenstern/Fenstertüren: nur das letztendliche Element (Ausgang ins Freie) ist TRUE/WAHR.">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireExit" cardinality="required" instructions="Angabe, ob das Element Teil des Notausgangs/Fluchtwegs ist. Im Fall der Verwendung bei Türen/Fenstern/Fenstertüren: nur das letztendliche Element (Ausgang ins Freie) ist TRUE/WAHR.">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -9566,7 +9566,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob das Element Teil des Notausgangs/Fluchtwegs ist. Im Fall der Verwendung bei Türen/Fenstern/Fenstertüren: nur das letztendliche Element (Ausgang ins Freie) ist TRUE/WAHR.">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireExit" cardinality="required" instructions="Angabe, ob das Element Teil des Notausgangs/Fluchtwegs ist. Im Fall der Verwendung bei Türen/Fenstern/Fenstertüren: nur das letztendliche Element (Ausgang ins Freie) ist TRUE/WAHR.">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -9599,7 +9599,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob das Element Teil des Notausgangs/Fluchtwegs ist. Im Fall der Verwendung bei Türen/Fenstern/Fenstertüren: nur das letztendliche Element (Ausgang ins Freie) ist TRUE/WAHR.">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireExit" cardinality="required" instructions="Angabe, ob das Element Teil des Notausgangs/Fluchtwegs ist. Im Fall der Verwendung bei Türen/Fenstern/Fenstertüren: nur das letztendliche Element (Ausgang ins Freie) ist TRUE/WAHR.">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -9632,7 +9632,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob das Element Teil des Notausgangs/Fluchtwegs ist. Im Fall der Verwendung bei Türen/Fenstern/Fenstertüren: nur das letztendliche Element (Ausgang ins Freie) ist TRUE/WAHR.">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireExit" cardinality="required" instructions="Angabe, ob das Element Teil des Notausgangs/Fluchtwegs ist. Im Fall der Verwendung bei Türen/Fenstern/Fenstertüren: nur das letztendliche Element (Ausgang ins Freie) ist TRUE/WAHR.">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -9665,7 +9665,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob das Element Teil des Notausgangs/Fluchtwegs ist. Im Fall der Verwendung bei Türen/Fenstern/Fenstertüren: nur das letztendliche Element (Ausgang ins Freie) ist TRUE/WAHR.">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireExit" cardinality="required" instructions="Angabe, ob das Element Teil des Notausgangs/Fluchtwegs ist. Im Fall der Verwendung bei Türen/Fenstern/Fenstertüren: nur das letztendliche Element (Ausgang ins Freie) ist TRUE/WAHR.">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -9698,7 +9698,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob das Element Teil des Notausgangs/Fluchtwegs ist. Im Fall der Verwendung bei Türen/Fenstern/Fenstertüren: nur das letztendliche Element (Ausgang ins Freie) ist TRUE/WAHR.">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireExit" cardinality="required" instructions="Angabe, ob das Element Teil des Notausgangs/Fluchtwegs ist. Im Fall der Verwendung bei Türen/Fenstern/Fenstertüren: nur das letztendliche Element (Ausgang ins Freie) ist TRUE/WAHR.">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -9731,7 +9731,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob das Element Teil des Notausgangs/Fluchtwegs ist. Im Fall der Verwendung bei Türen/Fenstern/Fenstertüren: nur das letztendliche Element (Ausgang ins Freie) ist TRUE/WAHR.">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireExit" cardinality="required" instructions="Angabe, ob das Element Teil des Notausgangs/Fluchtwegs ist. Im Fall der Verwendung bei Türen/Fenstern/Fenstertüren: nur das letztendliche Element (Ausgang ins Freie) ist TRUE/WAHR.">
                     <propertySet>
                         <simpleValue>Pset_SpaceFireSafetyRequirements</simpleValue>
                     </propertySet>
@@ -11112,7 +11112,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRating" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
                     <propertySet>
                         <simpleValue>Pset_ColumnCommon</simpleValue>
                     </propertySet>
@@ -11158,7 +11158,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRating" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
                     <propertySet>
                         <simpleValue>Pset_ColumnCommon</simpleValue>
                     </propertySet>
@@ -11303,7 +11303,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRating" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
                     <propertySet>
                         <simpleValue>Pset_StairCommon</simpleValue>
                     </propertySet>
@@ -11349,7 +11349,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRating" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
                     <propertySet>
                         <simpleValue>Pset_StairCommon</simpleValue>
                     </propertySet>
@@ -12027,7 +12027,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCBOOLEAN" cardinality="required" instructions="Angabe, ob das Element Teil des Notausgangs/Fluchtwegs ist. Im Fall der Verwendung bei Türen/Fenstern/Fenstertüren: nur das letztendliche Element (Ausgang ins Freie) ist TRUE/WAHR.">
+                <property dataType="IFCBOOLEAN" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireExit" cardinality="required" instructions="Angabe, ob das Element Teil des Notausgangs/Fluchtwegs ist. Im Fall der Verwendung bei Türen/Fenstern/Fenstertüren: nur das letztendliche Element (Ausgang ins Freie) ist TRUE/WAHR.">
                     <propertySet>
                         <simpleValue>Pset_DoorCommon</simpleValue>
                     </propertySet>
@@ -12697,7 +12697,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRating" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
                     <propertySet>
                         <simpleValue>Pset_WallCommon</simpleValue>
                     </propertySet>
@@ -12743,7 +12743,7 @@
                 </property>
             </applicability>
             <requirements>
-                <property dataType="IFCLABEL" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/FireRating" cardinality="required" instructions="Feuerwiderstandsklasse gemäß der nationalen oder regionalen Brandschutzverordnung.">
                     <propertySet>
                         <simpleValue>Pset_WallCommon</simpleValue>
                     </propertySet>
