@@ -5,8 +5,8 @@
         <title>Example IDS of IDS4ALL</title>
         <copyright>TU Wien Digital Building Process</copyright>
         <author>simon.fischer@tuwien.ac.at</author>
-        <date>2025-03-28</date>
-        <purpose>Role: Role 1, Role 2, Architektur; Usecase: Usecase 1, openBIM Building Permit Process</purpose>
+        <date>2025-04-24</date>
+        <purpose>Role: Architektur, Role 1, Role 2; Usecase: openBIM Building Permit Process, Usecase 1</purpose>
         <milestone>Phase 2, Phase 1</milestone>
     </info>
     <specifications>
@@ -197,7 +197,7 @@
                         <simpleValue>IFCWALL</simpleValue>
                     </name>
                 </entity>
-                <property>
+                <property dataType="IFCBOOLEAN">
                     <propertySet>
                         <simpleValue>Pset_WallCommon</simpleValue>
                     </propertySet>
@@ -243,7 +243,7 @@
                         <simpleValue>IFCWALL</simpleValue>
                     </name>
                 </entity>
-                <property>
+                <property dataType="IFCBOOLEAN">
                     <propertySet>
                         <simpleValue>Pset_WallCommon</simpleValue>
                     </propertySet>

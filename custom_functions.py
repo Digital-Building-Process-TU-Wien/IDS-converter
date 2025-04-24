@@ -59,7 +59,7 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows):
     #Organise all relevant available column names according to the facets
     prefix = 'A.'
     cols_app_entity = [col for col in [prefix+STRING_ENTITY] if col in all_columns]
-    cols_app_property = [col for col in [prefix+STRING_PROPERTY,prefix+STRING_PROPERTYSET,prefix+STRING_PROPERTYVALUE] if col in all_columns]
+    cols_app_property = [col for col in [prefix+STRING_PROPERTY,prefix+STRING_PROPERTYSET,prefix+STRING_PROPERTYVALUE,prefix+STRING_PROPERTYDATATYPE] if col in all_columns]
     cols_app_material = [col for col in [prefix+STRING_MATERIAL] if col in all_columns]
     cols_app_attribute = [col for col in [prefix+STRING_ATTRIBUTE,prefix+STRING_ATTRIBUTEVALUE] if col in all_columns]
     cols_app_classification = [col for col in [prefix+STRING_CLASSIFICATION,prefix+STRING_CLASSIFICATIONSYSTEM] if col in all_columns]
