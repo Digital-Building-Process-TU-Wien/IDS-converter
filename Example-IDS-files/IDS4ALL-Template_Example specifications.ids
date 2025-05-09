@@ -5,12 +5,12 @@
         <title>Example IDS of IDS4ALL</title>
         <copyright>TU Wien Digital Building Process</copyright>
         <author>simon.fischer@tuwien.ac.at</author>
-        <date>2025-04-24</date>
-        <purpose>Role: Architektur, Role 1, Role 2; Usecase: openBIM Building Permit Process, Usecase 1</purpose>
+        <date>2025-05-09</date>
+        <purpose>Role: Architektur, Role 2, Role 1; Usecase: openBIM Building Permit Process, Usecase 1</purpose>
         <milestone>Phase 2, Phase 1</milestone>
     </info>
     <specifications>
-        <specification name="Specification 1: IFCWALL" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1, Phase 2; Role: Role 1; Usecase: Usecase 1, openBIM Building Permit Process">
+        <specification name="Specification 1: IFCWALL" ifcVersion="IFC4 IFC4X3_ADD2" instructions="Phase: Phase 1, Phase 2; Role: Role 1; Usecase: Usecase 1, openBIM Building Permit Process">
             <applicability minOccurs="0" maxOccurs="unbounded">
                 <entity>
                     <name>
@@ -58,7 +58,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required">
+                <property dataType="IFCLABEL" cardinality="optional">
                     <propertySet>
                         <simpleValue>WienBV_BauwerberObjektdaten</simpleValue>
                     </propertySet>
@@ -66,7 +66,7 @@
                         <simpleValue>Fassadengestaltung</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" cardinality="required">
+                <property dataType="IFCLABEL" cardinality="prohibited">
                     <propertySet>
                         <simpleValue>WienBV_BauwerberObjektdaten</simpleValue>
                     </propertySet>
@@ -76,7 +76,7 @@
                 </property>
             </requirements>
         </specification>
-        <specification name="Specification 2: IFCSLAB" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Architektur, Role 1; Usecase: Usecase 1">
+        <specification name="Specification 2: IFCSLAB" ifcVersion="IFC4 IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Architektur, Role 1; Usecase: Usecase 1">
             <applicability minOccurs="0" maxOccurs="unbounded">
                 <entity>
                     <name>
@@ -163,7 +163,7 @@
                 </material>
             </requirements>
         </specification>
-        <specification name="Specification 3: IFCWALL" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1, Phase 2; Role: Role 1, Role 2; Usecase: Usecase 1">
+        <specification name="Specification 3: IFCWALL" ifcVersion="IFC4 IFC4X3_ADD2" instructions="Phase: Phase 1, Phase 2; Role: Role 1, Role 2; Usecase: Usecase 1">
             <applicability minOccurs="1" maxOccurs="unbounded">
                 <entity>
                     <name>
@@ -190,7 +190,7 @@
                 </property>
             </requirements>
         </specification>
-        <specification name="Specification 4: IFCWALL" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+        <specification name="Specification 4: IFCWALL" ifcVersion="IFC4 IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
             <applicability minOccurs="0" maxOccurs="unbounded">
                 <entity>
                     <name>
@@ -236,7 +236,7 @@
                 </property>
             </requirements>
         </specification>
-        <specification name="Specification 5: IFCWALL" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+        <specification name="Specification 5: IFCWALL" ifcVersion="IFC4 IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
             <applicability minOccurs="0" maxOccurs="unbounded">
                 <entity>
                     <name>
@@ -282,7 +282,7 @@
                 </property>
             </requirements>
         </specification>
-        <specification name="Specification 6: IFCWALL" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+        <specification name="Specification 6: IFCWALL" ifcVersion="IFC4 IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
             <applicability minOccurs="0" maxOccurs="unbounded">
                 <entity>
                     <name>
@@ -306,7 +306,7 @@
                 </property>
             </requirements>
         </specification>
-        <specification name="Specification 7: IFCWALL.MOVEABLE" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+        <specification name="Specification 7: IFCWALL.MOVEABLE" ifcVersion="IFC4 IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
             <applicability minOccurs="0" maxOccurs="unbounded">
                 <entity>
                     <name>
@@ -328,7 +328,7 @@
                 </property>
             </requirements>
         </specification>
-        <specification name="Specification 8: IFCWALL.USERDEFINED" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+        <specification name="Specification 8: IFCWALL.USERDEFINED" ifcVersion="IFC4 IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
             <applicability minOccurs="0" maxOccurs="unbounded">
                 <entity>
                     <name>
@@ -358,7 +358,7 @@
                 </property>
             </requirements>
         </specification>
-        <specification name="Specification 9: IFCWALL" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+        <specification name="Specification 9: IFCWALL" ifcVersion="IFC4 IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
             <applicability minOccurs="0" maxOccurs="unbounded">
                 <entity>
                     <name>
@@ -385,7 +385,7 @@
                 </property>
             </requirements>
         </specification>
-        <specification name="Specification 10: IFCWALL" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+        <specification name="Specification 10: IFCWALL" ifcVersion="IFC4 IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
             <applicability minOccurs="0" maxOccurs="unbounded">
                 <entity>
                     <name>
@@ -411,7 +411,7 @@
                 </property>
             </requirements>
         </specification>
-        <specification name="Specification 11: IFCDUCTSEGMENT" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+        <specification name="Specification 11: IFCDUCTSEGMENT" ifcVersion="IFC4 IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
             <applicability minOccurs="0" maxOccurs="unbounded">
                 <entity>
                     <name>
@@ -437,12 +437,15 @@
                 </property>
             </requirements>
         </specification>
-        <specification name="Specification 12: IFCWALL" ifcVersion="IFC4X3_ADD2">
+        <specification name="Specification 12: IFCWALL.SOLIDWALL" ifcVersion="IFC4 IFC4X3_ADD2">
             <applicability minOccurs="0" maxOccurs="0">
                 <entity>
                     <name>
                         <simpleValue>IFCWALL</simpleValue>
                     </name>
+                    <predefinedType>
+                        <simpleValue>SOLIDWALL</simpleValue>
+                    </predefinedType>
                 </entity>
                 <property>
                     <propertySet>
@@ -458,7 +461,7 @@
             </applicability>
             <requirements />
         </specification>
-        <specification name="Specification 13: IFCSLAB" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+        <specification name="Specification 13: IFCSLAB" ifcVersion="IFC4 IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
             <applicability minOccurs="0" maxOccurs="unbounded">
                 <entity>
                     <name>
@@ -504,7 +507,7 @@
                 </property>
             </requirements>
         </specification>
-        <specification name="Specification 14: IFCSLAB" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+        <specification name="Specification 14: IFCSLAB" ifcVersion="IFC4 IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
             <applicability minOccurs="0" maxOccurs="unbounded">
                 <entity>
                     <name>
@@ -550,7 +553,7 @@
                 </property>
             </requirements>
         </specification>
-        <specification name="Specification 15: IFCSLAB" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+        <specification name="Specification 15: IFCSLAB" ifcVersion="IFC4 IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
             <applicability minOccurs="0" maxOccurs="unbounded">
                 <entity>
                     <name>
@@ -596,7 +599,7 @@
                 </property>
             </requirements>
         </specification>
-        <specification name="Specification 16: IFCWALL" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+        <specification name="Specification 16: IFCWALL" ifcVersion="IFC4 IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
             <applicability minOccurs="0" maxOccurs="unbounded">
                 <entity>
                     <name>
@@ -670,7 +673,7 @@
                 </property>
             </requirements>
         </specification>
-        <specification name="Specification 17: IFCWALL" ifcVersion="IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+        <specification name="Specification 17: IFCWALL" ifcVersion="IFC4 IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
             <applicability minOccurs="0" maxOccurs="unbounded">
                 <entity>
                     <name>

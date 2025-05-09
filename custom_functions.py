@@ -25,13 +25,14 @@ STRING_PARTOFPREDEFINEDTYPE = 'PartOfPredefinedType'
 STRING_DESCRIPTION = 'Description'
 STRING_SPECIFICATIONNAME = 'SpecificationName'
 STRING_SPECIFICATIONCARDINALITY = 'SpecificationCardinality'
+STRING_REQUIREMENTCARDINALITY = 'Cardinality'
 KEYWORD_NONE = '_none_'
 KEYWORD_MISSING = '_MISSING_'
 
 entity_description_dict = {}
 property_description_dict = {}
 
-def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows):
+def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, is_entity_based_app):
     '''Parses excel data from a given file path and sheet name into a list of specifications.
     Each specification is represented as dictionary with a given applicability, requirements, specification data, and general data
 
@@ -42,7 +43,9 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows):
     :param separate_by: List of general data for which specifications must be seperated
     :type separate_by: list
     :param skipped_rows: Number of skipped rows at the top of the sheet 
-    :type skipped_rows: int    
+    :type skipped_rows: int
+    :param is_entity_based_app: Boolean specifying if the applicability should be generated only entity-based (with predefiend types) 
+    :type is_entity_based_app: boolean       
     :return: List of specifications with applicability, requirements, specification data and general data
     :rtype: list
     '''
@@ -58,6 +61,14 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows):
 
     #Organise all relevant available column names according to the facets
     prefix = 'A.'
+
+    if is_entity_based_app:
+        removed_columns = [prefix+STRING_PROPERTY,prefix+STRING_PROPERTYSET,prefix+STRING_PROPERTYVALUE,prefix+STRING_PROPERTYDATATYPE,
+                           prefix+STRING_MATERIAL,
+                           prefix+STRING_CLASSIFICATION,prefix+STRING_CLASSIFICATIONSYSTEM,
+                           prefix+STRING_PARTOFENTITY,prefix+STRING_PARTOFRELATION]
+        all_columns = [x for x in all_columns if x not in removed_columns]
+
     cols_app_entity = [col for col in [prefix+STRING_ENTITY] if col in all_columns]
     cols_app_property = [col for col in [prefix+STRING_PROPERTY,prefix+STRING_PROPERTYSET,prefix+STRING_PROPERTYVALUE,prefix+STRING_PROPERTYDATATYPE] if col in all_columns]
     cols_app_material = [col for col in [prefix+STRING_MATERIAL] if col in all_columns]
@@ -66,11 +77,11 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows):
     cols_app_partOf = [col for col in [prefix+STRING_PARTOFENTITY,prefix+STRING_PARTOFRELATION] if col in all_columns]
     prefix = 'R.'
     cols_req_entity = [col for col in [prefix+STRING_ENTITY,prefix+STRING_DESCRIPTION+'.Entity'] if col in all_columns]
-    cols_req_property = [col for col in [prefix+STRING_PROPERTY,prefix+STRING_PROPERTYSET,prefix+STRING_PROPERTYVALUE,prefix+STRING_PROPERTYDATATYPE,prefix+STRING_PROPERTYURI,prefix+STRING_DESCRIPTION+'.Property'] if col in all_columns]
-    cols_req_material = [col for col in [prefix+STRING_MATERIAL,STRING_MATERIALURI] if col in all_columns]
-    cols_req_attribute = [col for col in [prefix+STRING_ATTRIBUTE,prefix+STRING_ATTRIBUTEVALUE] if col in all_columns]
-    cols_req_classification = [col for col in [prefix+STRING_CLASSIFICATION,prefix+STRING_CLASSIFICATIONSYSTEM,prefix+STRING_CLASSIFICATIONURI] if col in all_columns]
-    cols_req_partOf = [col for col in [prefix+STRING_PARTOFENTITY,prefix+STRING_PARTOFRELATION] if col in all_columns]
+    cols_req_property = [col for col in [prefix+STRING_PROPERTY,prefix+STRING_PROPERTYSET,prefix+STRING_PROPERTYVALUE,prefix+STRING_PROPERTYDATATYPE,prefix+STRING_PROPERTYURI,prefix+STRING_REQUIREMENTCARDINALITY,prefix+STRING_DESCRIPTION+'.Property'] if col in all_columns]
+    cols_req_material = [col for col in [prefix+STRING_MATERIAL,STRING_MATERIALURI,prefix+STRING_REQUIREMENTCARDINALITY] if col in all_columns]
+    cols_req_attribute = [col for col in [prefix+STRING_ATTRIBUTE,prefix+STRING_ATTRIBUTEVALUE,prefix+STRING_REQUIREMENTCARDINALITY] if col in all_columns]
+    cols_req_classification = [col for col in [prefix+STRING_CLASSIFICATION,prefix+STRING_CLASSIFICATIONSYSTEM,prefix+STRING_CLASSIFICATIONURI,prefix+STRING_REQUIREMENTCARDINALITY] if col in all_columns]
+    cols_req_partOf = [col for col in [prefix+STRING_PARTOFENTITY,prefix+STRING_PARTOFRELATION,prefix+STRING_REQUIREMENTCARDINALITY] if col in all_columns]
     
     cols_general = [col for col in ['Phase','Role','Usecase'] if col in all_columns]
 
@@ -92,11 +103,16 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows):
     relevant_columns.extend(cols_req_partOf)
     relevant_columns.extend(cols_general)
     relevant_columns.extend(cols_specification)
+    relevant_columns = list(set(relevant_columns))
     
     ##Import the relevant columns and merge rows with the same applicability into one row
     if relevant_columns:
         #Import all relevant columns
         df = pd.read_excel(EXCEL_PATH, sheet_name=sheet_name, skiprows=skipped_rows, usecols=relevant_columns)
+
+        #Fill empty requirement cardinality with default value
+        if prefix+STRING_REQUIREMENTCARDINALITY in df.columns:
+            df[prefix+STRING_REQUIREMENTCARDINALITY] = df[prefix+STRING_REQUIREMENTCARDINALITY].fillna("required")
 
         #Fill NaN values with a placeholder
         df_filled = df.fillna(KEYWORD_MISSING)
@@ -125,6 +141,7 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows):
         merge_columns_2.extend(cols_req_classification)
         merge_columns_2.extend(cols_req_partOf)
         merge_columns_2.extend([item for item in cols_general if item not in separate_by])
+        merge_columns_2 = list(set(merge_columns_2))
         for item in merge_columns_2:
             if item in relevant_columns_copy:
                 relevant_columns_copy.remove(item)
@@ -211,6 +228,10 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows):
                 dict_list_req = pandas_row_to_dict_list(row_req)
                 for dict_item in dict_list_req:
                     req_dict = split_OR_AND_values(dict_item)
+                    #check if dict only includes the cardinality (invalid); if so, take empty dict.
+                    #Can occur since requirement cardinality column is applied to several facets from which some might be empty in current row
+                    if len(req_dict.keys()) == 1 and STRING_REQUIREMENTCARDINALITY in req_dict:
+                        req_dict = {}
                     #Rearrange 'AND' values of the requirements into individual facet dictionaries
                     req_dict_list_arranged = split_AND_values_to_individual_facet_dicts(req_dict)
                     
@@ -218,9 +239,15 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows):
                         #Check whether complex restrictions are included in 'OR' values (this is not possible in IDS)
                         for key in req_dict_arranged:
                             if len(req_dict_arranged[key]) > 1:
-                                for value in req_dict_arranged[key]:
+                                j = 0
+                                while j < len(req_dict_arranged[key]):
+                                    value = req_dict_arranged[key][j]
                                     if value[:8] == 'pattern=' or value[:2] == '\\<' or value[:2] == '\\>' or value[:7] == 'length=' or value[:8] == 'length<=' or value[:8] == 'length>=':
-                                        raise Exception('Complex restrictions (pattern=; \\<=; \\<; \\>=; \\>; length=; length<=; length>=) cannot be part of an enumeration (list of "or"-values): Error occured in row ' + str(i + skipped_rows + 2))
+                                        if is_entity_based_app:
+                                            req_dict_arranged[key].remove(value)
+                                        else:
+                                            raise Exception('Complex restrictions (pattern=; \\<=; \\<; \\>=; \\>; length=; length<=; length>=) cannot be part of an enumeration (list of "or"-values)')
+                                    else: j += 1
                         
                         #Extract descriptions for properties and entities
                         if STRING_DESCRIPTION in req_dict_arranged:
@@ -379,7 +406,12 @@ def split_OR_AND_values(input_dict):
                     if number_of_and_values == 0:
                         number_of_and_values = len(and_values)
                     if len(and_values) != number_of_and_values:
-                        raise Exception('Number of AND values (seperated by \\&) is invalid for ' + key + value + '. All columns of one IDS facet require the same number of AND values. Required number of AND values: ' + str(number_of_and_values))
+                        #Special case requirement cardinality. Since the requirement cardinality is included automatically if not in the excel file,
+                        #if the existing columns use 'and' values the cardinality has no and values. Then the one value is applied to all and values.
+                        if key == STRING_REQUIREMENTCARDINALITY and len(and_values) == 1:
+                            and_values = and_values*number_of_and_values
+                        else:
+                            raise Exception('Number of AND values (seperated by \\&) is invalid for ' + key + ' ' + value + '. All columns of one IDS facet require the same number of AND values. Required number of AND values: ' + str(number_of_and_values))
                     values_list = []
                     for and_value in and_values:
                         #Use delimiters to distinguish between different 'OR' values
@@ -780,31 +812,36 @@ def append_facets(facets, input_data):
                                     dataType=input_dict[STRING_PROPERTYDATATYPE].replace(' ','') if STRING_PROPERTYDATATYPE in input_dict else None,
                                     value=input_dict[STRING_PROPERTYVALUE] if STRING_PROPERTYVALUE in input_dict else None,
                                     uri=input_dict[STRING_PROPERTYURI] if STRING_PROPERTYURI in input_dict else None,
+                                    cardinality=input_dict[STRING_REQUIREMENTCARDINALITY] if STRING_REQUIREMENTCARDINALITY in input_dict else None,
                                     instructions=property_description_dict[key] if key in property_description_dict else None)
         #Material facet
         elif STRING_MATERIAL in input_dict:
             facet = ids.Material(value=input_dict[STRING_MATERIAL] if STRING_MATERIAL in input_dict else None,
-                                 uri=input_dict[STRING_MATERIALURI] if STRING_MATERIALURI in input_dict else None)
+                                uri=input_dict[STRING_MATERIALURI] if STRING_MATERIALURI in input_dict else None,
+                                cardinality=input_dict[STRING_REQUIREMENTCARDINALITY] if STRING_REQUIREMENTCARDINALITY in input_dict else None)
         #Attribute facet
         elif STRING_ATTRIBUTE in input_dict or STRING_ATTRIBUTEVALUE in input_dict:
             if STRING_ATTRIBUTE not in input_dict: incomplete_facet = 'The Attribute facet requires the Attribute parameter.'
             else:
                 facet = ids.Attribute(name=input_dict[STRING_ATTRIBUTE] if STRING_ATTRIBUTE in input_dict else None,
-                                        value=input_dict[STRING_ATTRIBUTEVALUE] if STRING_ATTRIBUTEVALUE in input_dict else None)
+                                    value=input_dict[STRING_ATTRIBUTEVALUE] if STRING_ATTRIBUTEVALUE in input_dict else None,
+                                    cardinality=input_dict[STRING_REQUIREMENTCARDINALITY] if STRING_REQUIREMENTCARDINALITY in input_dict else None)
         #Classification facet
         elif STRING_CLASSIFICATION in input_dict or STRING_CLASSIFICATIONSYSTEM in input_dict or STRING_CLASSIFICATIONURI in input_dict:
             if STRING_CLASSIFICATIONSYSTEM not in input_dict: incomplete_facet = 'The Classification facet requires the Classifiaction system parameter.'
             else:
                 facet = ids.Classification(value=input_dict[STRING_CLASSIFICATION] if STRING_CLASSIFICATION in input_dict else None,
                                         system=input_dict[STRING_CLASSIFICATIONSYSTEM] if STRING_CLASSIFICATIONSYSTEM in input_dict else None,
-                                        uri=input_dict[STRING_CLASSIFICATIONURI] if STRING_CLASSIFICATIONURI in input_dict else None)
+                                        uri=input_dict[STRING_CLASSIFICATIONURI] if STRING_CLASSIFICATIONURI in input_dict else None,
+                                        cardinality=input_dict[STRING_REQUIREMENTCARDINALITY] if STRING_REQUIREMENTCARDINALITY in input_dict else None)
         #PartOf facet
         elif STRING_PARTOFENTITY in input_dict or STRING_PARTOFPREDEFINEDTYPE in input_dict or STRING_PARTOFRELATION in input_dict:
             if STRING_PARTOFENTITY not in input_dict: incomplete_facet = 'The PartOf facet requires the Entity parameter.'
             else:
                 facet = ids.PartOf(name=input_dict[STRING_PARTOFENTITY] if STRING_PARTOFENTITY in input_dict else None,
                                         predefinedType=input_dict[STRING_PARTOFPREDEFINEDTYPE] if STRING_PARTOFPREDEFINEDTYPE in input_dict else None,
-                                        relation=input_dict[STRING_PARTOFRELATION] if STRING_PARTOFRELATION in input_dict else None)
+                                        relation=input_dict[STRING_PARTOFRELATION] if STRING_PARTOFRELATION in input_dict else None,
+                                        cardinality=input_dict[STRING_REQUIREMENTCARDINALITY] if STRING_REQUIREMENTCARDINALITY in input_dict else None)
         if incomplete_facet != None:
             raise Exception('Incomplete IDS facet: ' + str(input_dict) + '. ' + incomplete_facet)
         
