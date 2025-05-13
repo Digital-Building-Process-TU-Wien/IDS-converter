@@ -264,7 +264,7 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, is_ent
                         #Otherwise, add new requirement
                         diff_req = True
                         for j in range(len(req_list)):
-                            diff_req = compare_and_merge_requirement_dicts(req_list[j], req_dict_arranged)
+                            diff_req = compare_and_merge_requirement_dicts(req_list[j], req_dict_arranged, False)
                             if not diff_req: break
                         if diff_req: req_list.append(req_dict_arranged)
 
@@ -393,6 +393,7 @@ def split_OR_AND_values(input_dict):
         for key in keylist:
             value = input_dict[key]
             key = key.split('.')[1]
+            values_list = []
             if isinstance(value,str):
                 if value != KEYWORD_NONE and value != KEYWORD_MISSING:
                     value = str(value).strip()
@@ -423,9 +424,14 @@ def split_OR_AND_values(input_dict):
                                 or_values_cleaned.append(or_value)
                         if or_values_cleaned:
                             values_list.append(or_values_cleaned)
-                    #If values except KEYWORD_MISSING exist, add them to the dictionary
-                    if values_list:
-                        new_dict[key] = values_list
+
+            elif isinstance(value,bool) or isinstance(value,int) or isinstance(value,float) or isinstance(value,complex):
+                values_list.append([value])
+
+            #If values except KEYWORD_MISSING exist, add them to the dictionary            
+            if values_list:
+                new_dict[key] = values_list
+
     return new_dict
 
 def split_AND_values_to_individual_facet_dicts(input_dict):
@@ -612,7 +618,7 @@ def add_values_to_general_specs(specs_list, separate_by):
                         reqJ = specJ['req']
                         for k in range(len(reqI)):
                             for l in range(len(reqJ)):
-                                diff_req = compare_and_merge_requirement_dicts(reqI[k], reqJ[l])
+                                diff_req = compare_and_merge_requirement_dicts(reqI[k], reqJ[l], True)
                     
                     #if general data is equal and app more general in appJ, compare/merge the requirements of appI in appJ
                     if not added_dict_items_appJ and not added_iterable_items_appJ and not values_changed_appJ:
@@ -621,9 +627,9 @@ def add_values_to_general_specs(specs_list, separate_by):
                         reqJ = specJ['req']
                         for k in range(len(reqI)):
                             for l in range(len(reqJ)):
-                                diff_req = compare_and_merge_requirement_dicts(reqJ[l], reqI[k])                    
+                                diff_req = compare_and_merge_requirement_dicts(reqJ[l], reqI[k], True)                    
 
-def compare_and_merge_requirement_dicts(req_dict1, req_dict2):
+def compare_and_merge_requirement_dicts(req_dict1, req_dict2, merge_only_values):
     '''Checks whether the req_dict1 is a subset of req_dict2.
     This means, the old requirement must be a subset of the new requirement. The keys of req_dict1 must exist in req_dict2 and the values must be equal.
     An exception are lists for property values or attribute values. These are not compared. Here the values can be different because they are merged together, unless one contains a complex restriction. Complex restrictions cannot be merged and thus always indicate a difference.
@@ -633,6 +639,8 @@ def compare_and_merge_requirement_dicts(req_dict1, req_dict2):
     :type req_dict1: dict
     :param req_dict2: dictionary 2 (is not altered)
     :type req_dict2: dict
+    :param merge_only_values: Boolean defining that dicts should only be merged if all keys except Description exist in both dicts
+    :type merge_only_values: boolean
     :return: boolean specifying whether the dicts were different or not
     :rtype: boolean
     '''
@@ -649,6 +657,10 @@ def compare_and_merge_requirement_dicts(req_dict1, req_dict2):
 
     for key in req_dict1:
         if key == STRING_DESCRIPTION: continue
+        #if only values should be merged, all keys except STRING_DESCRIPTION must also occur in dict2
+        if merge_only_values and key != STRING_DESCRIPTION and key not in req_dict2:
+            diff = True
+            break
         #all keys in req_dict1 must be equal in req_dict2
         if key in req_dict2:
             same_facet = True

@@ -5,7 +5,7 @@
         <title>IDS for openBIM building permit of the City of Vienna – extended</title>
         <copyright>TU Wien Digital Building Process</copyright>
         <author>simon.fischer@tuwien.ac.at</author>
-        <date>2025-05-09</date>
+        <date>2025-05-13</date>
     </info>
     <specifications>
         <specification name="Specification 1: IFCBEAM" ifcVersion="IFC4X3_ADD2">
@@ -54,27 +54,6 @@
                             <xs:enumeration value="OTHER" />
                             <xs:enumeration value="NOTKNOWN" />
                             <xs:enumeration value="UNSET" />
-                        </xs:restriction>
-                    </value>
-                </property>
-                <property dataType="IFCLABEL" instructions="Wenn das Element Teil einer architektonischen Fassadengestaltung ist, wird hier die Art der Fassadengestaltung genannt gem. den Vorgaben des Auswahl-Sets. Ist das Element NICHT Teil einer architektonischen Fassadengestaltung verbleibt der Wert des Merkmals bei &quot;ND&quot;." cardinality="required">
-                    <propertySet>
-                        <simpleValue>WienBV_BauwerberObjektdaten</simpleValue>
-                    </propertySet>
-                    <baseName>
-                        <simpleValue>Fassadengestaltung</simpleValue>
-                    </baseName>
-                    <value>
-                        <xs:restriction base="xs:string">
-                            <xs:enumeration value="ND" />
-                            <xs:enumeration value="Ausgestaltung" />
-                            <xs:enumeration value="Rankhilfe" />
-                            <xs:enumeration value="Hauptgesims" />
-                            <xs:enumeration value="Dachvorsprung" />
-                            <xs:enumeration value="Werbezeichen" />
-                            <xs:enumeration value="Schaukasten" />
-                            <xs:enumeration value="Geschaeftsportal" />
-                            <xs:enumeration value="NE" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -222,27 +201,6 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCLABEL" instructions="Wenn das Element Teil einer architektonischen Fassadengestaltung ist, wird hier die Art der Fassadengestaltung genannt gem. den Vorgaben des Auswahl-Sets. Ist das Element NICHT Teil einer architektonischen Fassadengestaltung verbleibt der Wert des Merkmals bei &quot;ND&quot;." cardinality="required">
-                    <propertySet>
-                        <simpleValue>WienBV_BauwerberObjektdaten</simpleValue>
-                    </propertySet>
-                    <baseName>
-                        <simpleValue>Fassadengestaltung</simpleValue>
-                    </baseName>
-                    <value>
-                        <xs:restriction base="xs:string">
-                            <xs:enumeration value="ND" />
-                            <xs:enumeration value="Ausgestaltung" />
-                            <xs:enumeration value="Rankhilfe" />
-                            <xs:enumeration value="Hauptgesims" />
-                            <xs:enumeration value="Dachvorsprung" />
-                            <xs:enumeration value="Werbezeichen" />
-                            <xs:enumeration value="Schaukasten" />
-                            <xs:enumeration value="Geschaeftsportal" />
-                            <xs:enumeration value="NE" />
-                        </xs:restriction>
-                    </value>
-                </property>
                 <property dataType="IFCLABEL" instructions="Angabe über das (Haupt-)Material eines Elementes (z.B. Beton, Holz, etc.). Wenn ein Element aus mehreren Schichten besteht, ist das Material der Hauptschicht anzugeben (z.B. Aussenwand: Beton)" cardinality="required">
                     <propertySet>
                         <simpleValue>WienBV_ColumnSpecific</simpleValue>
@@ -377,27 +335,6 @@
                             <xs:enumeration value="D" />
                             <xs:enumeration value="E" />
                             <xs:enumeration value="F" />
-                            <xs:enumeration value="NE" />
-                        </xs:restriction>
-                    </value>
-                </property>
-                <property dataType="IFCLABEL" instructions="Wenn das Element Teil einer architektonischen Fassadengestaltung ist, wird hier die Art der Fassadengestaltung genannt gem. den Vorgaben des Auswahl-Sets. Ist das Element NICHT Teil einer architektonischen Fassadengestaltung verbleibt der Wert des Merkmals bei &quot;ND&quot;." cardinality="required">
-                    <propertySet>
-                        <simpleValue>WienBV_BauwerberObjektdaten</simpleValue>
-                    </propertySet>
-                    <baseName>
-                        <simpleValue>Fassadengestaltung</simpleValue>
-                    </baseName>
-                    <value>
-                        <xs:restriction base="xs:string">
-                            <xs:enumeration value="ND" />
-                            <xs:enumeration value="Ausgestaltung" />
-                            <xs:enumeration value="Rankhilfe" />
-                            <xs:enumeration value="Hauptgesims" />
-                            <xs:enumeration value="Dachvorsprung" />
-                            <xs:enumeration value="Werbezeichen" />
-                            <xs:enumeration value="Schaukasten" />
-                            <xs:enumeration value="Geschaeftsportal" />
                             <xs:enumeration value="NE" />
                         </xs:restriction>
                     </value>
@@ -882,27 +819,6 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCLABEL" instructions="Wenn das Element Teil einer architektonischen Fassadengestaltung ist, wird hier die Art der Fassadengestaltung genannt gem. den Vorgaben des Auswahl-Sets. Ist das Element NICHT Teil einer architektonischen Fassadengestaltung verbleibt der Wert des Merkmals bei &quot;ND&quot;." cardinality="required">
-                    <propertySet>
-                        <simpleValue>WienBV_BauwerberObjektdaten</simpleValue>
-                    </propertySet>
-                    <baseName>
-                        <simpleValue>Fassadengestaltung</simpleValue>
-                    </baseName>
-                    <value>
-                        <xs:restriction base="xs:string">
-                            <xs:enumeration value="ND" />
-                            <xs:enumeration value="Ausgestaltung" />
-                            <xs:enumeration value="Rankhilfe" />
-                            <xs:enumeration value="Hauptgesims" />
-                            <xs:enumeration value="Dachvorsprung" />
-                            <xs:enumeration value="Werbezeichen" />
-                            <xs:enumeration value="Schaukasten" />
-                            <xs:enumeration value="Geschaeftsportal" />
-                            <xs:enumeration value="NE" />
-                        </xs:restriction>
-                    </value>
-                </property>
             </requirements>
         </specification>
         <specification name="Specification 8: IFCPLATE" ifcVersion="IFC4X3_ADD2">
@@ -951,27 +867,6 @@
                             <xs:enumeration value="OTHER" />
                             <xs:enumeration value="NOTKNOWN" />
                             <xs:enumeration value="UNSET" />
-                        </xs:restriction>
-                    </value>
-                </property>
-                <property dataType="IFCLABEL" instructions="Wenn das Element Teil einer architektonischen Fassadengestaltung ist, wird hier die Art der Fassadengestaltung genannt gem. den Vorgaben des Auswahl-Sets. Ist das Element NICHT Teil einer architektonischen Fassadengestaltung verbleibt der Wert des Merkmals bei &quot;ND&quot;." cardinality="required">
-                    <propertySet>
-                        <simpleValue>WienBV_BauwerberObjektdaten</simpleValue>
-                    </propertySet>
-                    <baseName>
-                        <simpleValue>Fassadengestaltung</simpleValue>
-                    </baseName>
-                    <value>
-                        <xs:restriction base="xs:string">
-                            <xs:enumeration value="ND" />
-                            <xs:enumeration value="Ausgestaltung" />
-                            <xs:enumeration value="Rankhilfe" />
-                            <xs:enumeration value="Hauptgesims" />
-                            <xs:enumeration value="Dachvorsprung" />
-                            <xs:enumeration value="Werbezeichen" />
-                            <xs:enumeration value="Schaukasten" />
-                            <xs:enumeration value="Geschaeftsportal" />
-                            <xs:enumeration value="NE" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -1238,27 +1133,6 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCLABEL" instructions="Wenn das Element Teil einer architektonischen Fassadengestaltung ist, wird hier die Art der Fassadengestaltung genannt gem. den Vorgaben des Auswahl-Sets. Ist das Element NICHT Teil einer architektonischen Fassadengestaltung verbleibt der Wert des Merkmals bei &quot;ND&quot;." cardinality="required">
-                    <propertySet>
-                        <simpleValue>WienBV_BauwerberObjektdaten</simpleValue>
-                    </propertySet>
-                    <baseName>
-                        <simpleValue>Fassadengestaltung</simpleValue>
-                    </baseName>
-                    <value>
-                        <xs:restriction base="xs:string">
-                            <xs:enumeration value="ND" />
-                            <xs:enumeration value="Ausgestaltung" />
-                            <xs:enumeration value="Rankhilfe" />
-                            <xs:enumeration value="Hauptgesims" />
-                            <xs:enumeration value="Dachvorsprung" />
-                            <xs:enumeration value="Werbezeichen" />
-                            <xs:enumeration value="Schaukasten" />
-                            <xs:enumeration value="Geschaeftsportal" />
-                            <xs:enumeration value="NE" />
-                        </xs:restriction>
-                    </value>
-                </property>
                 <property dataType="IFCLABEL" instructions="Angabe des 5-stelligen Codes des Aufbaus gem. Aufbautenkatalog. Die Codierung erfolgt über die Angabe der Hauptgruppe (z.B. &quot;AW&quot; für Aussenwände), Trennzeichen (&quot;-&quot;) und der Nummerierung des konkreten Aufbaus." cardinality="required">
                     <propertySet>
                         <simpleValue>WienBV_RoofSpecific</simpleValue>
@@ -1386,27 +1260,6 @@
                             <xs:enumeration value="D" />
                             <xs:enumeration value="E" />
                             <xs:enumeration value="F" />
-                        </xs:restriction>
-                    </value>
-                </property>
-                <property dataType="IFCLABEL" instructions="Wenn das Element Teil einer architektonischen Fassadengestaltung ist, wird hier die Art der Fassadengestaltung genannt gem. den Vorgaben des Auswahl-Sets. Ist das Element NICHT Teil einer architektonischen Fassadengestaltung verbleibt der Wert des Merkmals bei &quot;ND&quot;." cardinality="required">
-                    <propertySet>
-                        <simpleValue>WienBV_BauwerberObjektdaten</simpleValue>
-                    </propertySet>
-                    <baseName>
-                        <simpleValue>Fassadengestaltung</simpleValue>
-                    </baseName>
-                    <value>
-                        <xs:restriction base="xs:string">
-                            <xs:enumeration value="ND" />
-                            <xs:enumeration value="Ausgestaltung" />
-                            <xs:enumeration value="Rankhilfe" />
-                            <xs:enumeration value="Hauptgesims" />
-                            <xs:enumeration value="Dachvorsprung" />
-                            <xs:enumeration value="Werbezeichen" />
-                            <xs:enumeration value="Schaukasten" />
-                            <xs:enumeration value="Geschaeftsportal" />
-                            <xs:enumeration value="NE" />
                         </xs:restriction>
                     </value>
                 </property>
@@ -1696,27 +1549,6 @@
                             <xs:enumeration value="D" />
                             <xs:enumeration value="E" />
                             <xs:enumeration value="F" />
-                            <xs:enumeration value="NE" />
-                        </xs:restriction>
-                    </value>
-                </property>
-                <property dataType="IFCLABEL" instructions="Wenn das Element Teil einer architektonischen Fassadengestaltung ist, wird hier die Art der Fassadengestaltung genannt gem. den Vorgaben des Auswahl-Sets. Ist das Element NICHT Teil einer architektonischen Fassadengestaltung verbleibt der Wert des Merkmals bei &quot;ND&quot;." cardinality="required">
-                    <propertySet>
-                        <simpleValue>WienBV_BauwerberObjektdaten</simpleValue>
-                    </propertySet>
-                    <baseName>
-                        <simpleValue>Fassadengestaltung</simpleValue>
-                    </baseName>
-                    <value>
-                        <xs:restriction base="xs:string">
-                            <xs:enumeration value="ND" />
-                            <xs:enumeration value="Ausgestaltung" />
-                            <xs:enumeration value="Rankhilfe" />
-                            <xs:enumeration value="Hauptgesims" />
-                            <xs:enumeration value="Dachvorsprung" />
-                            <xs:enumeration value="Werbezeichen" />
-                            <xs:enumeration value="Schaukasten" />
-                            <xs:enumeration value="Geschaeftsportal" />
                             <xs:enumeration value="NE" />
                         </xs:restriction>
                     </value>
