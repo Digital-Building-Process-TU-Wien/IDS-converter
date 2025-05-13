@@ -5,8 +5,8 @@
         <title>Example IDS of IDS4ALL</title>
         <copyright>TU Wien Digital Building Process</copyright>
         <author>simon.fischer@tuwien.ac.at</author>
-        <date>2025-05-09</date>
-        <purpose>Role: Architektur, Role 2, Role 1; Usecase: openBIM Building Permit Process, Usecase 1</purpose>
+        <date>2025-05-13</date>
+        <purpose>Role: Role 2, Role 1, Architektur; Usecase: Usecase 1, openBIM Building Permit Process</purpose>
         <milestone>Phase 2, Phase 1</milestone>
     </info>
     <specifications>
