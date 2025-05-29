@@ -211,7 +211,11 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, is_ent
 
         #Generate possible combinations for all or_values in the applicability and create individual specifications for each.
         #This is necessary for assigning generally applicable values to more specific specifications.
-        app_lists = generate_combinations(app_list)
+        #Only if specification cardinality is not "required", because in this case the logic would be lost when seperated
+        if STRING_SPECIFICATIONCARDINALITY in specification_data_dict and specification_data_dict[STRING_SPECIFICATIONCARDINALITY][0].lower() == 'required':
+            app_lists = [app_list]
+        else:
+            app_lists = generate_combinations(app_list)
         for app_list in app_lists:
             for app_dict in app_list:
                 #Separate Entity.PredefinedType into two entries
@@ -417,6 +421,7 @@ def split_OR_AND_values(input_dict):
                     for and_value in and_values:
                         #Use delimiters to distinguish between different 'OR' values
                         or_values = None if and_value == '' else and_value.split('|')
+                        if or_values == None: continue
                         #Omit KEYWORD_MISSING values
                         or_values_cleaned = []
                         for or_value in or_values:
