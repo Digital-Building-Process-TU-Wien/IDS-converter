@@ -253,12 +253,12 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, is_ent
                                             raise Exception('Complex restrictions (pattern=; \\<=; \\<; \\>=; \\>; length=; length<=; length>=) cannot be part of an enumeration (list of "or"-values)')
                                     else: j += 1
                         
-                        #Extract descriptions for properties and entities
+                        #Extract descriptions for properties
+                        #Necessary to add property description to each occurance in the IDS even if it is only one in the Excel
+                        #Not necessary for entity descriptions
                         if STRING_DESCRIPTION in req_dict_arranged:
                             if STRING_PROPERTY in req_dict_arranged:
                                 property_description_dict[req_dict_arranged[STRING_PROPERTY][0]] = req_dict_arranged[STRING_DESCRIPTION][0]
-                            elif STRING_ENTITY in req_dict_arranged:
-                                entity_description_dict[req_dict_arranged[STRING_ENTITY][0]] = req_dict_arranged[STRING_DESCRIPTION][0] 
                         
                         #Separate Entity.PredefinedType into two entries
                         separate_dict_value(req_dict_arranged, STRING_ENTITY, STRING_PREDEFINEDTYPE,'.')
@@ -402,7 +402,7 @@ def split_OR_AND_values(input_dict):
                 if value != KEYWORD_NONE and value != KEYWORD_MISSING:
                     value = str(value).strip()
                     #Change relevant values to uppercase
-                    if key in [STRING_ENTITY,STRING_PROPERTYDATATYPE,STRING_PARTOFENTITY,STRING_PARTOFRELATION]:
+                    if key in [STRING_PROPERTYDATATYPE,STRING_PARTOFRELATION]:
                         value = value.upper()
                     
                     #Use delimiters to distinguish between different 'AND' values
@@ -479,11 +479,14 @@ def separate_dict_value(current_dict, combined_key, second_key, delimiter):
         or_values_second_key = []
         for or_value in or_values:
             separate_values = or_value.split(delimiter)
+            if combined_key == STRING_ENTITY or combined_key == STRING_PARTOFENTITY: separate_values[0] = separate_values[0].upper()
             or_values_first_key.append(separate_values[0])
             #Only append value to second key if it exists
             if len(separate_values) == 2:
                 or_values_second_key.append(separate_values[1])
-                                    
+
+        if len(set(or_values_first_key)) > 1 and len(or_values_second_key) > 0:
+            raise Exception("PredefinedTypes cannot be used in an enumeration in a specification applicability with cardinality \"required\" because separating it into two different facet parameters causes the connection between the PredefinedType and the Entity to be lost. Affected Entity Facet: Entities: " + str(or_values_first_key) + " PredefinedTypes: " + str(or_values_second_key))                           
         current_dict[combined_key] = or_values_first_key
         if or_values_second_key: current_dict[second_key] = or_values_second_key
 
@@ -723,9 +726,11 @@ def create_ids_specifications(ids_file, spec_list, ifc_version):
             spec_title = 'Specification ' + str(i)
             if len(app_data) > 0:
                 if STRING_ENTITY in app_data[0]:
-                    spec_title += ': ' + app_data[0][STRING_ENTITY][0]
-                if STRING_PREDEFINEDTYPE in app_data[0]:
-                    spec_title += '.' + app_data[0][STRING_PREDEFINEDTYPE][0]
+                    spec_title += ':'
+                    for j in range(len(app_data[0][STRING_ENTITY])):
+                        spec_title += ' ' + app_data[0][STRING_ENTITY][j]
+                        if STRING_PREDEFINEDTYPE in app_data[0]:
+                            spec_title += '.' + app_data[0][STRING_PREDEFINEDTYPE][j]
         #Define specification cardinality
         spec_minOccurs=0
         spec_maxOccurs="unbounded"
@@ -818,7 +823,7 @@ def append_facets(facets, input_data):
                 if STRING_PREDEFINEDTYPE in input_dict: key += '.' + str(input_dict[STRING_PREDEFINEDTYPE])
                 facet = ids.Entity(name=input_dict[STRING_ENTITY] if STRING_ENTITY in input_dict else None,
                                 predefinedType=input_dict[STRING_PREDEFINEDTYPE] if STRING_PREDEFINEDTYPE in input_dict else None,
-                                instructions=entity_description_dict[key] if key in entity_description_dict else None)
+                                instructions=input_dict[STRING_DESCRIPTION] if STRING_DESCRIPTION in input_dict else None)
         #Property facet
         elif STRING_PROPERTYSET in input_dict or STRING_PROPERTY in input_dict or STRING_PROPERTYDATATYPE in input_dict or STRING_PROPERTYVALUE in input_dict:
             if STRING_PROPERTYSET not in input_dict or STRING_PROPERTY not in input_dict: incomplete_facet = 'The Property facet requires the PropertySet and Property parameters.'
