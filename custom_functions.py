@@ -2,7 +2,6 @@ import pandas as pd
 from xml.etree import ElementTree as ET
 from deepdiff import DeepDiff
 from deepmerge import Merger
-import copy
 from ifctester import ids
 import itertools
 
@@ -26,7 +25,6 @@ STRING_PARTOFPREDEFINEDTYPE = 'PartOfPredefinedType'
 STRING_DESCRIPTION = 'Description'
 STRING_SPECIFICATIONNAME = 'SpecificationName'
 STRING_SPECIFICATIONCARDINALITY = 'SpecificationCardinality'
-STRING_SPECIFICATIONIFCVERSION = 'SpecificationIfcVersion'
 STRING_REQUIREMENTCARDINALITY = 'Cardinality'
 KEYWORD_NONE = '_none_'
 KEYWORD_MISSING = '_MISSING_'
@@ -34,7 +32,7 @@ KEYWORD_MISSING = '_MISSING_'
 entity_description_dict = {}
 property_description_dict = {}
 
-def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_versions, is_entity_based_app):
+def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, is_entity_based_app):
     '''Parses excel data from a given file path and sheet name into a list of specifications.
     Each specification is represented as dictionary with a given applicability, requirements, specification data, and general data
 
@@ -46,8 +44,6 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
     :type separate_by: list
     :param skipped_rows: Number of skipped rows at the top of the sheet 
     :type skipped_rows: int
-    :param ifc_versions: String specifying the default ifc versions for all specifications (are overwritten if the specificationIfcsVersion column is used) 
-    :type ifc_versions: str
     :param is_entity_based_app: Boolean specifying if the applicability should be generated only entity-based (with predefiend types) 
     :type is_entity_based_app: boolean       
     :return: List of specifications with applicability, requirements, specification data and general data
@@ -89,7 +85,7 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
     
     cols_general = [col for col in ['Phase','Role','Usecase'] if col in all_columns]
 
-    cols_specification = [col for col in [STRING_SPECIFICATIONCARDINALITY,STRING_SPECIFICATIONIFCVERSION] if col in all_columns]
+    cols_specification = [col for col in [STRING_SPECIFICATIONCARDINALITY] if col in all_columns]
 
     #Store all relevant column names of the used file
     relevant_columns = []
@@ -117,16 +113,6 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
         #Fill empty requirement cardinality with default value
         if prefix+STRING_REQUIREMENTCARDINALITY in df.columns:
             df[prefix+STRING_REQUIREMENTCARDINALITY] = df[prefix+STRING_REQUIREMENTCARDINALITY].fillna("required")
-
-        #Fill empty specification ifc version with default version from IDS4ALL sheet
-        spec_ifc_version_col_used = False
-        if STRING_SPECIFICATIONIFCVERSION not in df.columns:
-            df[STRING_SPECIFICATIONIFCVERSION] = ifc_versions
-            relevant_columns.append(STRING_SPECIFICATIONIFCVERSION)
-            cols_specification.append(STRING_SPECIFICATIONIFCVERSION)
-        else:
-            df[STRING_SPECIFICATIONIFCVERSION] = df[STRING_SPECIFICATIONIFCVERSION].fillna(ifc_versions)
-            spec_ifc_version_col_used = True
 
         #Fill NaN values with a placeholder
         df_filled = df.fillna(KEYWORD_MISSING)
@@ -212,10 +198,6 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
             if STRING_SPECIFICATIONCARDINALITY in specification_data_dict:
                 if specification_data_dict[STRING_SPECIFICATIONCARDINALITY][0].lower() not in ['required', 'prohibited']:
                     specification_data_dict.pop(STRING_SPECIFICATIONCARDINALITY)
-            if STRING_SPECIFICATIONIFCVERSION in specification_data_dict:
-                for ifc_version in specification_data_dict[STRING_SPECIFICATIONIFCVERSION]:
-                    if ifc_version.upper() not in ['IFC2X3','IFC4','IFC4X3_ADD2']:
-                        raise Exception('Invalid IFC version used: ' + ifc_version)
        
         #Applicability data
         app_list = []
@@ -223,7 +205,7 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
             row_app = applicability_facet_df.iloc[i]
             dict_list_app = pandas_row_to_dict_list(row_app)
             for dict_item in dict_list_app:
-                    app_dict = split_OR_AND_values(dict_item, is_entity_based_app)
+                    app_dict = split_OR_AND_values(dict_item)
                     #Rearrange 'AND' values of the applicability into individual facet dictionaries
                     app_list.extend(split_AND_values_to_individual_facet_dicts(app_dict))
 
@@ -249,7 +231,7 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
                 row_req = requirement_facet_df.iloc[i]
                 dict_list_req = pandas_row_to_dict_list(row_req)
                 for dict_item in dict_list_req:
-                    req_dict = split_OR_AND_values(dict_item, is_entity_based_app)
+                    req_dict = split_OR_AND_values(dict_item)
                     #check if dict only includes the cardinality (invalid); if so, take empty dict.
                     #Can occur since requirement cardinality column is applied to several facets from which some might be empty in current row
                     if len(req_dict.keys()) == 1 and STRING_REQUIREMENTCARDINALITY in req_dict:
@@ -264,8 +246,11 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
                                 j = 0
                                 while j < len(req_dict_arranged[key]):
                                     value = req_dict_arranged[key][j]
-                                    if is_complex_restriction(value):
-                                        raise Exception('Complex restrictions (pattern=; \\<=; \\<; \\>=; \\>; length=; length<=; length>=) cannot be part of an enumeration (list of "or"-values)')
+                                    if value[:8] == 'pattern=' or value[:2] == '\\<' or value[:2] == '\\>' or value[:7] == 'length=' or value[:8] == 'length<=' or value[:8] == 'length>=':
+                                        if is_entity_based_app:
+                                            req_dict_arranged[key].remove(value)
+                                        else:
+                                            raise Exception('Complex restrictions (pattern=; \\<=; \\<; \\>=; \\>; length=; length<=; length>=) cannot be part of an enumeration (list of "or"-values)')
                                     else: j += 1
                         
                         #Extract descriptions for properties
@@ -283,46 +268,19 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
                         #Otherwise, add new requirement
                         diff_req = True
                         for j in range(len(req_list)):
-                            diff_req = compare_and_merge_requirement_dicts(req_list[j], req_dict_arranged, [STRING_ATTRIBUTEVALUE,STRING_PROPERTYVALUE], False)
+                            diff_req = compare_and_merge_requirement_dicts(req_list[j], req_dict_arranged, False)
                             if not diff_req: break
                         if diff_req: req_list.append(req_dict_arranged)
 
             #if it is a new spec (with different applicability, generaldata, or specificationdata), create a new specification
             if diff or diff_generaldata or diff_specification_data:
-                if app_list or req_list or generaldata_dict:
+                if app_list or req_list or generaldata_dict or specification_data_dict:
                     spec_dict = {}
                     spec_dict['app'] = app_list
                     spec_dict['req'] = req_list
-                    spec_dict['general'] = copy.deepcopy(generaldata_dict)
-                    spec_dict['spec'] = copy.deepcopy(specification_data_dict)
+                    spec_dict['general'] = generaldata_dict
+                    spec_dict['spec'] = specification_data_dict
                     specs_list.append(spec_dict)
-
-    #organise the specifications according to the ifc versions
-    #if one specification refers to a subset of ifc versions of another specification with the same applicability and general data,
-    #the subset of ifc versions is extracted from the more general specification and the requirements are included into the specific specification.
-    #this allows to merge specifications with the same applicability, general data, and ifc versions
-    if spec_ifc_version_col_used:
-        for i in range(len(specs_list)):
-            specI = specs_list[i]
-            specI_Ifc_versions = specI['spec'][STRING_SPECIFICATIONIFCVERSION]
-            if not specI_Ifc_versions: continue
-            for j in range(i+1,len(specs_list)):
-                specI_Ifc_versions = specI['spec'][STRING_SPECIFICATIONIFCVERSION]
-                if not specI_Ifc_versions: break
-                specJ = specs_list[j]
-                specJ_Ifc_versions = specJ['spec'][STRING_SPECIFICATIONIFCVERSION]
-                if not specJ_Ifc_versions: continue
-                #if all ifc versions of specI are in specJ, specI_Ifc_versions is a subset of specJ_Ifc_versions
-                #Then all requirements of specJ also apply to specI.
-                if (all(elem in specJ_Ifc_versions for elem in specI_Ifc_versions)):
-                    structure_specifications_by_Ifc_versions(specI, specJ, specI_Ifc_versions, specJ_Ifc_versions, separate_by)
-                #if all ifc versions of specJ are in specI, specJ_Ifc_versions is a subset of specI_Ifc_versions
-                #Then all requirements of specI also apply to specJ.
-                elif (all(elem in specI_Ifc_versions for elem in specJ_Ifc_versions)):
-                    structure_specifications_by_Ifc_versions(specJ, specI, specJ_Ifc_versions, specI_Ifc_versions, separate_by)
-                
-        #remove specifications with empty ifc versions (might be created during the re-structuring)
-        specs_list = [spec for spec in specs_list if spec['spec'][STRING_SPECIFICATIONIFCVERSION]]
 
     #add requirements of specific specifications to more general specifications
     add_values_to_general_specs(specs_list,separate_by)
@@ -419,7 +377,7 @@ def pandas_row_to_dict_list(current_row):
     
     return filtered_list
 
-def split_OR_AND_values(input_dict, is_entity_based_app):
+def split_OR_AND_values(input_dict):
     '''Transforms the values of the dictionary from strings to list of strings using delimiters.
     The delimiter '\\&' is used for 'AND' values and '|' is used for 'OR' values.
     The lists of 'OR' values are nested in lists of 'AND' values and then assigned to their original key in a new dictionary.
@@ -428,8 +386,6 @@ def split_OR_AND_values(input_dict, is_entity_based_app):
 
     :param input_dict: Dictionary containing values as strings
     :type input_dict: dict
-    :param is_entity_based_app: Boolean specifying if the applicability should be generated only entity-based (with predefiend types)
-    :type is_entity_based_app: boolean
     :return: Dictionary containing nested lists for 'AND' and 'OR' values (key: [[OR_value, OR_value],[OR_value, OR_value, OR_value],[OR_value]])
     :rtype: dict
     '''
@@ -466,9 +422,6 @@ def split_OR_AND_values(input_dict, is_entity_based_app):
                         #Use delimiters to distinguish between different 'OR' values
                         or_values = None if and_value == '' else and_value.split('|')
                         if or_values == None: continue
-                        #Check if complex restrictions were merged due to entity-based applicability. If so, delete them
-                        if is_entity_based_app and len(or_values) > 1:
-                            or_values = list(filter(lambda or_value: not is_complex_restriction(or_value), or_values))
                         #Omit KEYWORD_MISSING values
                         or_values_cleaned = []
                         for or_value in or_values:
@@ -600,7 +553,7 @@ def compare_previous_generaldata_and_applicability(specs_list, generaldata_dict,
     for j in range(len(specs_list)-1,-1,-1):
         prev_spec = specs_list[j]
         #check specification data
-        diff_specification_data = DeepDiff(specification_data_dict, prev_spec['spec'], include_paths=[STRING_SPECIFICATIONCARDINALITY,STRING_SPECIFICATIONIFCVERSION])
+        diff_specification_data = DeepDiff(specification_data_dict, prev_spec['spec']) #, include_paths=[STRING_SPECIFICATIONCARDINALITY]
         if not diff_specification_data:
             #check the general data specified by seperate_by, if it is not empty.
             if separate_by:
@@ -617,50 +570,6 @@ def compare_previous_generaldata_and_applicability(specs_list, generaldata_dict,
                     prev_spec['general'] = merger.merge(prev_spec['general'], generaldata_dict)
                     break
     return diff, diff_generaldata, diff_specification_data, req_list
-
-def structure_specifications_by_Ifc_versions(spec1, spec2, spec1_Ifc_versions, spec2_Ifc_versions, separate_by):
-    '''Includes all requirements of spec2 in spec1 and deletes the ifc versions of spec1 from spec2,
-    if the two specifications have equal applicability, general data and specification cardinality.
-    If all ifc versions of spec1 are in spec2, spec1_Ifc_versions is a subset of spec2_Ifc_versions. Then all requirements of spec2 also apply to spec1.
-    After the requirements are included in spec1, the ifc versions of spec1 are removed spec2.
-    By this, the two specifications with overlapping ifc-versions are seperated to have one specification for each unique ifc version combination
-
-    :param spec1: Specification with more specific ifc version definition
-    :type spec1: dict
-    :param spec2: Specification with more general ifc version definition
-    :type spec2: dict
-    :param spec1_Ifc_versions: List of all ifc versions spec1 applies to
-    :type spec1_Ifc_versions: list
-    :param spec2_Ifc_versions: List of all ifc versions spec2 applies to
-    :type spec2_Ifc_versions: list
-    :param separate_by: List of general data for which specifications must be seperated
-    :type separate_by: list 
-    '''
-    #check specification data
-    diff_specification_data = DeepDiff(spec1['spec'], spec2['spec'], include_paths=[STRING_SPECIFICATIONCARDINALITY])
-    if not diff_specification_data:
-        #check the general data specified by seperate_by, if it is not empty.
-        if separate_by:
-            diff_generaldata = DeepDiff(spec1['general'], spec2['general'], include_paths=separate_by)
-        else: diff_generaldata = False
-        if not diff_generaldata:
-            #check the applicability
-            diff = spec1['app'] != spec2['app']
-            if not diff:
-                diff = DeepDiff(spec1['app'], spec2['app'])
-            if not diff:
-                spec1['general'] = merger.merge(spec1['general'], spec2['general'])
-                for req_dict2 in spec2['req']:
-                    found = False
-                    for req_dict1 in spec1['req']:
-                        found = not compare_and_merge_requirement_dicts(req_dict1, req_dict2, [STRING_ENTITY,STRING_PREDEFINEDTYPE,STRING_ATTRIBUTEVALUE,STRING_PROPERTYVALUE], False, True)
-                        if found == True: break
-                        
-                    if not found:
-                        # Shallow copy to avoid mutating original item2 later
-                        spec1['req'].append({k: v[:] if isinstance(v, list) else v for k, v in req_dict2.items()})
-                #Since all requirements of spec2 are included in spec1, spec2 does not need to apply to the ifc versions of spec1 anymore
-                spec2['spec'][STRING_SPECIFICATIONIFCVERSION] = list(set(spec2_Ifc_versions) - set(spec1_Ifc_versions))
 
 def add_values_to_general_specs(specs_list, separate_by):
     '''Checks for all specification if a specification with a more general applicability exists.
@@ -680,7 +589,7 @@ def add_values_to_general_specs(specs_list, separate_by):
             diff_specification_data = False
             specdataI = specI['spec']
             specdataJ = specJ['spec']
-            diff_specification_data = DeepDiff(specdataI, specdataJ, ignore_order=True, include_paths=[STRING_SPECIFICATIONCARDINALITY,STRING_SPECIFICATIONIFCVERSION])
+            diff_specification_data = DeepDiff(specdataI, specdataJ, ignore_order=True, include_paths=[STRING_SPECIFICATIONCARDINALITY])
 
             #check if general data of both specs is equal
             if not diff_specification_data:
@@ -717,7 +626,7 @@ def add_values_to_general_specs(specs_list, separate_by):
                         reqJ = specJ['req']
                         for k in range(len(reqI)):
                             for l in range(len(reqJ)):
-                                diff_req = compare_and_merge_requirement_dicts(reqI[k], reqJ[l], [STRING_ATTRIBUTEVALUE,STRING_PROPERTYVALUE], True)
+                                diff_req = compare_and_merge_requirement_dicts(reqI[k], reqJ[l], True)
                     
                     #if general data is equal and app more general in appJ, compare/merge the requirements of appI in appJ
                     if not added_dict_items_appJ and not added_iterable_items_appJ and not values_changed_appJ:
@@ -726,9 +635,9 @@ def add_values_to_general_specs(specs_list, separate_by):
                         reqJ = specJ['req']
                         for k in range(len(reqI)):
                             for l in range(len(reqJ)):
-                                diff_req = compare_and_merge_requirement_dicts(reqJ[l], reqI[k], [STRING_ATTRIBUTEVALUE,STRING_PROPERTYVALUE], True)                    
+                                diff_req = compare_and_merge_requirement_dicts(reqJ[l], reqI[k], True)                    
 
-def compare_and_merge_requirement_dicts(req_dict1, req_dict2, not_compared_keys, merge_only_values, reverse=False):
+def compare_and_merge_requirement_dicts(req_dict1, req_dict2, merge_only_values):
     '''Checks whether the req_dict1 is a subset of req_dict2.
     This means, the old requirement must be a subset of the new requirement. The keys of req_dict1 must exist in req_dict2 and the values must be equal.
     An exception are lists for property values or attribute values. These are not compared. Here the values can be different because they are merged together, unless one contains a complex restriction. Complex restrictions cannot be merged and thus always indicate a difference.
@@ -740,8 +649,6 @@ def compare_and_merge_requirement_dicts(req_dict1, req_dict2, not_compared_keys,
     :type req_dict2: dict
     :param merge_only_values: Boolean defining that dicts should only be merged if all keys except Description exist in both dicts
     :type merge_only_values: boolean
-    :param reverse: Boolean defining if the subset logic should be reversed. If true, req_dict2 must be a subset of req_dict1, but still req_dict2 is merged into req_dict1
-    :type reverse: boolean
     :return: boolean specifying whether the dicts were different or not
     :rtype: boolean
     '''
@@ -751,32 +658,22 @@ def compare_and_merge_requirement_dicts(req_dict1, req_dict2, not_compared_keys,
 
     #If property or attribute values are included and are a complex restriction, the requirements must not be merged
     #Complex restrictions cannot be in an enumeration
-    for key in not_compared_keys:
-        diff = True if key in req_dict1 and req_dict1[key] and is_complex_restriction(req_dict1[key][0]) else diff
-        diff = True if key in req_dict2 and req_dict2[key] and is_complex_restriction(req_dict2[key][0]) else diff
+    diff = True if is_complex_restriction(req_dict1,STRING_PROPERTYVALUE) else diff
+    diff = True if is_complex_restriction(req_dict1,STRING_ATTRIBUTEVALUE) else diff
+    diff = True if is_complex_restriction(req_dict2,STRING_PROPERTYVALUE) else diff
+    diff = True if is_complex_restriction(req_dict2,STRING_ATTRIBUTEVALUE) else diff
 
-    #Define which dict must be a subset of the other according to the reverse parameter
-    if not reverse:        
-        looped_dict = req_dict1
-        reference_dict = req_dict2
-    else:
-        looped_dict = req_dict2
-        reference_dict = req_dict1
-
-    for key in looped_dict:
+    for key in req_dict1:
         if key == STRING_DESCRIPTION: continue
-        #if only values should be merged, all keys except STRING_DESCRIPTION must also occur in both dicts
-        if merge_only_values:
-                keys1 = set(looped_dict.keys()) - set([STRING_DESCRIPTION])
-                keys2 = set(reference_dict.keys()) - set([STRING_DESCRIPTION])
-                if keys1 != keys2: 
-                    diff = True
-                    break
+        #if only values should be merged, all keys except STRING_DESCRIPTION must also occur in dict2
+        if merge_only_values and key != STRING_DESCRIPTION and key not in req_dict2:
+            diff = True
+            break
         #all keys in req_dict1 must be equal in req_dict2
-        if key in reference_dict:
+        if key in req_dict2:
             same_facet = True
             #lists for property values and attribute values are not compared
-            if key in not_compared_keys:
+            if key == STRING_PROPERTYVALUE or key == STRING_ATTRIBUTEVALUE:
                 continue
             elif req_dict1[key] != req_dict2[key]: diff = True
         else: diff = True
@@ -785,19 +682,26 @@ def compare_and_merge_requirement_dicts(req_dict1, req_dict2, not_compared_keys,
         return False
     return True
 
-def is_complex_restriction(value):
-    '''Checks whether the value is a complex restriction (starts with the key character of a complex restriction)
-
-    :param value: value to be checked
-    :type value: string
+def is_complex_restriction(dict, key):
+    '''Checks whether the value of the given key of the dictionary is a complex restriction (starts with the key character of a complex restriction),
+    if the key exists
+    
+    :param dict: Dictionary
+    :type dict: dict
+    :param key: key of the value that should be checked
+    :type key: string
     :return: boolean specifying the or_values list contains a complex restriction
     :rtype: boolean
     '''
-    if value[:8] == 'pattern=' or value[:2] == '\\<' or value[:2] == '\\>' or value[:7] == 'length=' or value[:8] == 'length<=' or value[:8] == 'length>=':
-        return True
+    if key in dict:
+        or_values = dict[key]
+        if len(or_values) == 1:
+            value = or_values[0]
+            if value[:8] == 'pattern=' or value[:2] == '\\<' or value[:2] == '\\>' or value[:7] == 'length=' or value[:8] == 'length<=' or value[:8] == 'length>=':
+                return True
     return False
 
-def create_ids_specifications(ids_file, spec_list):
+def create_ids_specifications(ids_file, spec_list, ifc_version):
     '''Creates a new IDS specification for each entry in the spec_list and appends it to the ids_file.
     
     :param ids_file: the used ids_file
@@ -835,8 +739,6 @@ def create_ids_specifications(ids_file, spec_list):
                 spec_minOccurs = 1
             if spec_data['spec'][STRING_SPECIFICATIONCARDINALITY][0].lower() == 'prohibited':
                 spec_maxOccurs = 0
-        #Define specification IFC version
-        ifc_version = spec_data['spec'][STRING_SPECIFICATIONIFCVERSION]
         #Create specification
         ids_spec = ids.Specification(name=spec_title, ifcVersion=ifc_version, minOccurs=spec_minOccurs, maxOccurs=spec_maxOccurs, instructions=string_instructions if string_instructions != '' else None)
         #Append applicability and requirements

@@ -5,9 +5,9 @@
         <title>Example IDS of IDS4ALL</title>
         <copyright>TU Wien Digital Building Process</copyright>
         <author>simon.fischer@tuwien.ac.at</author>
-        <date>2025-07-31</date>
-        <purpose>Role: Architektur, Role 1, Role 2; Usecase: Usecase 1, openBIM Building Permit Process</purpose>
-        <milestone>Phase 2, Phase 1</milestone>
+        <date>2025-05-29</date>
+        <purpose>Role: Role 2, Architektur, Role 1; Usecase: Usecase 1, openBIM Building Permit Process</purpose>
+        <milestone>Phase 1, Phase 2</milestone>
     </info>
     <specifications>
         <specification name="Specification 1: IFCWALL" ifcVersion="IFC4 IFC4X3_ADD2" instructions="Phase: Phase 1, Phase 2; Role: Role 1; Usecase: Usecase 1, openBIM Building Permit Process">
@@ -31,6 +31,32 @@
                     <baseName>
                         <simpleValue>FireRating</simpleValue>
                     </baseName>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="ND" />
+                            <xs:enumeration value="NE" />
+                            <xs:enumeration value="R 30" />
+                            <xs:enumeration value="R 60" />
+                            <xs:enumeration value="R 90" />
+                            <xs:enumeration value="R 120" />
+                            <xs:enumeration value="R 180" />
+                            <xs:enumeration value="REI 30" />
+                            <xs:enumeration value="REI 60" />
+                            <xs:enumeration value="REI 90" />
+                            <xs:enumeration value="REI 120" />
+                            <xs:enumeration value="REI 180" />
+                            <xs:enumeration value="EI 30" />
+                            <xs:enumeration value="EI 60" />
+                            <xs:enumeration value="EI 90" />
+                            <xs:enumeration value="EI 120" />
+                            <xs:enumeration value="EI 180" />
+                            <xs:enumeration value="E 30" />
+                            <xs:enumeration value="E 60" />
+                            <xs:enumeration value="E 90" />
+                            <xs:enumeration value="E 120" />
+                            <xs:enumeration value="E 180" />
+                        </xs:restriction>
+                    </value>
                 </property>
                 <property dataType="IFCLABEL" cardinality="optional">
                     <propertySet>
@@ -137,7 +163,7 @@
                 </material>
             </requirements>
         </specification>
-        <specification name="Specification 3: IFCWALL" ifcVersion="IFC2X3" instructions="Phase: Phase 1, Phase 2; Role: Role 1, Role 2; Usecase: Usecase 1">
+        <specification name="Specification 3: IFCWALL" ifcVersion="IFC4 IFC4X3_ADD2" instructions="Phase: Phase 1, Phase 2; Role: Role 1, Role 2; Usecase: Usecase 1">
             <applicability minOccurs="1" maxOccurs="unbounded">
                 <entity>
                     <name>
@@ -302,22 +328,22 @@
                 </property>
             </requirements>
         </specification>
-        <specification name="Specification 8: IFCWALL.Attika" ifcVersion="IFC4 IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
+        <specification name="Specification 8: IFCWALL.USERDEFINED" ifcVersion="IFC4 IFC4X3_ADD2" instructions="Phase: Phase 1; Role: Role 1; Usecase: Usecase 1">
             <applicability minOccurs="0" maxOccurs="unbounded">
                 <entity>
                     <name>
                         <simpleValue>IFCWALL</simpleValue>
                     </name>
                     <predefinedType>
-                        <simpleValue>Attika</simpleValue>
+                        <simpleValue>USERDEFINED</simpleValue>
                     </predefinedType>
                 </entity>
                 <attribute>
                     <name>
-                        <simpleValue>Name</simpleValue>
+                        <simpleValue>ObjectType</simpleValue>
                     </name>
                     <value>
-                        <simpleValue>Attika1</simpleValue>
+                        <simpleValue>ATTIKA</simpleValue>
                     </value>
                 </attribute>
             </applicability>
@@ -435,7 +461,7 @@
             </applicability>
             <requirements />
         </specification>
-        <specification name="Specification 13: IFCRELSPACEBOUNDARY IFCRELSPACEBOUNDARY2NDLEVEL" ifcVersion="IFC4 IFC4X3_ADD2">
+        <specification name="Specification 13: IFCRELSPACEBOUNDARY" ifcVersion="IFC4 IFC4X3_ADD2">
             <applicability minOccurs="1" maxOccurs="unbounded">
                 <entity>
                     <name>

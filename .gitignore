@@ -176,4 +176,3 @@ cython_debug/
 output
 excel-test-files
 IDS4ALL-test.py
-testing/
