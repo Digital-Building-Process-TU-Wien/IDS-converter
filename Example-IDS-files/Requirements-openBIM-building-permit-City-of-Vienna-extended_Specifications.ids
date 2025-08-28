@@ -5,7 +5,7 @@
         <title>IDS for openBIM building permit of the City of Vienna – extended</title>
         <copyright>TU Wien Digital Building Process</copyright>
         <author>simon.fischer@tuwien.ac.at</author>
-        <date>2025-08-04</date>
+        <date>2025-08-21</date>
     </info>
     <specifications>
         <specification name="Specification 1: IFCBEAM" ifcVersion="IFC4 IFC4X3_ADD2">
@@ -38,7 +38,7 @@
                         <simpleValue>LoadBearing</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_BeamCommon</simpleValue>
                     </propertySet>
@@ -123,7 +123,7 @@
                         <simpleValue>IFCCHIMNEY</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_ChimneyCommon</simpleValue>
                     </propertySet>
@@ -182,7 +182,7 @@
                         <simpleValue>LoadBearing</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_ColumnCommon</simpleValue>
                     </propertySet>
@@ -299,7 +299,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_CoveringCommon</simpleValue>
                     </propertySet>
@@ -416,7 +416,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_CurtainWallCommon</simpleValue>
                     </propertySet>
@@ -608,7 +608,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_DoorCommon</simpleValue>
                     </propertySet>
@@ -800,7 +800,7 @@
                         <simpleValue>LoadBearing</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_MemberCommon</simpleValue>
                     </propertySet>
@@ -851,7 +851,7 @@
                         <simpleValue>LoadBearing</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_PlateCommon</simpleValue>
                     </propertySet>
@@ -931,7 +931,7 @@
                         <simpleValue>IsExternal</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_RailingCommon</simpleValue>
                     </propertySet>
@@ -998,7 +998,7 @@
                         <simpleValue>RequiredSlope</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_RampCommon</simpleValue>
                     </propertySet>
@@ -1122,7 +1122,7 @@
                         <simpleValue>LoadBearing</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_RoofCommon</simpleValue>
                     </propertySet>
@@ -1231,7 +1231,7 @@
                         <simpleValue>LoadBearing</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_SlabCommon</simpleValue>
                     </propertySet>
@@ -1364,7 +1364,7 @@
                         <simpleValue>NumberOfTreads</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_StairCommon</simpleValue>
                     </propertySet>
@@ -1521,7 +1521,7 @@
                         <simpleValue>LoadBearing</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_WallCommon</simpleValue>
                     </propertySet>
@@ -1674,7 +1674,7 @@
                         <simpleValue>SmokeStop</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_WindowCommon</simpleValue>
                     </propertySet>
@@ -1807,7 +1807,7 @@
                         <simpleValue>LoadBearing</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_PileCommon</simpleValue>
                     </propertySet>
@@ -1858,7 +1858,7 @@
                         <simpleValue>LoadBearing</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_FootingCommon</simpleValue>
                     </propertySet>
@@ -1924,7 +1924,7 @@
                         <simpleValue>IFCSOLARDEVICE</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_SolarDeviceTypeCommon</simpleValue>
                     </propertySet>
@@ -1959,7 +1959,7 @@
                         <simpleValue>IFCPIPESEGMENT</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_PipeSegmentTypeCommon</simpleValue>
                     </propertySet>
@@ -1994,7 +1994,7 @@
                         <simpleValue>IFCTANK</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_TankTypeCommon</simpleValue>
                     </propertySet>
@@ -2046,7 +2046,7 @@
                         <simpleValue>IFCFIRESUPPRESSIONTERMINAL</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_FireSuppressionTerminalTypeCommon</simpleValue>
                     </propertySet>
@@ -2089,7 +2089,7 @@
                         <simpleValue>IFCSANITARYTERMINAL</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_SanitaryTerminalTypeCommon</simpleValue>
                     </propertySet>
@@ -2124,7 +2124,7 @@
                         <simpleValue>IFCFURNITURE</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_FurnitureTypeCommon</simpleValue>
                     </propertySet>
@@ -2335,7 +2335,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>WienBV_SpaceSpecific</simpleValue>
                     </propertySet>
@@ -2816,7 +2816,7 @@
                         <simpleValue>GrundstueckFlaeche</simpleValue>
                     </baseName>
                 </property>
-                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>WienBV_GrundstueckSpecific</simpleValue>
                     </propertySet>
@@ -2857,7 +2857,7 @@
                         <simpleValue>Wasser</simpleValue>
                     </predefinedType>
                 </entity>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_BuildingElementProxyCommon</simpleValue>
                     </propertySet>
@@ -2900,7 +2900,7 @@
                         <simpleValue>IFCENGINE</simpleValue>
                     </name>
                 </entity>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_EngineTypeCommon</simpleValue>
                     </propertySet>
@@ -4269,7 +4269,7 @@
                         <simpleValue>Baum</simpleValue>
                     </predefinedType>
                 </entity>
-                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" uri="https://identifier.buildingsmart.org/uri/buildingsmart/ifc/4.3/prop/Status" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>Pset_BuildingElementProxyCommon</simpleValue>
                     </propertySet>
@@ -6475,7 +6475,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>WienBV_SpaceSpecific</simpleValue>
                     </propertySet>
@@ -6850,7 +6850,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>WienBV_SpaceSpecific</simpleValue>
                     </propertySet>
@@ -7225,7 +7225,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>WienBV_SpaceSpecific</simpleValue>
                     </propertySet>
@@ -7600,7 +7600,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>WienBV_SpaceSpecific</simpleValue>
                     </propertySet>
@@ -7975,7 +7975,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>WienBV_SpaceSpecific</simpleValue>
                     </propertySet>
@@ -8350,7 +8350,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>WienBV_SpaceSpecific</simpleValue>
                     </propertySet>
@@ -9729,7 +9729,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>WienBV_SpaceSpecific</simpleValue>
                     </propertySet>
@@ -10104,7 +10104,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>WienBV_SpaceSpecific</simpleValue>
                     </propertySet>
@@ -10479,7 +10479,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>WienBV_SpaceSpecific</simpleValue>
                     </propertySet>
@@ -10854,7 +10854,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>WienBV_SpaceSpecific</simpleValue>
                     </propertySet>
@@ -11229,7 +11229,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>WienBV_SpaceSpecific</simpleValue>
                     </propertySet>
@@ -11604,7 +11604,7 @@
                         </xs:restriction>
                     </value>
                 </property>
-                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
+                <property dataType="IFCLABEL" instructions="Status bzw. Phase des Bauteils insbesondere beim Bauen im Bestand. Neben den Standard-Werten des IFC-Schemas können auch weiterhin die Werte aus der PDF-Datei verwendet werden: &quot;Neu&quot; (new) neues Bauteil als Ergänzung, &quot;Bestand&quot; (existing) bestehendes Bauteil, dass erhalten bleibt, &quot;Abbruch&quot; (demolish) Bauteil, das abgebrochen wird, &quot;Temporär&quot; (temporary) Bauteil und andere Bauelemente, die vorübergehend eingebaut werden (wie Abstützungen, etc.)" cardinality="required">
                     <propertySet>
                         <simpleValue>WienBV_SpaceSpecific</simpleValue>
                     </propertySet>
