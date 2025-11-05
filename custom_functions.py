@@ -369,22 +369,22 @@ def pandas_row_to_dict(current_row):
         if isinstance(column_data,list):
             column_data = '|'.join(column_data)
         #Only use strings and numbers not null        
-        if isinstance(column_data,str): #or not np.isnan(column_data):
-            if column_data != KEYWORD_NONE and column_data != KEYWORD_MISSING:
-                column_data = str(column_data).strip()
-                #Use delimiters to distinguish between different values (for general data, the delimiters have the same meaning)
-                or_values = column_data.replace('\\&','|').split('|')
-                #Omit KEYWORD_MISSING values
-                or_values_cleaned = []
-                values_list = []
-                for or_value in or_values:
-                    if or_value != KEYWORD_MISSING and or_value not in or_values_cleaned:
-                        or_values_cleaned.append(or_value)
-                if or_values_cleaned:
-                    values_list.extend(or_values_cleaned)
-                #If or values except KEYWORD_MISSING exist, add them to the dictionary
-                if values_list:
-                    new_dict[column_name] = values_list
+        #if isinstance(column_data,str): #or not np.isnan(column_data):
+        if column_data != KEYWORD_NONE and column_data != KEYWORD_MISSING:
+            column_data = str(column_data).strip()
+            #Use delimiters to distinguish between different values (for general data, the delimiters have the same meaning)
+            or_values = column_data.replace('\\&','|').split('|')
+            #Omit KEYWORD_MISSING values
+            or_values_cleaned = []
+            values_list = []
+            for or_value in or_values:
+                if or_value != KEYWORD_MISSING and or_value not in or_values_cleaned:
+                    or_values_cleaned.append(or_value)
+            if or_values_cleaned:
+                values_list.extend(or_values_cleaned)
+            #If or values except KEYWORD_MISSING exist, add them to the dictionary
+            if values_list:
+                new_dict[column_name] = values_list
     return new_dict
 
 def pandas_row_to_dict_list(current_row):
