@@ -112,7 +112,7 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
     ##Import the relevant columns and merge rows with the same applicability into one row
     if relevant_columns:
         #Import all relevant columns
-        df = pd.read_excel(EXCEL_PATH, sheet_name=sheet_name, skiprows=skipped_rows, usecols=relevant_columns)
+        df = pd.read_excel(EXCEL_PATH, sheet_name=sheet_name, skiprows=skipped_rows, usecols=relevant_columns, dtype=str)
 
         #Fill empty requirement cardinality with default value
         if prefix+STRING_REQUIREMENTCARDINALITY in df.columns:
@@ -371,7 +371,7 @@ def pandas_row_to_dict(current_row):
         #Only use strings and numbers not null        
         #if isinstance(column_data,str): #or not np.isnan(column_data):
         if column_data != KEYWORD_NONE and column_data != KEYWORD_MISSING:
-            column_data = str(column_data).strip()
+            column_data = column_data.strip()
             #Use delimiters to distinguish between different values (for general data, the delimiters have the same meaning)
             or_values = column_data.replace('\\&','|').split('|')
             #Omit KEYWORD_MISSING values
@@ -442,43 +442,39 @@ def split_OR_AND_values(input_dict, is_entity_based_app):
             value = input_dict[key]
             key = key.split('.')[1]
             values_list = []
-            if isinstance(value,str):
-                if value != KEYWORD_NONE and value != KEYWORD_MISSING:
-                    value = str(value).strip()
-                    #Change relevant values to uppercase
-                    if key in [STRING_PROPERTYDATATYPE,STRING_PARTOFRELATION]:
-                        value = value.upper()
-                    
-                    #Use delimiters to distinguish between different 'AND' values
-                    and_values = value.split('\\&')
-                    #Check whether all entries of this facet have the same number of 'AND' values
-                    if number_of_and_values == 0:
-                        number_of_and_values = len(and_values)
-                    if len(and_values) != number_of_and_values:
-                        #Special case requirement cardinality. Since the requirement cardinality is included automatically if not in the excel file,
-                        #if the existing columns use 'and' values the cardinality has no and values. Then the one value is applied to all and values.
-                        if key == STRING_REQUIREMENTCARDINALITY and len(and_values) == 1:
-                            and_values = and_values*number_of_and_values
-                        else:
-                            raise Exception('Number of AND values (seperated by \\&) is invalid for ' + key + ' ' + value + '. All columns of one IDS facet require the same number of AND values. Required number of AND values: ' + str(number_of_and_values))
-                    values_list = []
-                    for and_value in and_values:
-                        #Use delimiters to distinguish between different 'OR' values
-                        or_values = None if and_value == '' else and_value.split('|')
-                        if or_values == None: continue
-                        #Check if complex restrictions were merged due to entity-based applicability. If so, delete them
-                        if is_entity_based_app and len(or_values) > 1:
-                            or_values = list(filter(lambda or_value: not is_complex_restriction(or_value), or_values))
-                        #Omit KEYWORD_MISSING values
-                        or_values_cleaned = []
-                        for or_value in or_values:
-                            if or_value != KEYWORD_MISSING:
-                                or_values_cleaned.append(or_value)
-                        if or_values_cleaned:
-                            values_list.append(or_values_cleaned)
-
-            elif isinstance(value,bool) or isinstance(value,int) or isinstance(value,float) or isinstance(value,complex):
-                values_list.append([value])
+            if value != KEYWORD_NONE and value != KEYWORD_MISSING:
+                value = str(value).strip()
+                #Change relevant values to uppercase
+                if key in [STRING_PROPERTYDATATYPE,STRING_PARTOFRELATION]:
+                    value = value.upper()
+                
+                #Use delimiters to distinguish between different 'AND' values
+                and_values = value.split('\\&')
+                #Check whether all entries of this facet have the same number of 'AND' values
+                if number_of_and_values == 0:
+                    number_of_and_values = len(and_values)
+                if len(and_values) != number_of_and_values:
+                    #Special case requirement cardinality. Since the requirement cardinality is included automatically if not in the excel file,
+                    #if the existing columns use 'and' values the cardinality has no and values. Then the one value is applied to all and values.
+                    if key == STRING_REQUIREMENTCARDINALITY and len(and_values) == 1:
+                        and_values = and_values*number_of_and_values
+                    else:
+                        raise Exception('Number of AND values (seperated by \\&) is invalid for ' + key + ' ' + value + '. All columns of one IDS facet require the same number of AND values. Required number of AND values: ' + str(number_of_and_values))
+                values_list = []
+                for and_value in and_values:
+                    #Use delimiters to distinguish between different 'OR' values
+                    or_values = None if and_value == '' else and_value.split('|')
+                    if or_values == None: continue
+                    #Check if complex restrictions were merged due to entity-based applicability. If so, delete them
+                    if is_entity_based_app and len(or_values) > 1:
+                        or_values = list(filter(lambda or_value: not is_complex_restriction(or_value), or_values))
+                    #Omit KEYWORD_MISSING values
+                    or_values_cleaned = []
+                    for or_value in or_values:
+                        if or_value != KEYWORD_MISSING:
+                            or_values_cleaned.append(or_value)
+                    if or_values_cleaned:
+                        values_list.append(or_values_cleaned)
 
             #If values except KEYWORD_MISSING exist, add them to the dictionary            
             if values_list:
