@@ -89,7 +89,7 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
     
     cols_general = [col for col in ['Phase','Role','Usecase'] if col in all_columns]
 
-    cols_specification = [col for col in [STRING_SPECIFICATIONCARDINALITY,STRING_SPECIFICATIONIFCVERSION] if col in all_columns]
+    cols_specification = [col for col in [STRING_SPECIFICATIONCARDINALITY,STRING_SPECIFICATIONIFCVERSION,STRING_SPECIFICATIONNAME] if col in all_columns]
 
     #Store all relevant column names of the used file
     relevant_columns = []
@@ -233,8 +233,10 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
         if STRING_SPECIFICATIONCARDINALITY in specification_data_dict and specification_data_dict[STRING_SPECIFICATIONCARDINALITY][0].lower() == 'required':
             app_lists = [app_list]
         else:
-            app_lists = generate_combinations(app_list)
+            app_lists = generate_combinations(app_list) #split apps
         for app_list in app_lists:
+            #Check if the applicability was splitted in multiple applicabilities due to or_values
+            app_splitted = True if len(app_lists) > 1 else False
             for app_dict in app_list:
                 #Separate Entity.PredefinedType into two entries
                 separate_dict_value(app_dict, STRING_ENTITY, STRING_PREDEFINEDTYPE,'.')
@@ -242,7 +244,7 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
 
             #Check if a specification with this general data and applicability already exists
             req_list = []
-            diff, diff_generaldata, diff_specification_data, req_list = compare_previous_generaldata_and_applicability(specs_list, generaldata_dict, specification_data_dict, app_list, separate_by)
+            diff, diff_generaldata, diff_specification_data, req_list = compare_previous_generaldata_and_applicability(specs_list, generaldata_dict, specification_data_dict, app_list, app_splitted, separate_by)
                     
             #Requirements data
             for requirement_facet_df in requirements_data:
@@ -295,6 +297,7 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
                     spec_dict['req'] = req_list
                     spec_dict['general'] = copy.deepcopy(generaldata_dict)
                     spec_dict['spec'] = copy.deepcopy(specification_data_dict)
+                    spec_dict['app_splitted'] = app_splitted
                     specs_list.append(spec_dict)
 
     #organise the specifications according to the ifc versions
@@ -566,7 +569,7 @@ def generate_combinations(data):
     combined_variants = [list(variant) for variant in itertools.product(*options)]
     return combined_variants
 
-def compare_previous_generaldata_and_applicability(specs_list, generaldata_dict, specification_data_dict, app_list, separate_by):
+def compare_previous_generaldata_and_applicability(specs_list, generaldata_dict, specification_data_dict, app_list, app_splitted, separate_by):
     '''Checks if a specification with the same applicability and general data already exists.
     For the general data check only the general data speficied by separate_by is relevant.
     Other general data can be merged anyways.
@@ -580,6 +583,8 @@ def compare_previous_generaldata_and_applicability(specs_list, generaldata_dict,
     :type specification_data_dict: dict
     :param app_list: List containing dictionaries for each facet in the applicability
     :type app_list: list
+    :param app_spliited: Boolean value that defines whether this app_list was extracted from an applicability with or_values
+    :type app_list: bool
     :param separate_by: List of general data for which specifications must be seperated
     :type separate_by: list    
     :return: Boolean 'diff' specifying whether the applicability is different
@@ -596,7 +601,12 @@ def compare_previous_generaldata_and_applicability(specs_list, generaldata_dict,
     for j in range(len(specs_list)-1,-1,-1):
         prev_spec = specs_list[j]
         #check specification data
-        diff_specification_data = DeepDiff(specification_data_dict, prev_spec['spec'], include_paths=[STRING_SPECIFICATIONCARDINALITY,STRING_SPECIFICATIONIFCVERSION])
+        spec_included_paths = [STRING_SPECIFICATIONCARDINALITY,STRING_SPECIFICATIONIFCVERSION]
+        #if the current spec and the previous spec do not have splitted apps, consider also the spec name in the comparison
+        #if specs with splitted apps are included, the name must not be considered, otherwise the general values are not merged if the general spec has another name
+        if not prev_spec['app_splitted'] and not app_splitted:
+            spec_included_paths.append(STRING_SPECIFICATIONNAME)
+        diff_specification_data = DeepDiff(specification_data_dict, prev_spec['spec'], include_paths=spec_included_paths)
         if not diff_specification_data:
             #check the general data specified by seperate_by, if it is not empty.
             if separate_by:
@@ -611,6 +621,10 @@ def compare_previous_generaldata_and_applicability(specs_list, generaldata_dict,
                     #merge the requirements
                     req_list = prev_spec['req']
                     prev_spec['general'] = merger.merge(prev_spec['general'], generaldata_dict)
+                    #if both specs have a name, use the name of the spec that was not splitted (if new spec was not splitted, update the name of prev_spec)
+                    #specifications with splitted applicabilities are more general, therefore we use the name of the specification without splitted applicability
+                    if STRING_SPECIFICATIONNAME in prev_spec['spec'] and STRING_SPECIFICATIONNAME in specification_data_dict and not app_splitted:
+                        prev_spec['spec'][STRING_SPECIFICATIONNAME][0] = specification_data_dict[STRING_SPECIFICATIONNAME][0]
                     break
     return diff, diff_generaldata, diff_specification_data, req_list
 
@@ -633,7 +647,12 @@ def structure_specifications_by_Ifc_versions(spec1, spec2, spec1_Ifc_versions, s
     :type separate_by: list 
     '''
     #check specification data
-    diff_specification_data = DeepDiff(spec1['spec'], spec2['spec'], include_paths=[STRING_SPECIFICATIONCARDINALITY])
+    spec_included_paths = [STRING_SPECIFICATIONCARDINALITY]
+    #if the spec1 and spec2 do not have splitted apps, consider also the spec name in the comparison
+    #if specs with splitted apps are included, the name must not be considered, otherwise the general values are not merged if the general spec has another name
+    if not spec1['app_splitted'] and not spec2['app_splitted']:
+        spec_included_paths.append(STRING_SPECIFICATIONNAME)
+    diff_specification_data = DeepDiff(spec1['spec'], spec2['spec'], include_paths=spec_included_paths)
     if not diff_specification_data:
         #check the general data specified by seperate_by, if it is not empty.
         if separate_by:
@@ -650,7 +669,12 @@ def structure_specifications_by_Ifc_versions(spec1, spec2, spec1_Ifc_versions, s
                     found = False
                     for req_dict1 in spec1['req']:
                         found = not compare_and_merge_requirement_dicts(req_dict1, req_dict2, [STRING_ENTITY,STRING_PREDEFINEDTYPE,STRING_ATTRIBUTEVALUE,STRING_PROPERTYVALUE], False, True)
-                        if found == True: break
+                        if found == True: 
+                            #if both specs have a name, use the name of the spec that was not splitted (if spec2 was not splitted, update the name of spec1)
+                            #specifications with splitted applicabilities are more general, therefore we use the name of the specification without splitted applicability
+                            if STRING_SPECIFICATIONNAME in spec1['spec'] and STRING_SPECIFICATIONNAME in spec2['spec'] and not spec2['app_splitted']:
+                                spec1['spec'][STRING_SPECIFICATIONNAME][0] = spec2['spec'][STRING_SPECIFICATIONNAME][0]
+                            break
                         
                     if not found:
                         # Shallow copy to avoid mutating original item2 later
