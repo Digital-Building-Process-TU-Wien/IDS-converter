@@ -74,7 +74,7 @@ def process_excel_data(excel_path, excel_name, excel_format, sheet_name, separat
     excel_data = excel_to_spec_list(full_excel_path, sheet_name, separate_by, skipped_rows, ifc_version, is_entity_based_app)
     
     # Separate specifications by general data
-    separated_excel_data = separate_specs_by_generaldata(excel_data, separate_by)
+    separated_excel_data = separate_specs_by_generaldata(excel_data)
     
     return separated_excel_data
 

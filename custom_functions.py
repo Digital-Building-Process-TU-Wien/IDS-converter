@@ -5,6 +5,7 @@ from deepmerge import Merger
 import copy
 from ifctester import ids
 import itertools
+from itertools import product
 
 STRING_ENTITY = 'Entity'
 STRING_PREDEFINEDTYPE = 'PredefinedType'
@@ -244,7 +245,7 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
 
             #Check if a specification with this general data and applicability already exists
             req_list = []
-            diff, diff_generaldata, diff_specification_data, req_list = compare_previous_generaldata_and_applicability(specs_list, generaldata_dict, specification_data_dict, app_list, app_splitted, separate_by)
+            diff, diff_generaldata, diff_specification_data, req_list, prev_spec = compare_previous_generaldata_and_applicability(specs_list, generaldata_dict, specification_data_dict, app_list, app_splitted, separate_by)
                     
             #Requirements data
             for requirement_facet_df in requirements_data:
@@ -299,6 +300,54 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
                     spec_dict['spec'] = copy.deepcopy(specification_data_dict)
                     spec_dict['app_splitted'] = app_splitted
                     specs_list.append(spec_dict)
+
+    #split and combine specifications according to the different separation categories
+    #pecifications that belong to several seperation categories are split into indivudual specifications
+    #if the individual specifications have the same separation category, they are merged again.
+    #by this specifications with the same applicability are merged in the different separation categories
+    #only necessary if spearation categories (speparate_by) are used
+    if separate_by:
+        specs_list_sep = []
+        for spec in specs_list:
+            #generate all combinations of the separation categories for this spec
+            separation_combinations = [dict(zip(separate_by, values)) for values in product(*(spec['general'][k] if k in spec['general'] else [''] for k in separate_by))]
+            sep_comb_cleaned = [{k: v for k, v in d.items() if k not in ['MissingKey']} for d in separation_combinations]
+
+            #for each combination, check if previous specifications with the same combination have the same applicability, and spec data
+            #if so, merge them
+            #if not, add the specification to the new list and set its seperation string
+            for sep_comb in sep_comb_cleaned:
+                sep_string = "_".join(v for v in sep_comb.values() if v)
+                comparison_specs_list = [spec1 for spec1 in specs_list_sep if spec1['sep_string'] == sep_string]
+                diff, diff_generaldata, diff_specification_data, req_list, prev_spec = compare_previous_generaldata_and_applicability(comparison_specs_list, spec['general'], spec['spec'], spec['app'], spec['app_splitted'], []) 
+                if not diff:
+                    #If the same requirement (except for the values) already exists, merge the values.
+                    #Otherwise, add new requirement
+                    diff_req = True
+                    for req_current_spec in spec['req']:
+                        for req_prev_spec in req_list:
+                            diff_req = compare_and_merge_requirement_dicts(req_prev_spec, req_current_spec, [STRING_ATTRIBUTEVALUE,STRING_PROPERTYVALUE], False)
+                            if not diff_req: break
+                        if diff_req: req_list.append(req_current_spec)
+                    new_spec = prev_spec
+                else:
+                    new_spec = copy.deepcopy(spec)
+                    new_spec['sep_string'] = sep_string
+                    specs_list_sep.append(new_spec)
+                for general_key in ['Phase','Role','Usecase']:
+                    if general_key in new_spec['general']:
+                        if general_key in separate_by:
+                            if sep_comb[general_key] != '':
+                                if new_spec != None:
+                                    #the general information of the spec must be updated.
+                                    #if the old spec had several separation combinations,
+                                    #for each a new sepc was created and each should only have one of seperation combination
+                                    new_spec['general'][general_key] = [sep_comb[general_key]]
+        specs_list = specs_list_sep
+    else:
+        #if no seperation is used, add the sep_string to all specs as it is needed later for the IDS metadata
+        for spec in specs_list:
+            spec['sep_string'] = ''
 
     #organise the specifications according to the ifc versions
     #if one specification refers to a subset of ifc versions of another specification with the same applicability and general data,
@@ -598,6 +647,7 @@ def compare_previous_generaldata_and_applicability(specs_list, generaldata_dict,
     diff = True
     diff_generaldata = True
     diff_specification_data = True
+    prev_spec = None
     for j in range(len(specs_list)-1,-1,-1):
         prev_spec = specs_list[j]
         #check specification data
@@ -620,13 +670,14 @@ def compare_previous_generaldata_and_applicability(specs_list, generaldata_dict,
                 if not diff:
                     #merge the requirements
                     req_list = prev_spec['req']
+                    #merge the general data
                     prev_spec['general'] = merger.merge(prev_spec['general'], generaldata_dict)
                     #if both specs have a name, use the name of the spec that was not splitted (if new spec was not splitted, update the name of prev_spec)
                     #specifications with splitted applicabilities are more general, therefore we use the name of the specification without splitted applicability
                     if STRING_SPECIFICATIONNAME in prev_spec['spec'] and STRING_SPECIFICATIONNAME in specification_data_dict and not app_splitted:
                         prev_spec['spec'][STRING_SPECIFICATIONNAME][0] = specification_data_dict[STRING_SPECIFICATIONNAME][0]
                     break
-    return diff, diff_generaldata, diff_specification_data, req_list
+    return diff, diff_generaldata, diff_specification_data, req_list, prev_spec
 
 def structure_specifications_by_Ifc_versions(spec1, spec2, spec1_Ifc_versions, spec2_Ifc_versions, separate_by):
     '''Includes all requirements of spec2 in spec1 and deletes the ifc versions of spec1 from spec2,
@@ -988,50 +1039,35 @@ def append_facets(facets, input_data):
         if facet != None:
             facets.append(facet)
 
-def separate_specs_by_generaldata(input_data, separate_by_list):
-    '''Separates the specifications in the input data list and assigns them to the different separators
-    Returns a new dictionary with specification lists per separator
+def separate_specs_by_generaldata(input_data):
+    '''Separates the specifications in the input data list according to their general data combinations
+    Returns a new dictionary with specification lists per separator combination
 
     :param input_data: List of specifications 
     :type input_data: list
-    :param separate_by_list: List of all separators 
-    :type separate_by_list: list
     :return: Dictionary with specification lists per separator
     :rtype: dict
     '''
     separated_data = {}
     for spec in input_data:
-        #Initialize list of separation strings
-        separation_strings = ['']
-        #Create all possible combinations of general data separators in the current spec
-        for key in spec['general'].keys():
-            if key in separate_by_list:
-                separation_strings_new = []
-                for sep_string in separation_strings:
-                    #for each separator in the general data of the current spec
-                    for value in spec['general'][key]:
-                        #append the separator to each prevoius sep_string
-                        sep_string_new = sep_string + '_' + key + str(value)
-                        separation_strings_new.append(sep_string_new)
-                separation_strings= separation_strings_new
-        
-        #create new dictvalue or append spec to exisitng dict value for each separation string
-        for sep_string in separation_strings:
-            if sep_string in separated_data.keys():
-                separated_data[sep_string]['specs'].append(spec)
-                if 'Phase' in spec['general']: separated_data[sep_string]['general']['Phase'].update(spec['general']['Phase'])
-                if 'Role' in spec['general']: separated_data[sep_string]['general']['Role'].update(spec['general']['Role'])
-                if 'Usecase' in spec['general']: separated_data[sep_string]['general']['Usecase'].update(spec['general']['Usecase'])
-            else:
-                separated_data[sep_string] = {}
-                separated_data[sep_string]['specs'] = [spec]
-                separated_data[sep_string]['general'] = {}
-                if 'Phase' in spec['general']: separated_data[sep_string]['general']['Phase'] = set(spec['general']['Phase'])
-                else: separated_data[sep_string]['general']['Phase'] = set()
-                if 'Role' in spec['general']: separated_data[sep_string]['general']['Role'] = set(spec['general']['Role'])
-                else: separated_data[sep_string]['general']['Role'] = set()
-                if 'Usecase' in spec['general']: separated_data[sep_string]['general']['Usecase'] = set(spec['general']['Usecase'])
-                else: separated_data[sep_string]['general']['Usecase'] = set()
+        sep_string = spec['sep_string']
+        #if this separation combination (stored in the string) has already specifications, add the new specification
+        if sep_string in separated_data.keys():
+            separated_data[sep_string]['specs'].append(spec)
+            for general_key in ['Phase','Role','Usecase']:
+                if general_key in spec['general'] and spec['general'][general_key] != '':
+                    separated_data[sep_string]['general'][general_key].update(spec['general'][general_key])
+        #if this separation combination was not yet in the list, add it and assign the spec to it
+        else:
+            separated_data[sep_string] = {}
+            separated_data[sep_string]['specs'] = [spec]
+            #create a 'general' dict inside the spec dict to store the metadata (purpose,milestone) for the IDS
+            separated_data[sep_string]['general'] = {}
+            for general_key in ['Phase','Role','Usecase']:
+                separated_data[sep_string]['general'][general_key] = set()
+                if general_key in spec['general'] and spec['general'][general_key] != '':
+                    separated_data[sep_string]['general'][general_key].update(spec['general'][general_key])
+
     return separated_data
 
 def add_comment_to_xml(file_path, comment_text):
