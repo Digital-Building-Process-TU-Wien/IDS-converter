@@ -261,7 +261,7 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
                     req_dict_list_arranged = split_AND_values_to_individual_facet_dicts(req_dict)
                     
                     for req_dict_arranged in req_dict_list_arranged:
-                        #Check whether complex restrictions are included in 'OR' values (this is not possible in IDS)
+                        #Check whether complex restrictions are included in 'OR' values (this is not possible in IDS4ALL)
                         for key in req_dict_arranged:
                             if len(req_dict_arranged[key]) > 1:
                                 j = 0
@@ -506,16 +506,20 @@ def split_OR_AND_values(input_dict, is_entity_based_app):
                 if number_of_and_values == 0:
                     number_of_and_values = len(and_values)
                 if len(and_values) != number_of_and_values:
-                    #Special case requirement cardinality. Since the requirement cardinality is included automatically if not in the excel file,
-                    #if the existing columns use 'and' values the cardinality has no and values. Then the one value is applied to all and values.
+                    #Special case 'requirement cardinality'. Since the requirement cardinality is included automatically if not in the excel file,
+                    #the cardinality has no 'and' values. If the other existing columns use 'and' values, then the one cardinality value is applied to all 'and' values.
                     if key == STRING_REQUIREMENTCARDINALITY and len(and_values) == 1:
                         and_values = and_values*number_of_and_values
                     else:
                         raise Exception('Number of AND values (seperated by \\&) is invalid for ' + key + ' ' + value + '. All columns of one IDS facet require the same number of AND values. Required number of AND values: ' + str(number_of_and_values))
                 values_list = []
                 for and_value in and_values:
-                    #Use delimiters to distinguish between different 'OR' values
-                    or_values = None if and_value == '' else and_value.split('|')
+                    #if the value is a pattern, do not split the value using the | delimiter, because | already has a meaning in the pattern
+                    if and_value[:8] == 'pattern=':
+                        or_values = [and_value]
+                    else:
+                        #Use delimiters to distinguish between different 'OR' values
+                        or_values = None if and_value == '' else and_value.split('|')
                     if or_values == None: continue
                     #Check if complex restrictions were merged due to entity-based applicability. If so, delete them
                     if is_entity_based_app and len(or_values) > 1:
