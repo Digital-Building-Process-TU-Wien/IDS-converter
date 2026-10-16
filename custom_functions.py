@@ -329,7 +329,7 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
                         for req_prev_spec in req_list:
                             diff_req = compare_and_merge_requirement_dicts(req_prev_spec, req_current_spec, [STRING_ATTRIBUTEVALUE,STRING_PROPERTYVALUE], False)
                             if not diff_req: break
-                        if diff_req: req_list.append(req_current_spec)
+                        if diff_req: req_list.append(copy.deepcopy(req_current_spec))
                     new_spec = prev_spec
                 else:
                     new_spec = copy.deepcopy(spec)
