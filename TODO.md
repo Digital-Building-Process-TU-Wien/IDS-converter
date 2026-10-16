@@ -5,14 +5,6 @@ Remove an item in the commit that fixes it, and add a `Fixed` entry to [CHANGELO
 
 ## Bugs
 
-### 12. A line break in a cell text gives two line breaks on Windows
-
-- Where: `ids.Ids.to_xml` of `ifctester`, then [custom_functions.py:1092](custom_functions.py#L1092)
-- Cause: On Windows, `to_xml` writes the cell text `a\r\nb` as `a\r\r\nb`. `ET.parse` in
-  `add_comment_to_xml` reads this as two line breaks and writes both to the final file.
-- Fix: Replace `\r\n` and `\r` in all text values with `\n` before the facets are created.
-  Check the result on Windows and on Linux.
-
 ### 13. The order of purpose, milestone and IFC versions changes between runs
 
 - Where: [custom_functions.py:1086](custom_functions.py#L1086), [custom_functions.py:752](custom_functions.py#L752)
