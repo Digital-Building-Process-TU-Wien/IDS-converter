@@ -5,14 +5,6 @@ Remove an item in the commit that fixes it, and add a `Fixed` entry to [CHANGELO
 
 ## Bugs
 
-### 1. `R.MaterialURI` column is never read
-
-- Where: [custom_functions.py:86](custom_functions.py#L86)
-- Cause: `cols_req_material` uses `STRING_MATERIALURI` without the `R.` prefix.
-- Effect: The Material facet never gets a `uri`. A column with the exact name `MaterialURI`
-  causes an `IndexError` in `split_OR_AND_values` (`key.split('.')[1]`).
-- Fix: Use `prefix+STRING_MATERIALURI`.
-
 ### 2. `pattern=` values break when rows are merged
 
 - Where: [custom_functions.py:518](custom_functions.py#L518), [custom_functions.py:146](custom_functions.py#L146)

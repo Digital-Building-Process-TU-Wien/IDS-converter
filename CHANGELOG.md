@@ -9,4 +9,8 @@ The project has no tagged release yet. Changes before this file existed are in t
 
 ## [Unreleased]
 
+### Fixed
+
+- Column `R.MaterialURI` is now read. The Material facet gets its `uri` attribute.
+
 [unreleased]: https://github.com/pkoska/IDS-converter/compare/main...dev
