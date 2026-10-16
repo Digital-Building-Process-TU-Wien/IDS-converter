@@ -11,6 +11,7 @@ The project has no tagged release yet. Changes before this file existed are in t
 
 ### Fixed
 
+- An enumeration that mixes values with and without `PredefinedType`, such as `IFCWALL|IFCWALL.STANDARD`, now gives a clear error message instead of `IndexError`.
 - Property descriptions are now kept per property set. Two properties with the same name in different property sets no longer get the same description. A property without its own description still uses the last description of the same property name.
 - Property descriptions of one run no longer carry over to a second run in the same process.
 - A sheet without any known column, for example after a wrong sheet name or a wrong `Skipped rows` value, now gives a clear error message instead of `NameError`.

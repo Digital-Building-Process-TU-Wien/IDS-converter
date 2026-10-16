@@ -5,16 +5,6 @@ Remove an item in the commit that fixes it, and add a `Fixed` entry to [CHANGELO
 
 ## Bugs
 
-### 8. Spec title raises `IndexError` for mixed entity values
-
-- Where: [custom_functions.py:904](custom_functions.py#L904)
-- Cause: The title loop reads `PredefinedType[j]` for each entity `j`. `separate_dict_value` adds a
-  predefined type only for the entities that have one.
-- Effect: `SpecificationCardinality` = `required` (the OR values are not split) and
-  `A.Entity` = `IFCWALL|IFCWALL.STANDARD` without a `SpecificationName` give
-  `Entity=['IFCWALL','IFCWALL']`, `PredefinedType=['STANDARD']` and an `IndexError` at `j=1`.
-- Fix: Check the list length, or reject the mixed value in `separate_dict_value`.
-
 ## Cleanup
 
 ### 9. The workbook is read three times
