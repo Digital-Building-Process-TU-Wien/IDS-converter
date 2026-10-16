@@ -5,14 +5,6 @@ Remove an item in the commit that fixes it, and add a `Fixed` entry to [CHANGELO
 
 ## Bugs
 
-### 6. Property descriptions are keyed by property name only
-
-- Where: [custom_functions.py:279](custom_functions.py#L279), [custom_functions.py:1011](custom_functions.py#L1011)
-- Cause: `property_description_dict` is a module-level dict with the property name as key.
-- Effect: `Pset_WallCommon.FireRating` and `Pset_DoorCommon.FireRating` get the same description,
-  the last one read. The dict also keeps its values if the function runs twice in one process.
-- Fix: Key the dict by `(PropertySet, Property)` and create it inside `excel_to_spec_list`.
-
 ### 8. Spec title raises `IndexError` for mixed entity values
 
 - Where: [custom_functions.py:904](custom_functions.py#L904)
