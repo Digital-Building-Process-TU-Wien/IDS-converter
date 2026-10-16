@@ -5,13 +5,6 @@ Remove an item in the commit that fixes it, and add a `Fixed` entry to [CHANGELO
 
 ## Bugs
 
-### 13. The order of purpose, milestone and IFC versions changes between runs
-
-- Where: [custom_functions.py:1086](custom_functions.py#L1086), [custom_functions.py:752](custom_functions.py#L752)
-- Cause: `Phase`, `Role` and `Usecase` are stored in a `set`. `list(set(...))` also builds the
-  IFC version list. Python randomizes the order of strings per process.
-- Fix: Keep the order of the first occurrence. Use a list with a membership check or `dict.fromkeys`.
-
 ## Cleanup
 
 ### 9. The workbook is read three times

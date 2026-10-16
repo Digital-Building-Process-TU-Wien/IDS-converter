@@ -21,5 +21,6 @@ The project has no tagged release yet. Changes before this file existed are in t
 - Merged rows with a `pattern=` value that contains `|` now raise the "complex restriction in an enumeration" error, in any row order. Before, the pattern was joined or split wrongly.
 - Column `R.MaterialURI` is now read. The Material facet gets its `uri` attribute.
 - A sheet without the columns `R.PropertyValue` and `R.AttributeValue` now converts. Before, it stopped with `No objects to concatenate`.
+- The order of the purpose, the milestone and the IFC versions is now the order of the first occurrence in the sheet. Before, it changed from run to run.
 
 [unreleased]: https://github.com/pkoska/IDS-converter/compare/main...dev
