@@ -11,6 +11,8 @@ The project has no tagged release yet. Changes before this file existed are in t
 
 ### Fixed
 
+- Specifications with different `File separators` categories, such as `Phase=1` and `Role=1`, no longer end up in the same IDS file.
+- Output file names have the separator again, for example `..._Specifications_PhaseLP3.ids` instead of `..._SpecificationsLP3.ids`.
 - Merged rows with a `pattern=` value that contains `|` now raise the "complex restriction in an enumeration" error, in any row order. Before, the pattern was joined or split wrongly.
 - Column `R.MaterialURI` is now read. The Material facet gets its `uri` attribute.
 

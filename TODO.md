@@ -5,14 +5,6 @@ Remove an item in the commit that fixes it, and add a `Fixed` entry to [CHANGELO
 
 ## Bugs
 
-### 3. Separation keys of different categories collide
-
-- Where: [custom_functions.py:320](custom_functions.py#L320)
-- Cause: `sep_string` joins only the values. The old code also wrote the category (`_Phase<value>`).
-- Effect: With `File separators` = `Phase, Role`, a spec with `Phase=1` and no role and a spec with
-  `Role=1` and no phase get the same key `1`. They go into the same IDS file and can be merged.
-- Fix: Include the category in the key, for example `Phase1_RoleA`.
-
 ### 4. Requirement dicts are shared between separated specifications
 
 - Where: [custom_functions.py:331](custom_functions.py#L331)
@@ -36,13 +28,6 @@ Remove an item in the commit that fixes it, and add a `Fixed` entry to [CHANGELO
 - Effect: `Pset_WallCommon.FireRating` and `Pset_DoorCommon.FireRating` get the same description,
   the last one read. The dict also keeps its values if the function runs twice in one process.
 - Fix: Key the dict by `(PropertySet, Property)` and create it inside `excel_to_spec_list`.
-
-### 7. Output file names have no separator before the separation key
-
-- Where: [IDS4ALL-main.py:111](IDS4ALL-main.py#L111)
-- Cause: The file name is `excel_name + '_' + sheet_name + key`. Since commit `15a4231`, `key` has no leading `_`.
-- Effect: `..._Specifications_PhaseLP3.ids` became `..._SpecificationsLP3.ids`.
-- Fix: Add `_` before a non-empty `key`. Fix this together with item 3.
 
 ### 8. Spec title raises `IndexError` for mixed entity values
 
