@@ -598,6 +598,8 @@ def separate_dict_value(current_dict, combined_key, second_key, delimiter):
 
         if len(set(or_values_first_key)) > 1 and len(or_values_second_key) > 0:
             raise Exception("PredefinedTypes cannot be used in an enumeration in a specification applicability with cardinality \"required\" because separating it into two different facet parameters causes the connection between the PredefinedType and the Entity to be lost. Affected Entity Facet: Entities: " + str(or_values_first_key) + " PredefinedTypes: " + str(or_values_second_key))                           
+        if 0 < len(or_values_second_key) < len(or_values):
+            raise Exception("Values with and without PredefinedType cannot be used in the same enumeration, because the PredefinedType would apply to all values. Affected values: " + str(or_values))
         current_dict[combined_key] = or_values_first_key
         if or_values_second_key: current_dict[second_key] = or_values_second_key
 
