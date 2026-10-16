@@ -31,6 +31,7 @@ STRING_SPECIFICATIONIFCVERSION = 'SpecificationIfcVersion'
 STRING_REQUIREMENTCARDINALITY = 'Cardinality'
 KEYWORD_NONE = '_none_'
 KEYWORD_MISSING = '_MISSING_'
+DELIMITER_MERGED_ROWS = '\x1f'
 
 entity_description_dict = {}
 property_description_dict = {}
@@ -143,7 +144,7 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
                 removed_items.append(item)
 
         df_step1 = df_filled.groupby(relevant_columns_copy, dropna=False, sort=False).agg({
-            col: lambda x: '|'.join(map(str, x.dropna())) for col in removed_items
+            col: lambda x: DELIMITER_MERGED_ROWS.join(map(str, x.dropna())) for col in removed_items
             }).reset_index()
 
         #Step 2: Merge all requirement parameters and general parameters not in seperate_by,
@@ -514,13 +515,15 @@ def split_OR_AND_values(input_dict, is_entity_based_app):
                         raise Exception('Number of AND values (seperated by \\&) is invalid for ' + key + ' ' + value + '. All columns of one IDS facet require the same number of AND values. Required number of AND values: ' + str(number_of_and_values))
                 values_list = []
                 for and_value in and_values:
-                    #if the value is a pattern, do not split the value using the | delimiter, because | already has a meaning in the pattern
-                    if and_value[:8] == 'pattern=':
-                        or_values = [and_value]
-                    else:
-                        #Use delimiters to distinguish between different 'OR' values
-                        or_values = None if and_value == '' else and_value.split('|')
-                    if or_values == None: continue
+                    if and_value == '': continue
+                    or_values = []
+                    for merged_value in and_value.split(DELIMITER_MERGED_ROWS):
+                        #if the value is a pattern, do not split the value using the | delimiter, because | already has a meaning in the pattern
+                        if merged_value[:8] == 'pattern=':
+                            or_values.append(merged_value)
+                        else:
+                            #Use delimiters to distinguish between different 'OR' values
+                            or_values.extend(merged_value.split('|'))
                     #Check if complex restrictions were merged due to entity-based applicability. If so, delete them
                     if is_entity_based_app and len(or_values) > 1:
                         or_values = list(filter(lambda or_value: not is_complex_restriction(or_value), or_values))
