@@ -318,7 +318,7 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
             #if so, merge them
             #if not, add the specification to the new list and set its seperation string
             for sep_comb in sep_comb_cleaned:
-                sep_string = "_".join(v for v in sep_comb.values() if v)
+                sep_string = "".join("_" + k + v for k, v in sep_comb.items() if v)
                 comparison_specs_list = [spec1 for spec1 in specs_list_sep if spec1['sep_string'] == sep_string]
                 diff, diff_generaldata, diff_specification_data, req_list, prev_spec = compare_previous_generaldata_and_applicability(comparison_specs_list, spec['general'], spec['spec'], spec['app'], spec['app_splitted'], []) 
                 if not diff:
