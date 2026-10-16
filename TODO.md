@@ -5,14 +5,6 @@ Remove an item in the commit that fixes it, and add a `Fixed` entry to [CHANGELO
 
 ## Bugs
 
-### 4. Requirement dicts are shared between separated specifications
-
-- Where: [custom_functions.py:331](custom_functions.py#L331)
-- Cause: `req_list.append(req_current_spec)` appends a reference, not a copy.
-- Effect: A spec with `Phase=[1,2]` that merges into two existing specs puts the same dict into both.
-  A later in-place merge (`merger.merge`) into one IDS file also changes the other file.
-- Fix: Append a copy, as [custom_functions.py:736](custom_functions.py#L736) already does.
-
 ### 5. `NameError` when the sheet has no known columns
 
 - Where: [custom_functions.py:201](custom_functions.py#L201), [custom_functions.py:356](custom_functions.py#L356)

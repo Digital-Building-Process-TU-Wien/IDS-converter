@@ -11,6 +11,7 @@ The project has no tagged release yet. Changes before this file existed are in t
 
 ### Fixed
 
+- Requirement values of one separated IDS file no longer leak into another file when a specification belongs to several `Phase`, `Role` or `Usecase` values.
 - Specifications with different `File separators` categories, such as `Phase=1` and `Role=1`, no longer end up in the same IDS file.
 - Output file names have the separator again, for example `..._Specifications_PhaseLP3.ids` instead of `..._SpecificationsLP3.ids`.
 - Merged rows with a `pattern=` value that contains `|` now raise the "complex restriction in an enumeration" error, in any row order. Before, the pattern was joined or split wrongly.
