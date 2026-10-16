@@ -147,9 +147,12 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
             relevant_columns_copy.remove(item)
             removed_items.append(item)
 
-    df_step1 = df_filled.groupby(relevant_columns_copy, dropna=False, sort=False).agg({
-        col: lambda x: DELIMITER_MERGED_ROWS.join(map(str, x.dropna())) for col in removed_items
-        }).reset_index()
+    if removed_items:
+        df_step1 = df_filled.groupby(relevant_columns_copy, dropna=False, sort=False).agg({
+            col: lambda x: DELIMITER_MERGED_ROWS.join(map(str, x.dropna())) for col in removed_items
+            }).reset_index()
+    else:
+        df_step1 = df_filled[relevant_columns_copy].drop_duplicates().reset_index(drop=True)
 
     #Step 2: Merge all requirement parameters and general parameters not in seperate_by,
     #keeping values of STRING_PROPERTYVALUE & STRING_ATTRIBUTEVALUE as sub-lists
@@ -167,9 +170,12 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
             relevant_columns_copy.remove(item)
             removed_items.append(item)
         
-    df_final = df_step1.groupby(relevant_columns_copy, as_index=False, sort=False).agg({
-        col: lambda x: list(x) for col in removed_items  # Ensure sublists for dynamic value columns
-        })
+    if removed_items:
+        df_final = df_step1.groupby(relevant_columns_copy, as_index=False, sort=False).agg({
+            col: lambda x: list(x) for col in removed_items  # Ensure sublists for dynamic value columns
+            })
+    else:
+        df_final = df_step1[relevant_columns_copy].drop_duplicates().reset_index(drop=True)
 
     #Create individual dataframes for each facet and store them structured in applicability, requirements, general, and specification
     if cols_app_entity:
