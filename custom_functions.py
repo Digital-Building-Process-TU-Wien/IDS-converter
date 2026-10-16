@@ -31,6 +31,7 @@ STRING_SPECIFICATIONIFCVERSION = 'SpecificationIfcVersion'
 STRING_REQUIREMENTCARDINALITY = 'Cardinality'
 KEYWORD_NONE = '_none_'
 KEYWORD_MISSING = '_MISSING_'
+DELIMITER_MERGED_ROWS = '\x1f'
 
 entity_description_dict = {}
 property_description_dict = {}
@@ -54,6 +55,8 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
     :return: List of specifications with applicability, requirements, specification data and general data
     :rtype: list
     '''
+    property_description_dict.clear()
+
     ###Import data
     all_columns = pd.read_excel(EXCEL_PATH, sheet_name=sheet_name, skiprows=skipped_rows, nrows=0).columns.tolist()
     dup = {x[:-2] for x in all_columns if x[-2:] == '.1'}
@@ -83,7 +86,7 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
     prefix = 'R.'
     cols_req_entity = [col for col in [prefix+STRING_ENTITY,prefix+STRING_DESCRIPTION+'.Entity'] if col in all_columns]
     cols_req_property = [col for col in [prefix+STRING_PROPERTY,prefix+STRING_PROPERTYSET,prefix+STRING_PROPERTYVALUE,prefix+STRING_PROPERTYDATATYPE,prefix+STRING_PROPERTYURI,prefix+STRING_REQUIREMENTCARDINALITY,prefix+STRING_DESCRIPTION+'.Property'] if col in all_columns]
-    cols_req_material = [col for col in [prefix+STRING_MATERIAL,STRING_MATERIALURI,prefix+STRING_REQUIREMENTCARDINALITY] if col in all_columns]
+    cols_req_material = [col for col in [prefix+STRING_MATERIAL,prefix+STRING_MATERIALURI,prefix+STRING_REQUIREMENTCARDINALITY] if col in all_columns]
     cols_req_attribute = [col for col in [prefix+STRING_ATTRIBUTE,prefix+STRING_ATTRIBUTEVALUE,prefix+STRING_REQUIREMENTCARDINALITY] if col in all_columns]
     cols_req_classification = [col for col in [prefix+STRING_CLASSIFICATION,prefix+STRING_CLASSIFICATIONSYSTEM,prefix+STRING_CLASSIFICATIONURI,prefix+STRING_REQUIREMENTCARDINALITY] if col in all_columns]
     cols_req_partOf = [col for col in [prefix+STRING_PARTOFENTITY,prefix+STRING_PARTOFRELATION,prefix+STRING_REQUIREMENTCARDINALITY] if col in all_columns]
@@ -111,90 +114,92 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
     relevant_columns = list(set(relevant_columns))
     
     ##Import the relevant columns and merge rows with the same applicability into one row
-    if relevant_columns:
-        #Import all relevant columns
-        df = pd.read_excel(EXCEL_PATH, sheet_name=sheet_name, skiprows=skipped_rows, usecols=relevant_columns, dtype=str)
+    if not relevant_columns:
+        raise Exception('No known columns found in sheet "' + str(sheet_name) + '". Check the sheet name, the column names, and the number of skipped rows.')
 
-        #Fill empty requirement cardinality with default value
-        if prefix+STRING_REQUIREMENTCARDINALITY in df.columns:
-            df[prefix+STRING_REQUIREMENTCARDINALITY] = df[prefix+STRING_REQUIREMENTCARDINALITY].fillna("required")
+    #Import all relevant columns
+    df = pd.read_excel(EXCEL_PATH, sheet_name=sheet_name, skiprows=skipped_rows, usecols=relevant_columns, dtype=str)
 
-        #Fill empty specification ifc version with default version from IDS4ALL sheet
-        spec_ifc_version_col_used = False
-        if STRING_SPECIFICATIONIFCVERSION not in df.columns:
-            df[STRING_SPECIFICATIONIFCVERSION] = ifc_versions
-            relevant_columns.append(STRING_SPECIFICATIONIFCVERSION)
-            cols_specification.append(STRING_SPECIFICATIONIFCVERSION)
-        else:
-            df[STRING_SPECIFICATIONIFCVERSION] = df[STRING_SPECIFICATIONIFCVERSION].fillna(ifc_versions)
-            spec_ifc_version_col_used = True
+    #Fill empty requirement cardinality with default value
+    if prefix+STRING_REQUIREMENTCARDINALITY in df.columns:
+        df[prefix+STRING_REQUIREMENTCARDINALITY] = df[prefix+STRING_REQUIREMENTCARDINALITY].fillna("required")
 
-        #Fill NaN values with a placeholder
-        df_filled = df.fillna(KEYWORD_MISSING)
+    #Fill empty specification ifc version with default version from IDS4ALL sheet
+    spec_ifc_version_col_used = False
+    if STRING_SPECIFICATIONIFCVERSION not in df.columns:
+        df[STRING_SPECIFICATIONIFCVERSION] = ifc_versions
+        relevant_columns.append(STRING_SPECIFICATIONIFCVERSION)
+        cols_specification.append(STRING_SPECIFICATIONIFCVERSION)
+    else:
+        df[STRING_SPECIFICATIONIFCVERSION] = df[STRING_SPECIFICATIONIFCVERSION].fillna(ifc_versions)
+        spec_ifc_version_col_used = True
 
-        #Step 1: Merge rows of the columns STRING_PROPERTYVALUE & STRING_ATTRIBUTEVALUE if the values in the other columns are identical
-        relevant_columns_copy = relevant_columns.copy()
-        merge_columns_1 = [prefix+STRING_PROPERTYVALUE,
-                        prefix+STRING_ATTRIBUTEVALUE]
-        removed_items = []
-        for item in merge_columns_1:
-            if item in relevant_columns_copy:
-                relevant_columns_copy.remove(item)
-                removed_items.append(item)
+    #Fill NaN values with a placeholder
+    df_filled = df.fillna(KEYWORD_MISSING)
 
-        df_step1 = df_filled.groupby(relevant_columns_copy, dropna=False, sort=False).agg({
-            col: lambda x: '|'.join(map(str, x.dropna())) for col in removed_items
-            }).reset_index()
+    #Step 1: Merge rows of the columns STRING_PROPERTYVALUE & STRING_ATTRIBUTEVALUE if the values in the other columns are identical
+    relevant_columns_copy = relevant_columns.copy()
+    merge_columns_1 = [prefix+STRING_PROPERTYVALUE,
+                    prefix+STRING_ATTRIBUTEVALUE]
+    removed_items = []
+    for item in merge_columns_1:
+        if item in relevant_columns_copy:
+            relevant_columns_copy.remove(item)
+            removed_items.append(item)
 
-        #Step 2: Merge all requirement parameters and general parameters not in seperate_by,
-        #keeping values of STRING_PROPERTYVALUE & STRING_ATTRIBUTEVALUE as sub-lists
-        merge_columns_2 = []
-        merge_columns_2.extend(cols_req_entity)
-        merge_columns_2.extend(cols_req_property)
-        merge_columns_2.extend(cols_req_material)
-        merge_columns_2.extend(cols_req_attribute)
-        merge_columns_2.extend(cols_req_classification)
-        merge_columns_2.extend(cols_req_partOf)
-        merge_columns_2.extend([item for item in cols_general if item not in separate_by])
-        merge_columns_2 = list(set(merge_columns_2))
-        for item in merge_columns_2:
-            if item in relevant_columns_copy:
-                relevant_columns_copy.remove(item)
-                removed_items.append(item)
+    df_step1 = df_filled.groupby(relevant_columns_copy, dropna=False, sort=False).agg({
+        col: lambda x: DELIMITER_MERGED_ROWS.join(map(str, x.dropna())) for col in removed_items
+        }).reset_index()
+
+    #Step 2: Merge all requirement parameters and general parameters not in seperate_by,
+    #keeping values of STRING_PROPERTYVALUE & STRING_ATTRIBUTEVALUE as sub-lists
+    merge_columns_2 = []
+    merge_columns_2.extend(cols_req_entity)
+    merge_columns_2.extend(cols_req_property)
+    merge_columns_2.extend(cols_req_material)
+    merge_columns_2.extend(cols_req_attribute)
+    merge_columns_2.extend(cols_req_classification)
+    merge_columns_2.extend(cols_req_partOf)
+    merge_columns_2.extend([item for item in cols_general if item not in separate_by])
+    merge_columns_2 = list(set(merge_columns_2))
+    for item in merge_columns_2:
+        if item in relevant_columns_copy:
+            relevant_columns_copy.remove(item)
+            removed_items.append(item)
         
-        df_final = df_step1.groupby(relevant_columns_copy, as_index=False, sort=False).agg({
-            col: lambda x: list(x) for col in removed_items  # Ensure sublists for dynamic value columns
-            })
+    df_final = df_step1.groupby(relevant_columns_copy, as_index=False, sort=False).agg({
+        col: lambda x: list(x) for col in removed_items  # Ensure sublists for dynamic value columns
+        })
 
-        #Create individual dataframes for each facet and store them structured in applicability, requirements, general, and specification
-        if cols_app_entity:
-            applicability_data.append(df_final[cols_app_entity])
-        if cols_app_property:
-            applicability_data.append(df_final[cols_app_property])
-        if cols_app_material:
-            applicability_data.append(df_final[cols_app_material])
-        if cols_app_attribute:
-            applicability_data.append(df_final[cols_app_attribute])
-        if cols_app_classification:
-            applicability_data.append(df_final[cols_app_classification])
-        if cols_app_partOf:
-            applicability_data.append(df_final[cols_app_partOf])
-        if cols_req_entity:
-            requirements_data.append(df_final[cols_req_entity])
-        if cols_req_property:
-            requirements_data.append(df_final[cols_req_property])
-        if cols_req_material:
-            requirements_data.append(df_final[cols_req_material])
-        if cols_req_attribute:
-            requirements_data.append(df_final[cols_req_attribute])
-        if cols_req_classification:
-            requirements_data.append(df_final[cols_req_classification])
-        if cols_req_partOf:
-            requirements_data.append(df_final[cols_req_partOf])
-        if cols_general:
-            generaldata.append(df_final[cols_general])
-        if cols_specification:
-            specification_data.append(df_final[cols_specification])
+    #Create individual dataframes for each facet and store them structured in applicability, requirements, general, and specification
+    if cols_app_entity:
+        applicability_data.append(df_final[cols_app_entity])
+    if cols_app_property:
+        applicability_data.append(df_final[cols_app_property])
+    if cols_app_material:
+        applicability_data.append(df_final[cols_app_material])
+    if cols_app_attribute:
+        applicability_data.append(df_final[cols_app_attribute])
+    if cols_app_classification:
+        applicability_data.append(df_final[cols_app_classification])
+    if cols_app_partOf:
+        applicability_data.append(df_final[cols_app_partOf])
+    if cols_req_entity:
+        requirements_data.append(df_final[cols_req_entity])
+    if cols_req_property:
+        requirements_data.append(df_final[cols_req_property])
+    if cols_req_material:
+        requirements_data.append(df_final[cols_req_material])
+    if cols_req_attribute:
+        requirements_data.append(df_final[cols_req_attribute])
+    if cols_req_classification:
+        requirements_data.append(df_final[cols_req_classification])
+    if cols_req_partOf:
+        requirements_data.append(df_final[cols_req_partOf])
+    if cols_general:
+        generaldata.append(df_final[cols_general])
+    if cols_specification:
+        specification_data.append(df_final[cols_specification])
 
     ###Transform each dataframe row into a dictionary
     specs_list = []
@@ -276,7 +281,12 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
                         #Not necessary for entity descriptions
                         if STRING_DESCRIPTION in req_dict_arranged:
                             if STRING_PROPERTY in req_dict_arranged:
-                                property_description_dict[req_dict_arranged[STRING_PROPERTY][0]] = req_dict_arranged[STRING_DESCRIPTION][0]
+                                #Store the description for the property set and for the property name alone.
+                                #An occurance without its own description uses the last description of the same property name.
+                                property_set = str(req_dict_arranged.get(STRING_PROPERTYSET,[None])[0])
+                                property_name = req_dict_arranged[STRING_PROPERTY][0]
+                                property_description_dict[(property_set, property_name)] = req_dict_arranged[STRING_DESCRIPTION][0]
+                                property_description_dict[(None, property_name)] = req_dict_arranged[STRING_DESCRIPTION][0]
                         
                         #Separate Entity.PredefinedType into two entries
                         separate_dict_value(req_dict_arranged, STRING_ENTITY, STRING_PREDEFINEDTYPE,'.')
@@ -317,7 +327,7 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
             #if so, merge them
             #if not, add the specification to the new list and set its seperation string
             for sep_comb in sep_comb_cleaned:
-                sep_string = "_".join(v for v in sep_comb.values() if v)
+                sep_string = "".join("_" + k + v for k, v in sep_comb.items() if v)
                 comparison_specs_list = [spec1 for spec1 in specs_list_sep if spec1['sep_string'] == sep_string]
                 diff, diff_generaldata, diff_specification_data, req_list, prev_spec = compare_previous_generaldata_and_applicability(comparison_specs_list, spec['general'], spec['spec'], spec['app'], spec['app_splitted'], []) 
                 if not diff:
@@ -328,7 +338,7 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
                         for req_prev_spec in req_list:
                             diff_req = compare_and_merge_requirement_dicts(req_prev_spec, req_current_spec, [STRING_ATTRIBUTEVALUE,STRING_PROPERTYVALUE], False)
                             if not diff_req: break
-                        if diff_req: req_list.append(req_current_spec)
+                        if diff_req: req_list.append(copy.deepcopy(req_current_spec))
                     new_spec = prev_spec
                 else:
                     new_spec = copy.deepcopy(spec)
@@ -514,13 +524,15 @@ def split_OR_AND_values(input_dict, is_entity_based_app):
                         raise Exception('Number of AND values (seperated by \\&) is invalid for ' + key + ' ' + value + '. All columns of one IDS facet require the same number of AND values. Required number of AND values: ' + str(number_of_and_values))
                 values_list = []
                 for and_value in and_values:
-                    #if the value is a pattern, do not split the value using the | delimiter, because | already has a meaning in the pattern
-                    if and_value[:8] == 'pattern=':
-                        or_values = [and_value]
-                    else:
-                        #Use delimiters to distinguish between different 'OR' values
-                        or_values = None if and_value == '' else and_value.split('|')
-                    if or_values == None: continue
+                    if and_value == '': continue
+                    or_values = []
+                    for merged_value in and_value.split(DELIMITER_MERGED_ROWS):
+                        #if the value is a pattern, do not split the value using the | delimiter, because | already has a meaning in the pattern
+                        if merged_value[:8] == 'pattern=':
+                            or_values.append(merged_value)
+                        else:
+                            #Use delimiters to distinguish between different 'OR' values
+                            or_values.extend(merged_value.split('|'))
                     #Check if complex restrictions were merged due to entity-based applicability. If so, delete them
                     if is_entity_based_app and len(or_values) > 1:
                         or_values = list(filter(lambda or_value: not is_complex_restriction(or_value), or_values))
@@ -586,6 +598,8 @@ def separate_dict_value(current_dict, combined_key, second_key, delimiter):
 
         if len(set(or_values_first_key)) > 1 and len(or_values_second_key) > 0:
             raise Exception("PredefinedTypes cannot be used in an enumeration in a specification applicability with cardinality \"required\" because separating it into two different facet parameters causes the connection between the PredefinedType and the Entity to be lost. Affected Entity Facet: Entities: " + str(or_values_first_key) + " PredefinedTypes: " + str(or_values_second_key))                           
+        if 0 < len(or_values_second_key) < len(or_values):
+            raise Exception("Values with and without PredefinedType cannot be used in the same enumeration, because the PredefinedType would apply to all values. Affected values: " + str(or_values))
         current_dict[combined_key] = or_values_first_key
         if or_values_second_key: current_dict[second_key] = or_values_second_key
 
@@ -1001,14 +1015,15 @@ def append_facets(facets, input_data):
         elif STRING_PROPERTYSET in input_dict or STRING_PROPERTY in input_dict or STRING_PROPERTYDATATYPE in input_dict or STRING_PROPERTYVALUE in input_dict:
             if STRING_PROPERTYSET not in input_dict or STRING_PROPERTY not in input_dict: incomplete_facet = 'The Property facet requires the PropertySet and Property parameters.'
             else:
-                key = str(input_dict[STRING_PROPERTY])
+                key = (str(input_dict.get(STRING_PROPERTYSET)), str(input_dict[STRING_PROPERTY]))
+                description = property_description_dict.get(key, property_description_dict.get((None, key[1])))
                 facet = ids.Property(propertySet=input_dict[STRING_PROPERTYSET] if STRING_PROPERTYSET in input_dict else None,
                                     baseName=input_dict[STRING_PROPERTY] if STRING_PROPERTY in input_dict else None,
                                     dataType=input_dict[STRING_PROPERTYDATATYPE].replace(' ','') if STRING_PROPERTYDATATYPE in input_dict else None,
                                     value=input_dict[STRING_PROPERTYVALUE] if STRING_PROPERTYVALUE in input_dict else None,
                                     uri=input_dict[STRING_PROPERTYURI] if STRING_PROPERTYURI in input_dict else None,
                                     cardinality=input_dict[STRING_REQUIREMENTCARDINALITY] if STRING_REQUIREMENTCARDINALITY in input_dict else None,
-                                    instructions=property_description_dict[key] if key in property_description_dict else None)
+                                    instructions=description)
         #Material facet
         elif STRING_MATERIAL in input_dict:
             facet = ids.Material(value=input_dict[STRING_MATERIAL] if STRING_MATERIAL in input_dict else None,
