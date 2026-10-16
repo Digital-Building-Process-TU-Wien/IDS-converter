@@ -755,7 +755,7 @@ def structure_specifications_by_Ifc_versions(spec1, spec2, spec1_Ifc_versions, s
                         # Shallow copy to avoid mutating original item2 later
                         spec1['req'].append({k: v[:] if isinstance(v, list) else v for k, v in req_dict2.items()})
                 #Since all requirements of spec2 are included in spec1, spec2 does not need to apply to the ifc versions of spec1 anymore
-                spec2['spec'][STRING_SPECIFICATIONIFCVERSION] = list(set(spec2_Ifc_versions) - set(spec1_Ifc_versions))
+                spec2['spec'][STRING_SPECIFICATIONIFCVERSION] = [version for version in dict.fromkeys(spec2_Ifc_versions) if version not in spec1_Ifc_versions]
 
 def add_values_to_general_specs(specs_list, separate_by):
     '''Checks for all specification if a specification with a more general applicability exists.
@@ -1081,7 +1081,8 @@ def separate_specs_by_generaldata(input_data):
             separated_data[sep_string]['specs'].append(spec)
             for general_key in ['Phase','Role','Usecase']:
                 if general_key in spec['general'] and spec['general'][general_key] != '':
-                    separated_data[sep_string]['general'][general_key].update(spec['general'][general_key])
+                    separated_data[sep_string]['general'][general_key].extend(
+                        value for value in spec['general'][general_key] if value not in separated_data[sep_string]['general'][general_key])
         #if this separation combination was not yet in the list, add it and assign the spec to it
         else:
             separated_data[sep_string] = {}
@@ -1089,9 +1090,9 @@ def separate_specs_by_generaldata(input_data):
             #create a 'general' dict inside the spec dict to store the metadata (purpose,milestone) for the IDS
             separated_data[sep_string]['general'] = {}
             for general_key in ['Phase','Role','Usecase']:
-                separated_data[sep_string]['general'][general_key] = set()
+                separated_data[sep_string]['general'][general_key] = []
                 if general_key in spec['general'] and spec['general'][general_key] != '':
-                    separated_data[sep_string]['general'][general_key].update(spec['general'][general_key])
+                    separated_data[sep_string]['general'][general_key].extend(dict.fromkeys(spec['general'][general_key]))
 
     return separated_data
 
