@@ -112,90 +112,92 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
     relevant_columns = list(set(relevant_columns))
     
     ##Import the relevant columns and merge rows with the same applicability into one row
-    if relevant_columns:
-        #Import all relevant columns
-        df = pd.read_excel(EXCEL_PATH, sheet_name=sheet_name, skiprows=skipped_rows, usecols=relevant_columns, dtype=str)
+    if not relevant_columns:
+        raise Exception('No known columns found in sheet "' + str(sheet_name) + '". Check the sheet name, the column names, and the number of skipped rows.')
 
-        #Fill empty requirement cardinality with default value
-        if prefix+STRING_REQUIREMENTCARDINALITY in df.columns:
-            df[prefix+STRING_REQUIREMENTCARDINALITY] = df[prefix+STRING_REQUIREMENTCARDINALITY].fillna("required")
+    #Import all relevant columns
+    df = pd.read_excel(EXCEL_PATH, sheet_name=sheet_name, skiprows=skipped_rows, usecols=relevant_columns, dtype=str)
 
-        #Fill empty specification ifc version with default version from IDS4ALL sheet
-        spec_ifc_version_col_used = False
-        if STRING_SPECIFICATIONIFCVERSION not in df.columns:
-            df[STRING_SPECIFICATIONIFCVERSION] = ifc_versions
-            relevant_columns.append(STRING_SPECIFICATIONIFCVERSION)
-            cols_specification.append(STRING_SPECIFICATIONIFCVERSION)
-        else:
-            df[STRING_SPECIFICATIONIFCVERSION] = df[STRING_SPECIFICATIONIFCVERSION].fillna(ifc_versions)
-            spec_ifc_version_col_used = True
+    #Fill empty requirement cardinality with default value
+    if prefix+STRING_REQUIREMENTCARDINALITY in df.columns:
+        df[prefix+STRING_REQUIREMENTCARDINALITY] = df[prefix+STRING_REQUIREMENTCARDINALITY].fillna("required")
 
-        #Fill NaN values with a placeholder
-        df_filled = df.fillna(KEYWORD_MISSING)
+    #Fill empty specification ifc version with default version from IDS4ALL sheet
+    spec_ifc_version_col_used = False
+    if STRING_SPECIFICATIONIFCVERSION not in df.columns:
+        df[STRING_SPECIFICATIONIFCVERSION] = ifc_versions
+        relevant_columns.append(STRING_SPECIFICATIONIFCVERSION)
+        cols_specification.append(STRING_SPECIFICATIONIFCVERSION)
+    else:
+        df[STRING_SPECIFICATIONIFCVERSION] = df[STRING_SPECIFICATIONIFCVERSION].fillna(ifc_versions)
+        spec_ifc_version_col_used = True
 
-        #Step 1: Merge rows of the columns STRING_PROPERTYVALUE & STRING_ATTRIBUTEVALUE if the values in the other columns are identical
-        relevant_columns_copy = relevant_columns.copy()
-        merge_columns_1 = [prefix+STRING_PROPERTYVALUE,
-                        prefix+STRING_ATTRIBUTEVALUE]
-        removed_items = []
-        for item in merge_columns_1:
-            if item in relevant_columns_copy:
-                relevant_columns_copy.remove(item)
-                removed_items.append(item)
+    #Fill NaN values with a placeholder
+    df_filled = df.fillna(KEYWORD_MISSING)
 
-        df_step1 = df_filled.groupby(relevant_columns_copy, dropna=False, sort=False).agg({
-            col: lambda x: DELIMITER_MERGED_ROWS.join(map(str, x.dropna())) for col in removed_items
-            }).reset_index()
+    #Step 1: Merge rows of the columns STRING_PROPERTYVALUE & STRING_ATTRIBUTEVALUE if the values in the other columns are identical
+    relevant_columns_copy = relevant_columns.copy()
+    merge_columns_1 = [prefix+STRING_PROPERTYVALUE,
+                    prefix+STRING_ATTRIBUTEVALUE]
+    removed_items = []
+    for item in merge_columns_1:
+        if item in relevant_columns_copy:
+            relevant_columns_copy.remove(item)
+            removed_items.append(item)
 
-        #Step 2: Merge all requirement parameters and general parameters not in seperate_by,
-        #keeping values of STRING_PROPERTYVALUE & STRING_ATTRIBUTEVALUE as sub-lists
-        merge_columns_2 = []
-        merge_columns_2.extend(cols_req_entity)
-        merge_columns_2.extend(cols_req_property)
-        merge_columns_2.extend(cols_req_material)
-        merge_columns_2.extend(cols_req_attribute)
-        merge_columns_2.extend(cols_req_classification)
-        merge_columns_2.extend(cols_req_partOf)
-        merge_columns_2.extend([item for item in cols_general if item not in separate_by])
-        merge_columns_2 = list(set(merge_columns_2))
-        for item in merge_columns_2:
-            if item in relevant_columns_copy:
-                relevant_columns_copy.remove(item)
-                removed_items.append(item)
+    df_step1 = df_filled.groupby(relevant_columns_copy, dropna=False, sort=False).agg({
+        col: lambda x: DELIMITER_MERGED_ROWS.join(map(str, x.dropna())) for col in removed_items
+        }).reset_index()
+
+    #Step 2: Merge all requirement parameters and general parameters not in seperate_by,
+    #keeping values of STRING_PROPERTYVALUE & STRING_ATTRIBUTEVALUE as sub-lists
+    merge_columns_2 = []
+    merge_columns_2.extend(cols_req_entity)
+    merge_columns_2.extend(cols_req_property)
+    merge_columns_2.extend(cols_req_material)
+    merge_columns_2.extend(cols_req_attribute)
+    merge_columns_2.extend(cols_req_classification)
+    merge_columns_2.extend(cols_req_partOf)
+    merge_columns_2.extend([item for item in cols_general if item not in separate_by])
+    merge_columns_2 = list(set(merge_columns_2))
+    for item in merge_columns_2:
+        if item in relevant_columns_copy:
+            relevant_columns_copy.remove(item)
+            removed_items.append(item)
         
-        df_final = df_step1.groupby(relevant_columns_copy, as_index=False, sort=False).agg({
-            col: lambda x: list(x) for col in removed_items  # Ensure sublists for dynamic value columns
-            })
+    df_final = df_step1.groupby(relevant_columns_copy, as_index=False, sort=False).agg({
+        col: lambda x: list(x) for col in removed_items  # Ensure sublists for dynamic value columns
+        })
 
-        #Create individual dataframes for each facet and store them structured in applicability, requirements, general, and specification
-        if cols_app_entity:
-            applicability_data.append(df_final[cols_app_entity])
-        if cols_app_property:
-            applicability_data.append(df_final[cols_app_property])
-        if cols_app_material:
-            applicability_data.append(df_final[cols_app_material])
-        if cols_app_attribute:
-            applicability_data.append(df_final[cols_app_attribute])
-        if cols_app_classification:
-            applicability_data.append(df_final[cols_app_classification])
-        if cols_app_partOf:
-            applicability_data.append(df_final[cols_app_partOf])
-        if cols_req_entity:
-            requirements_data.append(df_final[cols_req_entity])
-        if cols_req_property:
-            requirements_data.append(df_final[cols_req_property])
-        if cols_req_material:
-            requirements_data.append(df_final[cols_req_material])
-        if cols_req_attribute:
-            requirements_data.append(df_final[cols_req_attribute])
-        if cols_req_classification:
-            requirements_data.append(df_final[cols_req_classification])
-        if cols_req_partOf:
-            requirements_data.append(df_final[cols_req_partOf])
-        if cols_general:
-            generaldata.append(df_final[cols_general])
-        if cols_specification:
-            specification_data.append(df_final[cols_specification])
+    #Create individual dataframes for each facet and store them structured in applicability, requirements, general, and specification
+    if cols_app_entity:
+        applicability_data.append(df_final[cols_app_entity])
+    if cols_app_property:
+        applicability_data.append(df_final[cols_app_property])
+    if cols_app_material:
+        applicability_data.append(df_final[cols_app_material])
+    if cols_app_attribute:
+        applicability_data.append(df_final[cols_app_attribute])
+    if cols_app_classification:
+        applicability_data.append(df_final[cols_app_classification])
+    if cols_app_partOf:
+        applicability_data.append(df_final[cols_app_partOf])
+    if cols_req_entity:
+        requirements_data.append(df_final[cols_req_entity])
+    if cols_req_property:
+        requirements_data.append(df_final[cols_req_property])
+    if cols_req_material:
+        requirements_data.append(df_final[cols_req_material])
+    if cols_req_attribute:
+        requirements_data.append(df_final[cols_req_attribute])
+    if cols_req_classification:
+        requirements_data.append(df_final[cols_req_classification])
+    if cols_req_partOf:
+        requirements_data.append(df_final[cols_req_partOf])
+    if cols_general:
+        generaldata.append(df_final[cols_general])
+    if cols_specification:
+        specification_data.append(df_final[cols_specification])
 
     ###Transform each dataframe row into a dictionary
     specs_list = []
