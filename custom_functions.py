@@ -83,7 +83,7 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
     prefix = 'R.'
     cols_req_entity = [col for col in [prefix+STRING_ENTITY,prefix+STRING_DESCRIPTION+'.Entity'] if col in all_columns]
     cols_req_property = [col for col in [prefix+STRING_PROPERTY,prefix+STRING_PROPERTYSET,prefix+STRING_PROPERTYVALUE,prefix+STRING_PROPERTYDATATYPE,prefix+STRING_PROPERTYURI,prefix+STRING_REQUIREMENTCARDINALITY,prefix+STRING_DESCRIPTION+'.Property'] if col in all_columns]
-    cols_req_material = [col for col in [prefix+STRING_MATERIAL,STRING_MATERIALURI,prefix+STRING_REQUIREMENTCARDINALITY] if col in all_columns]
+    cols_req_material = [col for col in [prefix+STRING_MATERIAL,prefix+STRING_MATERIALURI,prefix+STRING_REQUIREMENTCARDINALITY] if col in all_columns]
     cols_req_attribute = [col for col in [prefix+STRING_ATTRIBUTE,prefix+STRING_ATTRIBUTEVALUE,prefix+STRING_REQUIREMENTCARDINALITY] if col in all_columns]
     cols_req_classification = [col for col in [prefix+STRING_CLASSIFICATION,prefix+STRING_CLASSIFICATIONSYSTEM,prefix+STRING_CLASSIFICATIONURI,prefix+STRING_REQUIREMENTCARDINALITY] if col in all_columns]
     cols_req_partOf = [col for col in [prefix+STRING_PARTOFENTITY,prefix+STRING_PARTOFRELATION,prefix+STRING_REQUIREMENTCARDINALITY] if col in all_columns]
