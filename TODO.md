@@ -5,15 +5,6 @@ Remove an item in the commit that fixes it, and add a `Fixed` entry to [CHANGELO
 
 ## Bugs
 
-### 11. A sheet without value columns crashes the converter
-
-- Where: [custom_functions.py:150](custom_functions.py#L150)
-- Cause: A sheet with neither `R.PropertyValue` nor `R.AttributeValue` gives `removed_items = []`.
-  `groupby(...).agg({})` then raises `ValueError: No objects to concatenate`.
-- Confirmed: A full run on `8c59647` with the columns `A.Entity`, `R.PropertySet` and `R.Property`
-  stops with this error. The same workbook with `R.PropertyValue` converts.
-- Fix: Skip step 1 when `removed_items` is empty. Use `df_filled` as `df_step1`.
-
 ### 12. A line break in a cell text gives two line breaks on Windows
 
 - Where: `ids.Ids.to_xml` of `ifctester`, then [custom_functions.py:1092](custom_functions.py#L1092)

@@ -20,5 +20,6 @@ The project has no tagged release yet. Changes before this file existed are in t
 - Output file names have the separator again, for example `..._Specifications_PhaseLP3.ids` instead of `..._SpecificationsLP3.ids`.
 - Merged rows with a `pattern=` value that contains `|` now raise the "complex restriction in an enumeration" error, in any row order. Before, the pattern was joined or split wrongly.
 - Column `R.MaterialURI` is now read. The Material facet gets its `uri` attribute.
+- A sheet without the columns `R.PropertyValue` and `R.AttributeValue` now converts. Before, it stopped with `No objects to concatenate`.
 
 [unreleased]: https://github.com/pkoska/IDS-converter/compare/main...dev
