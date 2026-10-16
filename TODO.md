@@ -5,14 +5,6 @@ Remove an item in the commit that fixes it, and add a `Fixed` entry to [CHANGELO
 
 ## Bugs
 
-### 5. `NameError` when the sheet has no known columns
-
-- Where: [custom_functions.py:201](custom_functions.py#L201), [custom_functions.py:356](custom_functions.py#L356)
-- Cause: `df_final` and `spec_ifc_version_col_used` are only set inside `if relevant_columns:`.
-- Effect: A wrong sheet name, a typo in the headers, or a wrong `Skipped rows` value gives
-  `NameError: name 'df_final' is not defined`.
-- Fix: Raise a clear error when `relevant_columns` is empty.
-
 ### 6. Property descriptions are keyed by property name only
 
 - Where: [custom_functions.py:279](custom_functions.py#L279), [custom_functions.py:1011](custom_functions.py#L1011)
