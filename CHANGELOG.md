@@ -11,6 +11,7 @@ The project has no tagged release yet. Changes before this file existed are in t
 
 ### Fixed
 
+- Merged rows with a `pattern=` value that contains `|` now raise the "complex restriction in an enumeration" error, in any row order. Before, the pattern was joined or split wrongly.
 - Column `R.MaterialURI` is now read. The Material facet gets its `uri` attribute.
 
 [unreleased]: https://github.com/pkoska/IDS-converter/compare/main...dev

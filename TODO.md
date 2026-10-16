@@ -5,17 +5,6 @@ Remove an item in the commit that fixes it, and add a `Fixed` entry to [CHANGELO
 
 ## Bugs
 
-### 2. `pattern=` values break when rows are merged
-
-- Where: [custom_functions.py:518](custom_functions.py#L518), [custom_functions.py:146](custom_functions.py#L146)
-- Cause: Step 1 joins merged `PropertyValue`/`AttributeValue` cells with `|`. The `pattern=` check
-  then keeps the full joined string as one pattern.
-- Effect: Rows `pattern=A|B` and `C` become the single pattern `A|B|C`, and the
-  "complex restriction in an enumeration" error does not occur. With the reverse row order,
-  `C|pattern=A|B` splits into `C`, `pattern=A`, `B`, and the pattern is broken.
-- Fix: Keep merged values as lists, or join them with a delimiter that cannot occur in a pattern.
-  `|` must not mean both "OR" and regex alternation.
-
 ### 3. Separation keys of different categories collide
 
 - Where: [custom_functions.py:320](custom_functions.py#L320)
