@@ -55,6 +55,8 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
     :return: List of specifications with applicability, requirements, specification data and general data
     :rtype: list
     '''
+    property_description_dict.clear()
+
     ###Import data
     all_columns = pd.read_excel(EXCEL_PATH, sheet_name=sheet_name, skiprows=skipped_rows, nrows=0).columns.tolist()
     dup = {x[:-2] for x in all_columns if x[-2:] == '.1'}
@@ -279,7 +281,12 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
                         #Not necessary for entity descriptions
                         if STRING_DESCRIPTION in req_dict_arranged:
                             if STRING_PROPERTY in req_dict_arranged:
-                                property_description_dict[req_dict_arranged[STRING_PROPERTY][0]] = req_dict_arranged[STRING_DESCRIPTION][0]
+                                #Store the description for the property set and for the property name alone.
+                                #An occurance without its own description uses the last description of the same property name.
+                                property_set = str(req_dict_arranged.get(STRING_PROPERTYSET,[None])[0])
+                                property_name = req_dict_arranged[STRING_PROPERTY][0]
+                                property_description_dict[(property_set, property_name)] = req_dict_arranged[STRING_DESCRIPTION][0]
+                                property_description_dict[(None, property_name)] = req_dict_arranged[STRING_DESCRIPTION][0]
                         
                         #Separate Entity.PredefinedType into two entries
                         separate_dict_value(req_dict_arranged, STRING_ENTITY, STRING_PREDEFINEDTYPE,'.')
@@ -1006,14 +1013,15 @@ def append_facets(facets, input_data):
         elif STRING_PROPERTYSET in input_dict or STRING_PROPERTY in input_dict or STRING_PROPERTYDATATYPE in input_dict or STRING_PROPERTYVALUE in input_dict:
             if STRING_PROPERTYSET not in input_dict or STRING_PROPERTY not in input_dict: incomplete_facet = 'The Property facet requires the PropertySet and Property parameters.'
             else:
-                key = str(input_dict[STRING_PROPERTY])
+                key = (str(input_dict.get(STRING_PROPERTYSET)), str(input_dict[STRING_PROPERTY]))
+                description = property_description_dict.get(key, property_description_dict.get((None, key[1])))
                 facet = ids.Property(propertySet=input_dict[STRING_PROPERTYSET] if STRING_PROPERTYSET in input_dict else None,
                                     baseName=input_dict[STRING_PROPERTY] if STRING_PROPERTY in input_dict else None,
                                     dataType=input_dict[STRING_PROPERTYDATATYPE].replace(' ','') if STRING_PROPERTYDATATYPE in input_dict else None,
                                     value=input_dict[STRING_PROPERTYVALUE] if STRING_PROPERTYVALUE in input_dict else None,
                                     uri=input_dict[STRING_PROPERTYURI] if STRING_PROPERTYURI in input_dict else None,
                                     cardinality=input_dict[STRING_REQUIREMENTCARDINALITY] if STRING_REQUIREMENTCARDINALITY in input_dict else None,
-                                    instructions=property_description_dict[key] if key in property_description_dict else None)
+                                    instructions=description)
         #Material facet
         elif STRING_MATERIAL in input_dict:
             facet = ids.Material(value=input_dict[STRING_MATERIAL] if STRING_MATERIAL in input_dict else None,
