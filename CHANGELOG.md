@@ -23,4 +23,8 @@ The project has no tagged release yet. Changes before this file existed are in t
 - A sheet without the columns `R.PropertyValue` and `R.AttributeValue` now converts. Before, it stopped with `No objects to concatenate`.
 - The order of the purpose, the milestone and the IFC versions is now the order of the first occurrence in the sheet. Before, it changed from run to run.
 
+### Security
+
+- Raised `deepdiff` from 8.3.0 to 8.6.2 (and `orderly-set` from 5.3.0 to 5.5.0). The old version has two known flaws, CVE-2025-58367 and CVE-2026-33155, in its `Delta` class and `pickle_load`. The converter does not use them, so it was not affected.
+
 [unreleased]: https://github.com/pkoska/IDS-converter/compare/main...dev

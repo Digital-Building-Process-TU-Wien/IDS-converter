@@ -11,7 +11,7 @@ The code imports these packages.
 | `pandas` | 2.2.3 | both scripts | Reads the Excel sheets and groups rows (`read_excel`, `groupby`). |
 | `openpyxl` | 3.1.5 | indirect, through `pandas` | Engine that `pandas.read_excel` uses for `.xlsx` files. The code does not import it. |
 | `ifctester` | 0.8.1 | both scripts | Builds the IDS objects (`ids.Ids`, `ids.Specification`, facets, `ids.Restriction`) and writes the XML. |
-| `deepdiff` | 8.3.0 | `custom_functions.py` | Compares specification, general and applicability data (`DeepDiff`). |
+| `deepdiff` | 8.6.2 | `custom_functions.py` | Compares specification, general and applicability data (`DeepDiff`). |
 | `deepmerge` | 2.0 | `custom_functions.py` | Merges requirement and general data dicts (`Merger`). |
 
 The code also uses `xml.etree.ElementTree`, `argparse`, `itertools`, `copy`, `os` and `datetime` from the standard library.
@@ -34,7 +34,7 @@ These packages are pinned only to make the install reproducible. The code does n
 | `pytz` | 2025.1 | `pandas` |
 | `tzdata` | 2025.1 | `pandas` |
 | `et_xmlfile` | 2.0.0 | `openpyxl` |
-| `orderly-set` | 5.3.0 | `deepdiff` |
+| `orderly-set` | 5.5.0 | `deepdiff` |
 | `typing_extensions` | 4.12.2 | several packages |
 
 ## Rules for a change
