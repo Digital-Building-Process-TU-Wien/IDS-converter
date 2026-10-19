@@ -177,3 +177,7 @@ output
 excel-test-files
 IDS4ALL-test.py
 testing/
+
+# Claude Code
+CLAUDE.md
+.claude/
