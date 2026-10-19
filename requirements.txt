@@ -1,4 +1,4 @@
-deepdiff==8.3.0
+deepdiff==8.6.2
 deepmerge==2.0
 elementpath==4.8.0
 et_xmlfile==2.0.0
@@ -8,7 +8,7 @@ isodate==0.7.2
 lark==1.2.2
 numpy==2.2.3
 openpyxl==3.1.5
-orderly-set==5.3.0
+orderly-set==5.5.0
 pandas==2.2.3
 python-dateutil==2.9.0.post0
 pytz==2025.1
