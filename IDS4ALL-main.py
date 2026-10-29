@@ -56,7 +56,7 @@ def get_metadata(excel_path, excel_name, excel_format, sheet_name):
     required_metadata = ['Sheet name', 'IFC version']
     for meta in required_metadata:
         if meta not in data_dict:
-            raise Exception(f'{meta} is not defined in the Excel')
+            raise Exception(f'{meta} is not defined in the IDS4ALL sheet of the Excel')
     
     sheet_name = data_dict['Sheet name']
     ifc_version = data_dict['IFC version'].replace(' ','').replace(',','|')
@@ -143,4 +143,8 @@ def main():
     create_ids_files(separated_excel_data, data_dict, output_path, excel_name, sheet_name)
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as error:
+        print(f"Error: {error}")
+        raise SystemExit(1)
