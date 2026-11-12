@@ -1,6 +1,6 @@
 # IDS4ALL converter
 
-This IDS converter generates IDS files from information defined in tabular form. In current practice, it is common for information requirements to be defined in Excel files. The aim is to use a structure of the Excel file that is similar to existing structures for information requirements to facilitate the adaption to IDS. Therefore, our approach was to start with the classical structure and extend it to support the full functionality of the IDS, but still allow the use of the established structure. The structure allows one to start with a simple property assignment to an entity with a few columns and gradually increase the information density. The use and order of the defined columns are flexible. Only the names of the columns are predefined and must be adhered to. This gives the user great flexibility and allows existing tables to be used with only minor adjustments.
+This IDS converter provides bidirectional conversion between information requirements in tabular form and IDS formats. It generates IDS files from information defined in tabular Excel form, and conversely, converts IDS files back to Excel format for easy editing and review. In current practice, it is common for information requirements to be defined in Excel files. The aim is to use a structure of the Excel file that is similar to existing structures for information requirements to facilitate adoption to IDS. Therefore, our approach was to start with the classical structure and extend it to support the full functionality of the IDS, while still allowing the use of the established structure. The structure allows users to start with simple property assignments to entities with just a few columns and gradually increase information density. The use and order of the columns are flexible, with only the column names being predefined. This gives great flexibility and allows existing tables to be used with only minor adjustments. The bidirectional conversion enables round-trip testing to ensure data integrity across conversions.
 
 ### Project structure
 
@@ -37,6 +37,8 @@ Purpose of transfer: GEV011020ZFT S235030-000 - Digital Building Process
 6. Install all dependencies: ```pip install -r requirements.txt```
 
 ## Run the project
+
+The converter automatically detects whether the input is an Excel file (.xlsx, .xls) or an IDS file (.ids) and applies the appropriate conversion. You can explicitly specify the input format using the `--input_format` argument, or allow the tool to auto-detect based on the file extension.
 
 ### Default usage (Excel to IDS)
 
@@ -118,3 +120,11 @@ python IDS4ALL-main.py --ids_path ./Example-IDS-files/ --ids_name "IDS4ALL-Templ
 - An unknown file format will result in a clear error message.
 - The converter automatically creates the output directory if it does not exist.
 - Legacy command-line arguments (`--excel_*` and `--ids_*`) are still supported for backward compatibility.
+
+#### Override the input and output paths in the script:
+To override the input and output paths and the name of the used Excel file you can edit the default settings in lines 9-11 in the main script IDS4ALL-main.py:
+
+#Default settings
+excel_path_default = "./Excel-files/"
+excel_name_default = "Requirements-openBIM-building-permit-of-the-City-of-Vienna"
+output_path_default = "./output/"
