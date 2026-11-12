@@ -5,37 +5,112 @@ import pandas as pd
 from ifctester import ids
 from custom_functions import *
 
-#Default settings
+# Default settings for Excel to IDS direction
 excel_path_default = "./Excel-files/"
 excel_name_default = "Requirements-openBIM-building-permit-City-of-Vienna-extended"
 output_path_default = "./output/"
 
-def parse_arguments():
-    """Parse command-line arguments."""
-    parser = argparse.ArgumentParser(description="Generate IDS files from Excel data.")
+def detect_direction(fmt):
+    """Detect conversion direction from file format.
     
+    :param fmt: File format/extension (e.g., '.xlsx', '.ids')
+    :type fmt: str
+    :return: Direction ('excel_to_ids' or 'ids_to_excel')
+    :rtype: str
+    :raises ValueError: If format is unknown
+    """
+    fmt_lower = fmt.lower()
+    if fmt_lower in ('.xlsx', '.xls'):
+        return 'excel_to_ids'
+    elif fmt_lower == '.ids':
+        return 'ids_to_excel'
+    else:
+        raise ValueError(f"Unknown file format: {fmt}. Expected .xlsx, .xls, or .ids")
+
+def parse_arguments():
+    """Parse command-line arguments supporting both directions."""
+    parser = argparse.ArgumentParser(description="Convert between Excel and IDS formats.")
+    
+    # Generic arguments
     parser.add_argument(
-        "--excel_path",
-        default=excel_path_default,
-        help="Path to the directory containing the Excel file.",
+        "--input_path",
+        default=None,
+        help="Path to the directory containing the input file.",
     )
     parser.add_argument(
-        "--excel_name",
-        default=excel_name_default,
-        help="Name of the Excel file (without extension).",
+        "--input_name",
+        default=None,
+        help="Name of the input file (without extension).",
     )
     parser.add_argument(
-        "--excel_format",
-        default=".xlsx",
-        help="Format of the Excel file (e.g., .xlsx, .xls).",
+        "--input_format",
+        default=None,
+        help="Format of the input file (.xlsx, .xls, or .ids). Auto-detected from extension if not provided.",
     )
     parser.add_argument(
         "--output_path",
         default=output_path_default,
-        help="Path to the output directory for IDS files.",
+        help="Path to the output directory for generated files.",
+    )
+    
+    # Legacy aliases for backwards compatibility
+    parser.add_argument(
+        "--excel_path",
+        default=None,
+        help="(Deprecated: use --input_path) Path to the directory containing the Excel file.",
+    )
+    parser.add_argument(
+        "--excel_name",
+        default=None,
+        help="(Deprecated: use --input_name) Name of the Excel file (without extension).",
+    )
+    parser.add_argument(
+        "--excel_format",
+        default=None,
+        help="(Deprecated: use --input_format) Format of the Excel file.",
+    )
+    parser.add_argument(
+        "--ids_path",
+        default=None,
+        help="(Deprecated: use --input_path) Path to the directory containing the IDS file.",
+    )
+    parser.add_argument(
+        "--ids_name",
+        default=None,
+        help="(Deprecated: use --input_name) Name of the IDS file (without extension).",
+    )
+    parser.add_argument(
+        "--ids_format",
+        default=None,
+        help="(Deprecated: use --input_format) Format of the IDS file.",
     )
 
     args = parser.parse_args()
+    
+    # Handle legacy arguments and set defaults
+    if args.input_name is None:
+        if args.excel_name is not None:
+            args.input_name = args.excel_name
+        elif args.ids_name is not None:
+            args.input_name = args.ids_name
+        else:
+            args.input_name = excel_name_default
+    
+    if args.input_path is None:
+        if args.excel_path is not None:
+            args.input_path = args.excel_path
+        elif args.ids_path is not None:
+            args.input_path = args.ids_path
+        else:
+            args.input_path = excel_path_default
+    
+    if args.input_format is None:
+        if args.excel_format is not None:
+            args.input_format = args.excel_format
+        elif args.ids_format is not None:
+            args.input_format = args.ids_format
+        else:
+            args.input_format = ".xlsx"
     
     if args == parser.parse_args([]):  
         print("Default values were used, check -h for override parameters")
@@ -67,6 +142,7 @@ def get_metadata(excel_path, excel_name, excel_format, sheet_name):
     return sheet_name, ifc_version, separate_by, skipped_rows, is_entity_based_app, data_dict
 
 def process_excel_data(excel_path, excel_name, excel_format, sheet_name, separate_by, skipped_rows, ifc_version, is_entity_based_app):
+    """Process Excel data and convert to specifications."""
     full_excel_path = os.path.join(excel_path, excel_name + excel_format)
     
     # Convert Excel data to specifications
@@ -78,6 +154,7 @@ def process_excel_data(excel_path, excel_name, excel_format, sheet_name, separat
     return separated_excel_data
 
 def create_ids_files(separated_excel_data, data_dict, output_path, excel_name, sheet_name):
+    """Create IDS files from specifications."""
     for key in separated_excel_data.keys():
         sep_data = separated_excel_data[key]
         
@@ -121,14 +198,14 @@ def create_ids_files(separated_excel_data, data_dict, output_path, excel_name, s
         except Exception as error:
             print('Error: ', error)
 
-def main():
-    args = parse_arguments()
+def run_excel_to_ids(excel_path, excel_name, excel_format, output_path):
+    """Convert Excel file to IDS file(s).
     
-    excel_path = args.excel_path
-    excel_name = args.excel_name
-    excel_format = args.excel_format
-    output_path = args.output_path
-    
+    :param excel_path: Path to directory containing Excel file
+    :param excel_name: Name of Excel file without extension
+    :param excel_format: Format of Excel file (.xlsx or .xls)
+    :param output_path: Path to output directory
+    """
     print(f"Excel file path: {os.path.join(excel_path, excel_name + excel_format)}") 
     print(f"Output path: {output_path}")
     print()
@@ -141,6 +218,37 @@ def main():
     
     # Create IDS files
     create_ids_files(separated_excel_data, data_dict, output_path, excel_name, sheet_name)
+
+def run_ids_to_excel(ids_path, ids_name, ids_format, output_path):
+    """Convert IDS file to Excel file.
+    
+    :param ids_path: Path to directory containing IDS file
+    :param ids_name: Name of IDS file without extension
+    :param ids_format: Format of IDS file (.ids)
+    :param output_path: Path to output directory
+    """
+    print(f"IDS file path: {os.path.join(ids_path, ids_name + ids_format)}") 
+    print(f"Output path: {output_path}")
+    print()
+    
+    # Create Excel file from IDS
+    convert_IDS_to_Excel(ids_path, ids_name, ids_format, output_path)
+
+def main():
+    args = parse_arguments()
+    
+    input_path = args.input_path
+    input_name = args.input_name
+    input_format = args.input_format
+    output_path = args.output_path
+    
+    # Detect direction from format
+    direction = detect_direction(input_format)
+    
+    if direction == 'excel_to_ids':
+        run_excel_to_ids(input_path, input_name, input_format, output_path)
+    else:  # ids_to_excel
+        run_ids_to_excel(input_path, input_name, input_format, output_path)
 
 if __name__ == "__main__":
     try:

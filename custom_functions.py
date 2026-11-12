@@ -3,9 +3,13 @@ from xml.etree import ElementTree as ET
 from deepdiff import DeepDiff
 from deepmerge import Merger
 import copy
+import os
 from ifctester import ids
 import itertools
 from itertools import product
+from openpyxl.utils import get_column_letter
+import re
+from openpyxl.styles import PatternFill
 
 STRING_ENTITY = 'Entity'
 STRING_PREDEFINEDTYPE = 'PredefinedType'
@@ -1105,6 +1109,384 @@ merger = Merger(
     # Third argument: List of strategies to apply to certain types in order of priority
     ['override']
 )
+
+def convert_IDS_to_Excel(ids_path, ids_name, ids_format, output_path):
+    # Define colors
+    green_fill = PatternFill(start_color="C6E0B4", end_color="C6E0B4", fill_type="solid")
+    yellow_fill = PatternFill(start_color="FFE699", end_color="FFE699", fill_type="solid")
+    grey_fill = PatternFill(start_color="D9D9D9", end_color="D9D9D9", fill_type="solid")
+
+    # Define borders
+    from openpyxl.styles import Border, Side
+    thin_border = Border(
+        left=Side(style='thin'),
+        right=Side(style='thin'),
+        top=Side(style='thin'),
+        bottom=Side(style='thin'))
+
+    # Define fonts
+    from openpyxl.styles import Font
+    bold_font = Font(bold=True)
+
+    ids_file_path = os.path.join(ids_path, ids_name + ids_format)
+    ids_file = ids.open(ids_file_path)
+
+    ids_info = ids_file.info
+    ids_specifications = ids_file.specifications
+
+    # Create the IDS4ALL sheet
+    df_Template=pd.DataFrame({
+        "Entry": [
+            "Sheet name", "Skipped rows", "Title", "Copyright", "Version", "Description", "Author", "IFC version", "File separator", "Entity-based applicability", "", "This sheet with the given sheet name and the column and row structure is required for the use of the IDS4ALL converter."],
+        "Value (please fill in)": [
+            "", "0", ids_info.get("title"), ids_info.get("copyright"), ids_info.get("version"), ids_info.get("description"), ids_info.get("author"), "", "", "", "", ""],
+        "Necessity": [
+            "Required", "Optional", "Required", "Optional", "Optional", "Optional", "Optional", "Required", "Optional", "Optional", "", ""],
+        "Possible values": [
+            "", "", "", "", "", "", "", "IFC2X3,IFC4,IFC4X3_ADD2", "Phase,Role,Usecase", "Yes", "", ""],
+        "Description": [
+            "Name of the excel sheet which contains the information requirements", 
+            "Number of rows above the header row. The header row contains the column names, e.g. A.Entity, A.Property, R.Property.", 
+            "Title included in the metadata of the created IDS", 
+            "Copyright included in the metadata of the created IDS",
+            "Version included in the metadata of the created IDS",
+            "Description included in the metadata of the created IDS",
+            "Email address included in the metadata of the created IDS",
+            "Default Ifc versions used for each specification (multiple selection possible). This setting is overwritten for specification which use the column SpecificationIfcVersion to specify the Ifc version individually.",
+            "Categories that can be used to separate the specifications in different IDS files (multiple selection possible). If the keyword 'Phase' is used, an individual IDS file is created for each different phase. If 'Phase' and 'Role' are used, an individual IDS file is created for each unique combination of different phases and roles. If no file separator is used, one IDS file with all specifications is created.",
+            "This field allows to generate IDS files with an entity-based applicability. This means the converter only considers the applicability columns A.Entity, A.Attribute, and A.AttributeValue. The attribute columns are considered because of user-defined predefined types. If requirements are specified in more detail than entity-based by using additional applicability columns, these columns are ignored and the requirements are merged into one requirement. If requirements to be merged include multiple complex restrictions other than enumerations, these values are ignored in the merge process. Enumerations are merged into one requirement.", "", ""
+            ]   
+    })
+
+    # Define a function to determine the SpecificationCardinality
+    def search_spec_cardinality(min_occurs, max_occurs):
+        if min_occurs == 0 and max_occurs == "unbounded":
+            return "optional"
+        elif min_occurs == 1 and max_occurs == "unbounded":
+            return "required"
+        elif min_occurs == 0 and max_occurs == 0:
+            return "prohibited"
+        else:
+            return None
+
+    # List of columns for the Specifications sheet
+    columns=["A.Entity", "A.PropertySet", "A.Property", "A.PropertyDatatype", "A.PropertyValue", "A.Material", "A.Attribute", "A.AttributeValue", "A.Classification", "A.ClassificationSystem", "A.PartOfRelation", "A.PartOfEntity", "R.PropertySet", "R.Property", "R.PropertyDatatype", "R.PropertyValue", "R.PropertyURI", "R.Description.Property","R.Material", "R.MaterialURI", "R.Attribute", "R.AttributeValue", "R.Classification", "R.ClassificationSystem", "R.ClassificationURI", "R.PartOfRelation", "R.PartOfEntity", "R.Entity", "R.Description.Entity", "R.Cardinality", "Phase", "Role", "Usecase", "SpecificationCardinality", "SpecificationIfcVersion", "SpecificationName"]
+    rows = []
+
+    for spec in ids_specifications:
+        # Empty dictionary
+        app_data = {}
+        # Lists for all applicability values, since there can be several. They are joined with \&.
+        app_pset = []
+        app_prop = []
+        app_value = []
+        app_datatype = []
+        app_entity = []
+        app_material = []
+        app_attribute = []
+        app_attribute_value = []
+        app_classification = []
+        app_classification_sys = []
+        app_pof_relation = []
+        app_pof_entity = []
+
+        ids_applicability = spec.applicability 
+        # Min and max
+        spec_minoccurs = spec.minOccurs
+        spec_maxoccurs = spec.maxOccurs
+        spec_name = spec.name
+        #ifcVersion
+        first_ifc_version = None
+        first_spec = ids_specifications[0]
+        if isinstance(first_spec.ifcVersion, (list, tuple, set)):
+            first_ifc_version = "|".join(first_spec.ifcVersion)
+        else:
+            first_ifc_version = str(first_spec.ifcVersion) if first_spec.ifcVersion else None
+        if isinstance(spec.ifcVersion, (list, tuple, set)):
+            spec_version = "|".join(spec.ifcVersion)
+        else:
+            spec_version = str(spec.ifcVersion) if spec.ifcVersion else None  
+        #Instructions
+        spec_phase = None
+        spec_role = None
+        spec_usecase = None
+        
+        if spec.instructions:
+            # Extract the data with regex
+            spec_phase = re.search(r"Phase\s*:\s*([^;]+)", spec.instructions)
+            spec_role = re.search(r"Role\s*:\s*([^;]+)", spec.instructions)
+            spec_usecase = re.search(r"Usecase\s*:\s*([^;]+)", spec.instructions)
+
+            # Join the data if there are several
+            if spec_phase:
+                spec_phase = spec_phase.group(1).strip()
+                spec_phase = "|".join([p.strip() for p in spec_phase.split(",")])
+            if spec_role:
+                spec_role = spec_role.group(1).strip()
+                spec_role = "|".join([r.strip() for r in spec_role.split(",")])
+            if spec_usecase:
+                spec_usecase = spec_usecase.group(1).strip()
+                spec_usecase = "|".join([u.strip() for u in spec_usecase.split(",")])
+
+        for app in ids_applicability:
+            if isinstance(app, ids.Entity):
+                entity = None
+                predefined = None
+                # Does the app have a name?
+                if hasattr(app, "name") and app.name:
+                    entity = convert_facet_parameter_to_excel(app.name)
+                # Does the app have a predefinedType?
+                if hasattr(app, "predefinedType") and app.predefinedType:
+                    predefined = convert_facet_parameter_to_excel(app.predefinedType)
+                # If the app has both name and predefinedType, combine them as entity.predefinedType
+                if entity and predefined:
+                    app_entity.append(combine_entity_with_predefined_types(entity, predefined))
+                elif entity:
+                    app_entity.append(entity)
+            # All values are joined with \&
+            elif isinstance(app,ids.Property):
+                app_pset.append(convert_facet_parameter_to_excel(app.propertySet))
+                app_prop.append(convert_facet_parameter_to_excel(app.baseName))
+                app_value.append(convert_facet_parameter_to_excel(app.value))
+                if app.dataType is not None:
+                    app_datatype.append(app.dataType)
+            # All values are joined with \&
+            elif isinstance(app,ids.Material):
+                app_material.append(convert_facet_parameter_to_excel(app.value))
+            elif isinstance(app,ids.Attribute):
+                app_attribute.append(convert_facet_parameter_to_excel(app.name))
+                app_attribute_value.append(convert_facet_parameter_to_excel(app.value))
+            elif isinstance(app,ids.Classification):
+                app_classification.append(convert_facet_parameter_to_excel(app.value))
+                app_classification_sys.append(convert_facet_parameter_to_excel(app.system))
+            elif isinstance(app,ids.PartOf):
+                app_pof_relation.append(convert_facet_parameter_to_excel(app.relation))
+                app_pof_entity.append(convert_facet_parameter_to_excel(app.name))
+        app_data.update({
+            "A.Entity": "\\&".join(v for v in app_entity if v is not None) if app_entity else None,
+            "A.PropertySet": "\\&".join(v for v in app_pset if v is not None) if app_pset else None,
+            "A.Property": "\\&".join(v for v in app_prop if v is not None) if app_prop else None,
+            "A.PropertyValue": "\\&".join(v for v in app_value if v is not None) if app_value else None,
+            "A.PropertyDatatype": "\\&".join(v for v in app_datatype if v is not None) if app_datatype else None,
+            "A.Material": "\\&".join(v for v in app_material if v is not None) if app_material else None,
+            "A.Attribute": "\\&".join(v for v in app_attribute if v is not None) if app_attribute else None,
+            "A.AttributeValue": "\\&".join(v for v in app_attribute_value if v is not None) if app_attribute_value else None,
+            "A.Classification": "\\&".join(v for v in app_classification if v is not None) if app_classification else None,
+            "A.ClassificationSystem": "\\&".join(v for v in app_classification_sys if v is not None) if app_classification_sys else None,
+            "A.PartOfRelation": "\\&".join(v for v in app_pof_relation if v is not None) if app_pof_relation else None,
+            "A.PartOfEntity": "\\&".join(v for v in app_pof_entity if v is not None) if app_pof_entity else None,
+            "SpecificationName": spec_name,
+            "SpecificationIfcVersion": spec_version,
+            "Phase": spec_phase,
+            "Role": spec_role,
+            "Usecase": spec_usecase,
+            "SpecificationCardinality": search_spec_cardinality(spec_minoccurs, spec_maxoccurs)
+        })
+        ids_requirements = spec.requirements
+        # If there are no requirements --> still create a row
+        if not ids_requirements:
+            row = {col: None for col in columns}
+            row.update(app_data)
+            rows.append(row)
+        else:
+            # If there are requirements, a row is created for each requirement. The applicability values are repeated in each row since they apply to all requirements. Depending on the requirement type, different columns are filled.
+            for req in ids_requirements:
+                row={col: None for col in columns}
+                row.update(app_data)
+                if isinstance(req,ids.Entity):
+                    entity = None
+                    predefined = None
+                    if hasattr(req, "name") and req.name:
+                        entity = convert_facet_parameter_to_excel(req.name)
+                    if hasattr(req, "predefinedType") and req.predefinedType:
+                        predefined = convert_facet_parameter_to_excel(req.predefinedType)
+                    if entity and predefined:
+                        row["R.Entity"] = combine_entity_with_predefined_types(entity, predefined)
+                    else:
+                        row["R.Entity"] = entity
+                    row["R.Description.Entity"] = req.instructions
+                elif isinstance(req,ids.Property):
+                    row["R.PropertySet"] = convert_facet_parameter_to_excel(req.propertySet)
+                    row["R.Property"] = convert_facet_parameter_to_excel(req.baseName)
+                    row["R.PropertyDatatype"] = req.dataType
+                    row["R.PropertyURI"] = convert_facet_parameter_to_excel(req.uri)
+                    row["R.Description.Property"] = req.instructions
+                    row["R.Cardinality"] = req.cardinality
+                    row["R.PropertyValue"] = convert_facet_parameter_to_excel(req.value)
+                    
+                elif isinstance(req, ids.Material):
+                    row["R.Material"] = convert_facet_parameter_to_excel(req.value)
+                    row["R.MaterialURI"] = convert_facet_parameter_to_excel(req.uri)
+                    row["R.Cardinality"] = req.cardinality
+
+                elif isinstance(req, ids.Attribute):
+                    row["R.Attribute"] = convert_facet_parameter_to_excel(req.name)
+                    row["R.AttributeValue"] = convert_facet_parameter_to_excel(req.value)
+                    row["R.Cardinality"] = req.cardinality
+
+                elif isinstance(req, ids.Classification):
+                    row["R.Classification"] = convert_facet_parameter_to_excel(req.value)
+                    row["R.ClassificationSystem"] = convert_facet_parameter_to_excel(req.system)
+                    row["R.ClassificationURI"] = convert_facet_parameter_to_excel(req.uri)
+                    row["R.Cardinality"] = req.cardinality
+
+                elif isinstance(req, ids.PartOf):
+                    row["R.PartOfRelation"] = convert_facet_parameter_to_excel(req.relation)
+                    row["R.PartOfEntity"] = convert_facet_parameter_to_excel(req.name)
+                    row["R.Cardinality"] = req.cardinality
+
+                rows.append(row)
+    df = pd.DataFrame(rows, columns=columns)
+
+    sheet_name1= "IDS4ALL"
+    sheet_name2 = "Specifications"
+
+    # In IDS4ALL, cell B4 corresponds to the title of the sheet
+    df_Template.loc[df_Template["Entry"] == "Sheet name", "Value (please fill in)"] = sheet_name2
+    # Insert the first IFC version from the specifications into cell B8
+    df_Template.loc[df_Template["Entry"] == "IFC version", "Value (please fill in)"] = first_ifc_version
+    # Create the Excel file
+    os.makedirs(output_path, exist_ok=True)
+    output_file_path = os.path.join(output_path, ids_name + ".xlsx")
+    with pd.ExcelWriter(output_file_path, engine="openpyxl") as writer:
+        df_Template.to_excel(writer, sheet_name=sheet_name1, index=False)
+        df.to_excel(writer, sheet_name=sheet_name2, index=False)
+
+        workbook = writer.book
+    # IDS4ALL sheet
+        # Column widths manually
+        ws_IDS4ALL = workbook[sheet_name1]
+        ws_IDS4ALL.column_dimensions["A"].width = 15
+        ws_IDS4ALL.column_dimensions["B"].width = 35
+        ws_IDS4ALL.column_dimensions["C"].width = 10
+        ws_IDS4ALL.column_dimensions["D"].width = 25
+        ws_IDS4ALL.column_dimensions["E"].width = 100
+        # Enable text wrapping and align to top
+        from openpyxl.styles import Alignment
+        for row in ws_IDS4ALL.iter_rows(min_row=1, max_row=11):
+            for cell in row:
+                cell.alignment = Alignment(wrap_text= True, vertical="top")
+        # Color cells in column B green
+        for row in range(2, 11 + 1):
+            ws_IDS4ALL[f"B{row}"].fill = green_fill
+        # Add borders to cells
+        for row in ws_IDS4ALL.iter_rows(min_row=1, max_row=11, min_col=1, max_col=5):
+            for cell in row:
+                cell.border = thin_border
+        # Format the first row bold
+        for cell in ws_IDS4ALL[1]:
+            cell.font = bold_font
+        # Format the note row bold
+        ws_IDS4ALL["A13"].font = bold_font
+
+    # Specifications sheet
+        # Auto-fit column widths
+        ws_spec = workbook[sheet_name2]
+        for col in ws_spec.columns:
+            max_length = 0
+            column_letter = get_column_letter(col[0].column)
+            for cell in col:
+                if cell.value is not None:
+                    max_length = max(max_length, len(str(cell.value)))
+            ws_spec.column_dimensions[column_letter].width = max_length + 2
+    
+        # Color the Req. column green
+        for col in range(1,13):
+            ws_spec.cell(row=1, column=col).fill = green_fill
+        # Color the App. column yellow
+        for col in range(13, 31):
+            ws_spec.cell(row=1, column=col).fill = yellow_fill
+        # Color the column grey
+        for col in range(31, ws_spec.max_column + 1):
+            ws_spec.cell(row=1, column=col).fill = grey_fill
+        # Format the first row bold
+        for cell in ws_spec[1]:
+            cell.font = bold_font
+        # Delete empty columns in Specifications
+        max_row_spec = ws_spec.max_row
+        max_col_spec = ws_spec.max_column
+        for col in range(max_col_spec, 0, -1):
+            empty = True
+            for row in range(2, max_row_spec + 1):
+                value= ws_spec.cell(row=row, column=col).value
+                if value not in (None, ""):
+                    empty = False
+                    break
+            if empty:
+                ws_spec.delete_cols(col)
+
+    print(f"Excel file created: {output_file_path}")
+
+def convert_facet_parameter_to_excel(facet_param):
+    """Convert a facet parameter (with possible complex restrictions) to Excel string format.
+    
+    This function handles the conversion of any facet parameter that may contain
+    complex restrictions (enumerations, patterns, length constraints, numeric bounds)
+    into their string representation for Excel export.
+    
+    :param facet_param: The facet parameter value (can be None, string, or Restriction object)
+    :type facet_param: None | str | ids.Restriction | Any
+    :return: String representation of the facet parameter, or None if input is None
+    :rtype: str | None
+    """
+    if facet_param is None:
+        return None
+    
+    # Check if it's a Restriction object with options (complex restrictions)
+    if hasattr(facet_param, "options") and facet_param.options:
+        options_dict = facet_param.options
+        
+        # Check for each type of complex restriction
+        if "length" in options_dict:
+            return f"length={options_dict['length']}"
+        elif "minLength" in options_dict:
+            return f"length>={options_dict['minLength']}"
+        elif "maxLength" in options_dict:
+            return f"length<={options_dict['maxLength']}"
+        elif "maxInclusive" in options_dict:
+            return f"\\<={options_dict['maxInclusive']}"
+        elif "minInclusive" in options_dict:
+            return f"\\>={options_dict['minInclusive']}"
+        elif "maxExclusive" in options_dict:
+            return f"\\<{options_dict['maxExclusive']}"
+        elif "minExclusive" in options_dict:
+            return f"\\>{options_dict['minExclusive']}"
+        elif "enumeration" in options_dict:
+            return "|".join(options_dict["enumeration"])
+        elif "pattern" in options_dict:
+            return f"pattern={options_dict['pattern']}"
+    
+    # No complex restrictions, return as string
+    return str(facet_param) if facet_param is not None else None
+
+
+def combine_entity_with_predefined_types(entity_str, predefined_str):
+    """Combine entity names with predefined types as cartesian product.
+    
+    Special handling for Entity facet parameters that have both name and predefinedType.
+    Each entity is combined with each predefined type.
+    
+    Examples:
+    - entity="IFCSPACE", predefined="NOTDEFINED" -> "IFCSPACE.NOTDEFINED"
+    - entity="IFCSPACE", predefined="NOTDEFINED|BERTH" -> "IFCSPACE.NOTDEFINED|IFCSPACE.BERTH"
+    - entity="IFCSPACE|IFCWALL", predefined="NOTDEFINED" -> "IFCSPACE.NOTDEFINED|IFCWALL.NOTDEFINED"
+    
+    :param entity_str: Entity name(s) as string, possibly separated by |
+    :param predefined_str: PredefinedType(s) as string, possibly separated by |
+    :return: Combined entity.predefinedType pairs separated by |
+    """
+    if not entity_str or not predefined_str:
+        return None
+    
+    entities = entity_str.split("|")
+    predefined_types = predefined_str.split("|")
+    
+    combinations = []
+    for entity in entities:
+        for ptype in predefined_types:
+            combinations.append(f"{entity}.{ptype}")
+    
+    return "|".join(combinations)
 
 datatype_base_dict = {
     'IFCABSORBEDDOSEMEASURE': 'double',
