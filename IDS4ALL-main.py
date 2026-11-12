@@ -27,6 +27,18 @@ def detect_direction(fmt):
     else:
         raise ValueError(f"Unknown file format: {fmt}. Expected .xlsx, .xls, or .ids")
 
+def first_set(*values, default=None):
+    """Return the first non-None value from the provided arguments.
+    
+    Useful for implementing fallback chains: try new argument, fall back to legacy,
+    then use default if nothing is set.
+    
+    :param values: Arguments to check in order
+    :param default: Default value if all arguments are None
+    :return: First non-None value or default
+    """
+    return next((v for v in values if v is not None), default)
+
 def parse_arguments():
     """Parse command-line arguments supporting both directions."""
     parser = argparse.ArgumentParser(description="Convert between Excel and IDS formats.")
@@ -87,32 +99,18 @@ def parse_arguments():
 
     args = parser.parse_args()
     
+    # Check if using defaults before filling them in
+    using_defaults = args == parser.parse_args([])
+    
     # Handle legacy arguments and set defaults
-    if args.input_name is None:
-        if args.excel_name is not None:
-            args.input_name = args.excel_name
-        elif args.ids_name is not None:
-            args.input_name = args.ids_name
-        else:
-            args.input_name = excel_name_default
+    args.input_name = first_set(args.input_name, args.excel_name, args.ids_name,
+                                default=excel_name_default)
+    args.input_path = first_set(args.input_path, args.excel_path, args.ids_path,
+                                default=excel_path_default)
+    args.input_format = first_set(args.input_format, args.excel_format, args.ids_format,
+                                  default=".xlsx")
     
-    if args.input_path is None:
-        if args.excel_path is not None:
-            args.input_path = args.excel_path
-        elif args.ids_path is not None:
-            args.input_path = args.ids_path
-        else:
-            args.input_path = excel_path_default
-    
-    if args.input_format is None:
-        if args.excel_format is not None:
-            args.input_format = args.excel_format
-        elif args.ids_format is not None:
-            args.input_format = args.ids_format
-        else:
-            args.input_format = ".xlsx"
-    
-    if args == parser.parse_args([]):  
+    if using_defaults:
         print("Default values were used, check -h for override parameters")
 
     return args

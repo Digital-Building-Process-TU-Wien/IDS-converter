@@ -47,7 +47,7 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
     :type EXCEL_PATH: str
     :param sheet_name: Name of the relevant sheet 
     :type sheet_name: str
-    :param separate_by: List of general data for which specifications must be seperated
+    :param separate_by: List of general data for which specifications must be separated
     :type separate_by: list
     :param skipped_rows: Number of skipped rows at the top of the sheet 
     :type skipped_rows: int
@@ -150,7 +150,7 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
             col: lambda x: '|'.join(map(str, x.dropna())) for col in removed_items
             }).reset_index()
 
-        #Step 2: Merge all requirement parameters and general parameters not in seperate_by,
+        #Step 2: Merge all requirement parameters and general parameters not in separate_by,
         #keeping values of STRING_PROPERTYVALUE & STRING_ATTRIBUTEVALUE as sub-lists
         merge_columns_2 = []
         merge_columns_2.extend(cols_req_entity)
@@ -234,7 +234,7 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
 
         #Generate possible combinations for all or_values in the applicability and create individual specifications for each.
         #This is necessary for assigning generally applicable values to more specific specifications.
-        #Only if specification cardinality is not "required", because in this case the logic would be lost when seperated
+        #Only if specification cardinality is not "required", because in this case the logic would be lost when separated
         if STRING_SPECIFICATIONCARDINALITY in specification_data_dict and specification_data_dict[STRING_SPECIFICATIONCARDINALITY][0].lower() == 'required':
             app_lists = [app_list]
         else:
@@ -309,7 +309,7 @@ def excel_to_spec_list(EXCEL_PATH, sheet_name, separate_by, skipped_rows, ifc_ve
     #pecifications that belong to several seperation categories are split into indivudual specifications
     #if the individual specifications have the same separation category, they are merged again.
     #by this specifications with the same applicability are merged in the different separation categories
-    #only necessary if spearation categories (speparate_by) are used
+    #only necessary if spearation categories (separate_by) are used
     if separate_by:
         specs_list_sep = []
         for spec in specs_list:
@@ -515,7 +515,7 @@ def split_OR_AND_values(input_dict, is_entity_based_app):
                     if key == STRING_REQUIREMENTCARDINALITY and len(and_values) == 1:
                         and_values = and_values*number_of_and_values
                     else:
-                        raise Exception('Number of AND values (seperated by \\&) is invalid for ' + key + ' ' + value + '. All columns of one IDS facet require the same number of AND values. Required number of AND values: ' + str(number_of_and_values))
+                        raise Exception('Number of AND values (separated by \\&) is invalid for ' + key + ' ' + value + '. All columns of one IDS facet require the same number of AND values. Required number of AND values: ' + str(number_of_and_values))
                 values_list = []
                 for and_value in and_values:
                     #if the value is a pattern, do not split the value using the | delimiter, because | already has a meaning in the pattern
@@ -642,7 +642,7 @@ def compare_previous_generaldata_and_applicability(specs_list, generaldata_dict,
     :type app_list: list
     :param app_spliited: Boolean value that defines whether this app_list was extracted from an applicability with or_values
     :type app_list: bool
-    :param separate_by: List of general data for which specifications must be seperated
+    :param separate_by: List of general data for which specifications must be separated
     :type separate_by: list    
     :return: Boolean 'diff' specifying whether the applicability is different
     :rtype: bool
@@ -666,7 +666,7 @@ def compare_previous_generaldata_and_applicability(specs_list, generaldata_dict,
             spec_included_paths.append(STRING_SPECIFICATIONNAME)
         diff_specification_data = DeepDiff(specification_data_dict, prev_spec['spec'], include_paths=spec_included_paths)
         if not diff_specification_data:
-            #check the general data specified by seperate_by, if it is not empty.
+            #check the general data specified by separate_by, if it is not empty.
             if separate_by:
                 diff_generaldata = DeepDiff(generaldata_dict, prev_spec['general'], include_paths=separate_by)
             else: diff_generaldata = False
@@ -692,7 +692,7 @@ def structure_specifications_by_Ifc_versions(spec1, spec2, spec1_Ifc_versions, s
     if the two specifications have equal applicability, general data and specification cardinality.
     If all ifc versions of spec1 are in spec2, spec1_Ifc_versions is a subset of spec2_Ifc_versions. Then all requirements of spec2 also apply to spec1.
     After the requirements are included in spec1, the ifc versions of spec1 are removed spec2.
-    By this, the two specifications with overlapping ifc-versions are seperated to have one specification for each unique ifc version combination
+    By this, the two specifications with overlapping ifc-versions are separated to have one specification for each unique ifc version combination
 
     :param spec1: Specification with more specific ifc version definition
     :type spec1: dict
@@ -702,7 +702,7 @@ def structure_specifications_by_Ifc_versions(spec1, spec2, spec1_Ifc_versions, s
     :type spec1_Ifc_versions: list
     :param spec2_Ifc_versions: List of all ifc versions spec2 applies to
     :type spec2_Ifc_versions: list
-    :param separate_by: List of general data for which specifications must be seperated
+    :param separate_by: List of general data for which specifications must be separated
     :type separate_by: list 
     '''
     #check specification data
@@ -713,7 +713,7 @@ def structure_specifications_by_Ifc_versions(spec1, spec2, spec1_Ifc_versions, s
         spec_included_paths.append(STRING_SPECIFICATIONNAME)
     diff_specification_data = DeepDiff(spec1['spec'], spec2['spec'], include_paths=spec_included_paths)
     if not diff_specification_data:
-        #check the general data specified by seperate_by, if it is not empty.
+        #check the general data specified by separate_by, if it is not empty.
         if separate_by:
             diff_generaldata = DeepDiff(spec1['general'], spec2['general'], include_paths=separate_by)
         else: diff_generaldata = False
@@ -747,7 +747,7 @@ def add_values_to_general_specs(specs_list, separate_by):
 
     :param specs_list: List of all specifications
     :type specs_list: list
-    :param separate_by: List of general data for which specifications must be seperated
+    :param separate_by: List of general data for which specifications must be separated
     :type separate_by: list 
     '''
     for i in range(len(specs_list)):
@@ -1263,18 +1263,18 @@ def convert_IDS_to_Excel(ids_path, ids_name, ids_format, output_path):
                 app_pof_relation.append(convert_facet_parameter_to_excel(app.relation))
                 app_pof_entity.append(convert_facet_parameter_to_excel(app.name))
         app_data.update({
-            "A.Entity": "\\&".join(v for v in app_entity if v is not None) if app_entity else None,
-            "A.PropertySet": "\\&".join(v for v in app_pset if v is not None) if app_pset else None,
-            "A.Property": "\\&".join(v for v in app_prop if v is not None) if app_prop else None,
-            "A.PropertyValue": "\\&".join(v for v in app_value if v is not None) if app_value else None,
-            "A.PropertyDatatype": "\\&".join(v for v in app_datatype if v is not None) if app_datatype else None,
-            "A.Material": "\\&".join(v for v in app_material if v is not None) if app_material else None,
-            "A.Attribute": "\\&".join(v for v in app_attribute if v is not None) if app_attribute else None,
-            "A.AttributeValue": "\\&".join(v for v in app_attribute_value if v is not None) if app_attribute_value else None,
-            "A.Classification": "\\&".join(v for v in app_classification if v is not None) if app_classification else None,
-            "A.ClassificationSystem": "\\&".join(v for v in app_classification_sys if v is not None) if app_classification_sys else None,
-            "A.PartOfRelation": "\\&".join(v for v in app_pof_relation if v is not None) if app_pof_relation else None,
-            "A.PartOfEntity": "\\&".join(v for v in app_pof_entity if v is not None) if app_pof_entity else None,
+            "A.Entity": join_and(app_entity),
+            "A.PropertySet": join_and(app_pset),
+            "A.Property": join_and(app_prop),
+            "A.PropertyValue": join_and(app_value),
+            "A.PropertyDatatype": join_and(app_datatype),
+            "A.Material": join_and(app_material),
+            "A.Attribute": join_and(app_attribute),
+            "A.AttributeValue": join_and(app_attribute_value),
+            "A.Classification": join_and(app_classification),
+            "A.ClassificationSystem": join_and(app_classification_sys),
+            "A.PartOfRelation": join_and(app_pof_relation),
+            "A.PartOfEntity": join_and(app_pof_entity),
             "SpecificationName": spec_name,
             "SpecificationIfcVersion": spec_version,
             "Phase": spec_phase,
@@ -1487,6 +1487,19 @@ def combine_entity_with_predefined_types(entity_str, predefined_str):
             combinations.append(f"{entity}.{ptype}")
     
     return "|".join(combinations)
+
+def join_and(values):
+    """Join non-None values with the AND operator delimiter.
+    
+    Filters out None values and joins the remainder with '\\&'. Returns None
+    if all values are None or the list is empty.
+    
+    :param values: List of values to join
+    :return: Joined string or None
+    :rtype: str or None
+    """
+    kept = [v for v in values if v is not None]
+    return "\\&".join(kept) if kept else None
 
 datatype_base_dict = {
     'IFCABSORBEDDOSEMEASURE': 'double',
